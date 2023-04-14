@@ -1,0 +1,33 @@
+.spacer {
+  flex: 1;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+
+  .title {
+    margin-left: 40px;
+    a {
+      text-decoration: none;
+      color: white;
+      size: 2em;
+    }
+  }
+  .link:first-child{
+    margin-left: 20px;
+  }
+  .link {
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;
+  }
+}

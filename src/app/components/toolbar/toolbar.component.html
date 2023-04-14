@@ -1,0 +1,9 @@
+<div class="toolbar" role="banner">
+  <span class="title" data-testid="title">
+    <a routerLink="home">{{ title }}</a>
+  </span>
+  <span>
+    <a *ngFor="let link of links" [routerLink]="link.path" class="link" [title]="link.title">{{ link.title | titlecase }}</a>
+  </span>
+  <div class="spacer"></div>
+</div>

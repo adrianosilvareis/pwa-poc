@@ -1,0 +1,8 @@
+<app-table
+  [columns]="columns"
+  [items]="data"
+  (add)="addClient()"
+  (edit)="editClient()"
+  (select)="selectClient($event)"
+  (remove)="removeClient($event)"
+></app-table>
