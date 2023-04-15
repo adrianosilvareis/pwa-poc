@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { TableComponent } from './table/table.component';
 import { MaterialModule } from '../material/material.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +17,7 @@ import { MaterialModule } from '../material/material.module';
   imports: [
     CommonModule,
     MaterialModule,
-    AppRoutingModule
+    RouterModule
   ],
   exports:[
     ListComponent,
