@@ -5,14 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { PagesModule } from './pages/pages.module';
-import { SharedModule } from './components/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { clientsReducer } from './pages/clients/store/clients.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { ClientsEffects } from './pages/clients/store/clients.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SharedModule } from './components/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   ],
   imports: [
     SharedModule,
-    PagesModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
