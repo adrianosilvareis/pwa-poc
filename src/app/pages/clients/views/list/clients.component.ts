@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ColumnItem } from '@root/app/components/table/table.component';
-import { AppState, selectActiveClients } from '../../store/clients.selectors';
+import { AppState, isClientLoading, selectActiveClients } from '../../store/clients.selectors';
 import { ClientModel } from '../../model/Clients.model';
 import { clientsPageActions } from '../../store/clients.actions';
 
@@ -22,6 +22,7 @@ export class ClientsComponent implements OnInit {
   ];
 
   data: Observable<ClientModel[]> = this.store.select(selectActiveClients);
+  isLoading: Observable<boolean> = this.store.select(isClientLoading);
 
   constructor(private store: Store<AppState>) {}
 

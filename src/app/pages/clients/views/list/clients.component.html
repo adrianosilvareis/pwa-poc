@@ -1,4 +1,7 @@
+<app-loading *ngIf="isLoading | async"></app-loading>
+
 <app-table
+  *ngIf="!(isLoading | async)"
   [columns]="columns"
   title="Client"
   [items]="data"

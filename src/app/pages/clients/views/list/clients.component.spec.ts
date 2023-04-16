@@ -17,6 +17,7 @@ describe('ClientsComponent', () => {
       }],
       newClient: null,
       selectedClient: null,
+      isClientLoading: false,
       errorOnAddClients: false,
       errorOnEditClients: false,
       errorOnDeleteClients: false,
