@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit  {
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() select = new EventEmitter();
@@ -19,18 +19,19 @@ export class TableComponent implements OnInit {
   @Input() items: Observable<unknown[]> = of([]);
 
   displayedColumns: string[] = [];
-  dataSource!:MatTableDataSource<unknown>;
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource = new MatTableDataSource();
 
   selected: unknown;
 
   ngOnInit(): void {
     this.items.subscribe(items => {
-      this.dataSource = new MatTableDataSource<unknown>(items);
-      this.dataSource.paginator = this.paginator;
-    })
+      this.dataSource.data = items;
+      setTimeout(() => {
+        this.dataSource.paginator = this.paginator;
+      })
+    });
     this.displayedColumns = this.columns.map(({ value }) => value);
   }
 
