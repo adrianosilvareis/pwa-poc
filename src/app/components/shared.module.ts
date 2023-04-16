@@ -5,6 +5,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './loading/loading.component';
 
 
 
@@ -12,7 +13,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     ListComponent,
     ToolbarComponent,
-    TableComponent
+    TableComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { RouterModule } from '@angular/router';
   exports:[
     ListComponent,
     ToolbarComponent,
-    TableComponent
+    TableComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }
