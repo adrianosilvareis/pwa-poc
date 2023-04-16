@@ -41,6 +41,16 @@ describe('TableComponent', () => {
     expect(screen.getAllByRole('row').at(1)?.classList.contains('demo-row-is-clicked')).toBeTruthy();
   });
 
+  it('should has paginator', async () => {
+    await render(TableComponent, {
+      imports:[MaterialModule]
+    });
+
+    const combobox = screen.getByRole('combobox');
+
+    expect(combobox.getAttribute('ng-reflect-value')).toBe("5");
+  });
+
   it('should call events when click on it', async () => {
     // given
     const addSpy = jest.fn();
