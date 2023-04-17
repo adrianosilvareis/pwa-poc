@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/angular';
 import { ClientsComponent } from './clients.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { AppState } from '../../store/clients.selectors';
+import { AppState } from '@pages/clients/store/clients.selectors';
 import { SharedModule } from '@root/app/components/shared.module';
 
 describe('ClientsComponent', () => {

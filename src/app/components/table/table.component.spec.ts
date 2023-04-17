@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/angular';
-import { MaterialModule } from './../../material/material.module';
+import { MaterialModule } from '@app/material/material.module';
 import { TableComponent } from './table.component';
 import { of } from 'rxjs';
 import { EventEmitter } from '@angular/core';

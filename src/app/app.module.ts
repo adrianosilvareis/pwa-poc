@@ -1,17 +1,17 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { AppComponent } from '@app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
-import { clientsReducer } from './pages/clients/store/clients.reducer';
+import { clientsReducer } from '@pages/clients/store/clients.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { ClientsEffects } from './pages/clients/store/clients.effects';
+import { ClientsEffects } from '@pages/clients/store/clients.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { SharedModule } from './components/shared.module';
+import { SharedModule } from '@components/shared.module';
 
 @NgModule({
   declarations: [

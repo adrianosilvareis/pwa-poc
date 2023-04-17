@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { clientsPageActions } from './clients.actions';
-import { ClientModel } from '../model/Clients.model';
+import { ClientModel } from '@pages/clients/model/Clients.model';
 
 export interface ClientState {
   clients: ClientModel[],

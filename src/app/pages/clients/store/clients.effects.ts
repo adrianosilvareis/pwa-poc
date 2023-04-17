@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, exhaustMap, catchError, withLatestFrom } from 'rxjs/operators';
-import { ClientsService } from '../services/clients.service';
+import { ClientsService } from '@pages/clients/services/clients.service';
 import { clientsPageActions } from './clients.actions';
 import { Store } from '@ngrx/store';
 import { AppState, newClient, selectActiveClients, selectedClient } from './clients.selectors';
-import { ClientModel } from '../model/Clients.model';
+import { ClientModel } from '@pages/clients/model/Clients.model';
 
 @Injectable()
 export class ClientsEffects {

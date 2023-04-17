@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '@app/material/material.module';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
 

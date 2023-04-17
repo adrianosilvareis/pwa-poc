@@ -1,5 +1,5 @@
 import { createAction, createActionGroup, emptyProps, props } from '@ngrx/store';
-import { ClientModel } from '../model/Clients.model';
+import { ClientModel } from '@pages/clients/model/Clients.model';
 
 export const addClientAction = createAction('[Clients Page] Add Clients');
 export const addClientSuccessAction = createAction('[Clients Page] [success] Add Clients', props<{client: ClientModel}>());
