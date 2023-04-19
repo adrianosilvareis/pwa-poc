@@ -10,13 +10,13 @@ describe('FormComponent', () => {
     { colspan: 2, name: 'name', placeholder: 'Name', label: 'Name', value: ['', Validators.required] },
   ];
 
-  it('should render title and subtitle when exist', async () => {
+  it('should render title and id when exist', async () => {
     // given
-    const { title, subtitle } = await setup(data);
+    const { title, formId } = await setup(data);
 
     // then
     expect(title.textContent).toBe('My_title');
-    expect(subtitle.textContent).toBe('Id# MY_ID');
+    expect(formId.textContent).toBe('Id# MY_ID');
   });
 
   it('should render fields based on data', async () => {
@@ -83,7 +83,7 @@ async function setup(data: FormItems[], handler?: EventEmitter<unknown>) {
     imports: [SharedModule, ReactiveFormsModule],
     componentInputs: {
       title: 'MY_TITLE',
-      subtitle: 'MY_ID',
+      formId: 'MY_ID',
       data: data
     },
     componentOutputs: {
@@ -93,14 +93,14 @@ async function setup(data: FormItems[], handler?: EventEmitter<unknown>) {
   });
 
   const title = screen.getByRole('title');
-  const subtitle = screen.getByRole('subtitle');
+  const formId = screen.getByRole('formId');
   const input = screen.getByLabelText('Name');
   const saveButton = screen.getByRole('save');
   const cancelButton = screen.getByRole('cancel');
 
   return {
     title,
-    subtitle,
+    formId,
     input,
     saveButton,
     cancelButton

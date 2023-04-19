@@ -1,6 +1,6 @@
 <div class="mat-elevation-z5" style="padding: 10px;">
   <h1 class="title" role="title">{{ title | titlecase }}</h1>
-  <span class="subtitle" *ngIf="subtitle" role="subtitle">Id# {{ subtitle }}</span>
+  <span class="subtitle" *ngIf="formId" role="formId">Id# {{ formId }}</span>
 
   <mat-grid-list cols="4" rowHeight="100px" gutterSize="15px" >
     <form [formGroup]="formGroup" class="clientForm">

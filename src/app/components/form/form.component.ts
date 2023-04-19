@@ -9,7 +9,7 @@ import { FormItems } from './items.model';
 })
 export class FormComponent {
   @Input() title: string = '';
-  @Input() subtitle: string = '';
+  @Input() formId: string = '';
   @Input() set data(value: FormItems[]) { this.toGroup(value) }
 
   @Output() save = new EventEmitter();
