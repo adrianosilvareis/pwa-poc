@@ -6,26 +6,31 @@ import { TableComponent } from './table/table.component';
 import { MaterialModule } from '@app/material/material.module';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
-
-
+import { FormComponent } from './form/form.component';
+import { PipeModule } from '@root/app/pipe/pipe.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ListComponent,
     ToolbarComponent,
     TableComponent,
-    LoadingComponent
+    LoadingComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    PipeModule,
+    ReactiveFormsModule
   ],
   exports:[
     ListComponent,
     ToolbarComponent,
     TableComponent,
-    LoadingComponent
+    LoadingComponent,
+    FormComponent
   ]
 })
 export class SharedModule { }

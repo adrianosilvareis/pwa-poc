@@ -1,0 +1,22 @@
+<div class="mat-elevation-z5" style="padding: 10px;">
+  <h1 class="title" role="title">{{ title | titlecase }}</h1>
+  <span class="subtitle" *ngIf="subtitle" role="subtitle">Id# {{ subtitle }}</span>
+
+  <mat-grid-list cols="4" rowHeight="100px" gutterSize="15px" >
+    <form [formGroup]="formGroup" class="clientForm">
+
+      <mat-grid-tile [colspan]="item.colspan" *ngFor="let item of fields">
+        <mat-form-field appearance="fill" class="fullRow">
+          <mat-label>{{ item.label | titlecase }}</mat-label>
+          <input matInput [placeholder]="item.placeholder" [formControlName]="item.name">
+          <mat-error *ngIf="controls[item.name]?.errors">{{ controls[item.name].errors | errorMessage }}</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </form>
+  </mat-grid-list>
+  <hr>
+
+  <button mat-raised-button color="primary" role="save" (click)="callSave()" [disabled]="isInvalid">SAVE</button>
+  <button mat-button role="cancel" (click)="callCancel()">CANCEL</button>
+</div>
