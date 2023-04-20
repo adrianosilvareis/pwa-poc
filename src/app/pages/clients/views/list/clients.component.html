@@ -1,7 +1,5 @@
-<app-loading *ngIf="isLoading | async"></app-loading>
-
 <app-table
-  *ngIf="!(isLoading | async)"
+  *ngIf="!(isLoading | async) else loading"
   [columns]="columns"
   title="Client"
   [items]="data"
@@ -10,3 +8,7 @@
   (select)="selectClient($event)"
   (remove)="removeClient($event)"
 ></app-table>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

@@ -5,6 +5,7 @@ import { ColumnItem } from '@root/app/components/table/table.component';
 import { AppState, isClientLoading, selectActiveClients } from '@pages/clients/store/clients.selectors';
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
@@ -24,33 +25,29 @@ export class ClientsComponent implements OnInit {
   data: Observable<ClientModel[]> = this.store.select(selectActiveClients);
   isLoading: Observable<boolean> = this.store.select(isClientLoading);
 
-  constructor(private store: Store<AppState>) {}
+  private selectedId!: string;
+
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(clientsPageActions.selectClient({ client: null }));
     this.store.dispatch(clientsPageActions.loadClients());
   }
 
   selectClient(client: ClientModel | null) {
-    this.store.dispatch(clientsPageActions.selectClient({ client }))
+    this.selectedId = client?.id as string;
+    this.store.dispatch(clientsPageActions.selectClient({ client }));
   }
 
   addClient() {
-    // logica de redirect para pagina de newClient, onde deve preencher o formulário com os valores importantes
-    this.store.dispatch(clientsPageActions.addClient({
-      client: {
-        name: 'name',
-        description: 'description',
-        owner: 'owner',
-        responsible: 'responsible',
-        area: 'area',
-        isActive: true
-      }
-    }));
+    this.router.navigate(['/clients/new']);
   }
 
   editClient() {
-    // criar logica para redirecionar a tela de edição onde deve preencher o formulário antes de salvar os valores
-    this.store.dispatch(clientsPageActions.editClient());
+    this.router.navigate([`/clients/${this.selectedId}`]);
   }
 
   removeClient(event: any) {

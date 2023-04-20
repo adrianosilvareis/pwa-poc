@@ -5,7 +5,7 @@ import { map, exhaustMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { ClientsService } from '@pages/clients/services/clients.service';
 import { clientsPageActions } from './clients.actions';
 import { Store } from '@ngrx/store';
-import { AppState, newClient, selectActiveClients, selectedClient } from './clients.selectors';
+import { AppState, newClient, selectActiveClients, selectedClient, selectedClientId } from './clients.selectors';
 import { ClientModel } from '@pages/clients/model/Clients.model';
 
 @Injectable()
@@ -15,6 +15,12 @@ export class ClientsEffects {
     ofType(clientsPageActions.loadClients),
     withLatestFrom(this.store.select(selectActiveClients)),
     exhaustMap(([actions, clients]) => this.loadClients(clients)))
+  );
+
+  getClientById$ = createEffect(() => this.actions$.pipe(
+    ofType(clientsPageActions.getClientById),
+    withLatestFrom(this.store.select(selectedClient), this.store.select(selectedClientId)),
+    exhaustMap(([actions, client, clientId]) => this.getClient(client, clientId)))
   );
 
   addClients$ = createEffect(() => this.actions$.pipe(
@@ -51,6 +57,16 @@ export class ClientsEffects {
         )
   }
 
+  private getClient(client: ClientModel | null, clientId?: string) {
+    return client ?
+      of(clientsPageActions.selectClient({ client })):
+      this.clientsService.getClientById(clientId as string)
+        .pipe(
+          map(client => clientsPageActions.selectClient({ client })),
+          catchError(() => of(clientsPageActions.selectClient({ client: null })))
+        )
+  }
+
   private addClients(newClient: ClientModel) {
     return this.clientsService.addClients(newClient)
       .pipe(
@@ -74,6 +90,4 @@ export class ClientsEffects {
         catchError(() => of(clientsPageActions.errorOnDeleteClient()))
       )
   }
-
-
 }

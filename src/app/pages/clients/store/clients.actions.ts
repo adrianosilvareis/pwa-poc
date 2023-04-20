@@ -1,15 +1,12 @@
-import { createAction, createActionGroup, emptyProps, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { ClientModel } from '@pages/clients/model/Clients.model';
-
-export const addClientAction = createAction('[Clients Page] Add Clients');
-export const addClientSuccessAction = createAction('[Clients Page] [success] Add Clients', props<{client: ClientModel}>());
-export const addClientErrorAction = createAction('[Clients Page] [error] Add Clients');
 
 export const clientsPageActions = createActionGroup({
   source: 'Clients Page',
   events: {
     // select
     'Select Client': props<{client: ClientModel | null}>(),
+    'Get Client By Id': props<{id: string}>(),
     //load
     'Load Clients': emptyProps(),
     'Success on Load Clients': props<{clients: ClientModel[]}>(),
@@ -19,7 +16,7 @@ export const clientsPageActions = createActionGroup({
     'Success on Add Client': props<{client: ClientModel}>(),
     'Error on Add Client': emptyProps(),
     // edit
-    'Edit Client': emptyProps(),
+    'Edit Client': props<{client: ClientModel}>(),
     'Success on Edit Client': props<{client: ClientModel}>(),
     'Error on Edit Client': emptyProps(),
     // remove

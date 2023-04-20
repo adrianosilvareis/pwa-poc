@@ -8,5 +8,5 @@ export interface ClientModel {
   contacts?: unknown[];
   contracts?: unknown[];
   payments?: unknown[];
-  isActive: boolean;
+  isActive?: boolean;
 }
