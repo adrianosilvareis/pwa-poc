@@ -3,7 +3,7 @@
   <span class="subtitle" *ngIf="formId" role="formId">Id# {{ formId }}</span>
 
   <mat-grid-list cols="4" rowHeight="100px" gutterSize="15px" >
-    <form [formGroup]="formGroup" class="clientForm">
+    <form [formGroup]="formGroup" class="clientForm" *ngIf="fields.length else loading">
 
       <mat-grid-tile [colspan]="item.colspan" *ngFor="let item of fields">
         <mat-form-field appearance="fill" class="fullRow">
@@ -14,6 +14,11 @@
       </mat-grid-tile>
 
     </form>
+
+    <ng-template #loading>
+      <app-loading></app-loading>
+    </ng-template>
+
   </mat-grid-list>
   <hr>
 

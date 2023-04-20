@@ -19,7 +19,7 @@ export class FormComponent {
   formGroup!: FormGroup;
 
   get controls() { return this.formGroup.controls }
-  get isInvalid() { return this.formGroup.status === 'INVALID' }
+  get isInvalid() { return this.formGroup ? this.formGroup.status === 'INVALID' : true }
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -27,8 +27,10 @@ export class FormComponent {
   callCancel() { this.cancel.emit() }
 
   private toGroup(data: FormItems[]) {
-    const group = Object.fromEntries(data.map(item => [item.name, item.value]));
-    this.formGroup = this.formBuilder.group(group);
-    this.fields = data;
+    if (data?.length) {
+      const group = Object.fromEntries(data.map(item => [item.name, item.value]));
+      this.formGroup = this.formBuilder.group(group);
+      this.fields = data;
+    }
   }
 }
