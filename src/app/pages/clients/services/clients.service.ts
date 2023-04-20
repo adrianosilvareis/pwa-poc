@@ -15,6 +15,10 @@ export class ClientsService {
     return this.httpClient.get<ClientModel[]>(`${this.ROOT_URL}/clients`);
   }
 
+  getClientById(clientId: string) {
+    return this.httpClient.get<ClientModel>(`${this.ROOT_URL}/clients/${clientId}`);
+  }
+
   addClients(client: ClientModel) {
     return this.httpClient.post<ClientModel>(`${this.ROOT_URL}/clients`, client);
   }
