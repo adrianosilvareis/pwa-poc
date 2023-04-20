@@ -1,20 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MaterialModule } from '@app/material/material.module';
-import { TableComponent } from './table.component';
-import { of } from 'rxjs';
+import { ColumnItem, TableComponent } from './table.component';
+import { Observable, of } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 describe('TableComponent', () => {
   const title = 'title';
-  const columns = [{ value: 'name', name: 'Name' }];
-  const items = of([{ name: 'ITEM_NAME' }]);
+  const columns: ColumnItem[] = [{ value: 'name', name: 'Name' }];
+  const items: Observable<unknown[]> = of([{ name: 'ITEM_NAME' }]);
 
   it('should render a row with correct values', async () => {
     // given
-    await render(TableComponent, {
-      imports:[MaterialModule],
-      componentProperties: { title, columns, items }
-    });
+    await setup(title, columns, items);
+
     // when
     const cell = screen.getByRole('cell');
     const header = screen.getByRole('columnheader');
@@ -27,10 +25,7 @@ describe('TableComponent', () => {
 
   it('should style line when click on it', async () => {
     // given
-    await render(TableComponent, {
-      imports:[MaterialModule],
-      componentProperties: { title, columns, items }
-    });
+    await setup(title, columns, items);
 
     // when
     const cell = screen.getByRole('cell');
@@ -42,12 +37,13 @@ describe('TableComponent', () => {
   });
 
   it('should has paginator', async () => {
-    await render(TableComponent, {
-      imports:[MaterialModule]
-    });
+    // given
+    await setup(title, columns, items);
 
+    // when
     const combobox = screen.getByRole('combobox');
 
+    // then
     expect(combobox.getAttribute('ng-reflect-value')).toBe("5");
   });
 
@@ -58,32 +54,17 @@ describe('TableComponent', () => {
     const removeSpy = jest.fn();
     const selectSpy = jest.fn();
 
-    const addEvent = new EventEmitter();
-    addEvent.emit = addSpy;
-
-    const editEvent = new EventEmitter();
-    editEvent.emit = editSpy;
-
-    const removeEvent = new EventEmitter();
-    removeEvent.emit = removeSpy;
-
-    const selectEvent = new EventEmitter();
-    selectEvent.emit = selectSpy;
-
-    await render(TableComponent, {
-      imports:[MaterialModule],
-      componentInputs: { title, columns, items },
-      componentOutputs: {
-        add: addEvent,
-        edit: editEvent,
-        remove: removeEvent,
-        select: selectEvent
-      }
-    });
+    const handlers = {
+      addSpy: setupEventEmitter(addSpy),
+      editSpy: setupEventEmitter(editSpy),
+      removeSpy: setupEventEmitter(removeSpy),
+      selectSpy: setupEventEmitter(selectSpy),
+    }
+    await setup(title, columns, items, handlers);
 
     // when
-    const cell = screen.getByRole('cell');
-    fireEvent.click(cell);
+    const select = screen.getByRole('cell');
+    fireEvent.click(select);
 
     const addButton = screen.getByText('add_circle');
     fireEvent.click(addButton);
@@ -100,8 +81,33 @@ describe('TableComponent', () => {
     expect(removeSpy).toHaveBeenCalledWith({"name": "ITEM_NAME"});
     expect(selectSpy).toHaveBeenCalledWith({"name": "ITEM_NAME"});
 
-    fireEvent.click(cell);
+    fireEvent.click(select);
     expect(selectSpy).toHaveBeenCalledWith(null);
   });
 });
 
+type Handlers = {
+  addSpy: EventEmitter<any>,
+  editSpy: EventEmitter<any>,
+  removeSpy: EventEmitter<any>,
+  selectSpy: EventEmitter<any>
+}
+async function setup(title: string, columns: ColumnItem[], items: Observable<unknown[]>, handlers?: Handlers) {
+  return render(TableComponent, {
+    imports: [MaterialModule],
+    componentProperties: { title, columns, items },
+    componentOutputs: {
+      add: handlers?.addSpy,
+      edit: handlers?.editSpy,
+      remove: handlers?.removeSpy,
+      select: handlers?.selectSpy
+    }
+  });
+}
+
+function setupEventEmitter(handler: (value?: any) => void) {
+  const event = new EventEmitter();
+  event.emit = handler;
+
+  return event;
+}
