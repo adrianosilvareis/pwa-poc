@@ -97,10 +97,10 @@ async function setup(title: string, columns: ColumnItem[], items: Observable<unk
     imports: [MaterialModule],
     componentProperties: { title, columns, items },
     componentOutputs: {
-      add: handlers?.addSpy,
-      edit: handlers?.editSpy,
-      remove: handlers?.removeSpy,
-      select: handlers?.selectSpy
+      add: handlers?.addSpy ?? new EventEmitter(),
+      edit: handlers?.editSpy ?? new EventEmitter(),
+      remove: handlers?.removeSpy ?? new EventEmitter(),
+      select: handlers?.selectSpy ?? new EventEmitter()
     }
   });
 }
