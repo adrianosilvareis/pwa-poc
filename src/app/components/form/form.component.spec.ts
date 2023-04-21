@@ -24,9 +24,9 @@ describe('FormComponent', () => {
     const { input } = await setup(data);
 
     // then
-    expect(input.getAttribute('placeholder')).toBe('Name');
-    expect(input.getAttribute('ng-reflect-name')).toBe('name');
-    expect(input.hasAttribute('required')).toBeTruthy();
+    expect(input?.getAttribute('placeholder')).toBe('Name');
+    expect(input?.getAttribute('ng-reflect-name')).toBe('name');
+    expect(input?.hasAttribute('required')).toBeTruthy();
   });
 
   it('should fiel FormGroup when form is filled', async () => {
@@ -35,7 +35,7 @@ describe('FormComponent', () => {
     const { input, saveButton } = await setup(data, event);
 
     // when
-    fireEvent.input(input, {target: {value: 'MY_VALUE'}});
+    fireEvent.input(input as HTMLElement, {target: {value: 'MY_VALUE'}});
     saveButton.click();
 
     // then
@@ -65,6 +65,19 @@ describe('FormComponent', () => {
     // then
     expect(handler).toHaveBeenCalledWith();
   });
+
+  it('should invalidate form when formGroup not provided', async () => {
+    // given
+    const { event, handler } = setupEventEmitter();
+    const { saveButton } = await setup([], event);
+
+    // when
+    saveButton.click();
+
+    // then
+    expect(saveButton.getAttribute('disabled')).toBeTruthy();
+    expect(handler).toHaveBeenCalledTimes(0);
+  });
 });
 
 function setupEventEmitter() {
@@ -92,10 +105,10 @@ async function setup(data: FormItems[], handler?: EventEmitter<unknown>) {
     }
   });
 
+  const input = data.length ? screen.getByLabelText('Name') : null;
+  const saveButton = screen.getByRole('save');
   const title = screen.getByRole('title');
   const formId = screen.getByRole('formId');
-  const input = screen.getByLabelText('Name');
-  const saveButton = screen.getByRole('save');
   const cancelButton = screen.getByRole('cancel');
 
   return {
