@@ -35,17 +35,17 @@ export const clientsReducer = createReducer(
   on(clientsPageActions.successOnLoadClients, (state, { clients }) => ({ ...state, clients, isClientLoading: false })),
   on(clientsPageActions.errorOnLoadClients, (state) => ({ ...state, errorOnLoadClients: true, isClientLoading: false })),
   // add
-  on(clientsPageActions.addClient, (state, { client }) => ({ ...state, newClient: client, errorOnAddClients: false })),
-  on(clientsPageActions.successOnAddClient, (state, { client }) => ({ ...state, clients: [...state.clients, client], newClient: null })),
-  on(clientsPageActions.errorOnAddClient, (state) => ({ ...state, errorOnAddClients: true })),
+  on(clientsPageActions.addClient, (state, { client }) => ({ ...state, newClient: client, errorOnAddClients: false, isClientLoading: true })),
+  on(clientsPageActions.successOnAddClient, (state, { client }) => ({ ...state, clients: [...state.clients, client], newClient: null, isClientLoading: false })),
+  on(clientsPageActions.errorOnAddClient, (state) => ({ ...state, errorOnAddClients: true, isClientLoading: false })),
   // edit
-  on(clientsPageActions.editClient, (state, { client }) => ({ ...state, errorOnEditClients: false, selectedClient: client, selectedClientId: client.id })),
-  on(clientsPageActions.successOnEditClient, (state, { client }) => ({ ...state, clients: updateClient(state.selectedClient as ClientModel, client, state.clients) })),
-  on(clientsPageActions.errorOnEditClient, (state) => ({ ...state, errorOnEditClients: true })),
+  on(clientsPageActions.editClient, (state, { client }) => ({ ...state, errorOnEditClients: false, selectedClient: client, selectedClientId: client.id, isClientLoading: true })),
+  on(clientsPageActions.successOnEditClient, (state, { client }) => ({ ...state, clients: updateClient(state.selectedClient as ClientModel, client, state.clients), isClientLoading: false })),
+  on(clientsPageActions.errorOnEditClient, (state) => ({ ...state, errorOnEditClients: true, isClientLoading: false })),
   // delete
-  on(clientsPageActions.deleteClient, (state) => ({ ...state, errorOnDeleteClients: false })),
-  on(clientsPageActions.successOnDeleteClient, (state) => ({ ...state, clients: removeClient(state.selectedClient as ClientModel, state.clients), selectedClient: null })),
-  on(clientsPageActions.errorOnDeleteClient, (state) => ({ ...state, errorOnDeleteClients: true })),
+  on(clientsPageActions.deleteClient, (state) => ({ ...state, errorOnDeleteClients: false, isClientLoading: true })),
+  on(clientsPageActions.successOnDeleteClient, (state) => ({ ...state, clients: removeClient(state.selectedClient as ClientModel, state.clients), selectedClient: null, isClientLoading: false })),
+  on(clientsPageActions.errorOnDeleteClient, (state) => ({ ...state, errorOnDeleteClients: true, isClientLoading: false })),
 );
 
 function getClientById(id: string, clients: ClientModel[]) {
@@ -53,9 +53,9 @@ function getClientById(id: string, clients: ClientModel[]) {
 }
 
 function updateClient(currentClient: ClientModel, updatedClient: ClientModel, clients: ClientModel[]) {
-  return clients.map(client => client === currentClient ? updatedClient : client);
+  return clients.map(client => client.id === currentClient.id ? updatedClient : client);
 }
 
 function removeClient(currentClient: ClientModel, clients: ClientModel[]) {
-  return clients.filter(client => client !== currentClient);
+  return clients.filter(client => client.id !== currentClient.id);
 }
