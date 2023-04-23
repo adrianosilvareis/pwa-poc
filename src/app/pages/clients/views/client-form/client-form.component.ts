@@ -5,15 +5,16 @@ import { ClientModel } from '@pages/clients/model/Clients.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
 import { Store } from '@ngrx/store';
-import { AppState, selectedClient } from '@pages/clients/store/clients.selectors';
+import { AppState, isClientLoading, selectedClient } from '@pages/clients/store/clients.selectors';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
   styleUrls: ['./client-form.component.scss'],
 })
-export class ClientFormComponent implements OnInit {
+export class ClientFormComponent extends Unsubscribe implements OnInit {
   id!: string;
 
   client!: ClientModel | null;
@@ -25,11 +26,11 @@ export class ClientFormComponent implements OnInit {
     private router: Router,
     private builder: FormItemsBuilderService,
     private store: Store<AppState>,
-  ) {}
+  ) { super(); }
 
   ngOnInit() {
-    this.fillId();
-    this.generateForm();
+    this.subs.add(this.fillId());
+    this.subs.add(this.generateForm());
   }
 
   saveClient(client: ClientModel) {
@@ -38,14 +39,21 @@ export class ClientFormComponent implements OnInit {
     } else {
       this.store.dispatch(clientsPageActions.addClient({ client: this.sanitize(client) }));
     }
+    this.subs.add(this.backToList());
   }
 
   cancel() {
     this.router.navigate(['/clients']);
   }
 
+  private backToList() {
+    return this.store
+      .select(isClientLoading)
+      .subscribe(isLoading => { if(!isLoading) { this.router.navigate(['/clients']); } });
+  }
+
   private fillId() {
-    this.route.params.subscribe((params) => {
+    return this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
   }
@@ -55,7 +63,7 @@ export class ClientFormComponent implements OnInit {
       this.store.dispatch(clientsPageActions.getClientById({ id: this.id }));
     }
 
-    this.store.select(selectedClient).subscribe(item => {
+    return this.store.select(selectedClient).subscribe(item => {
       this.client = item;
       if (item) {
         this.data = this.buildData(item);

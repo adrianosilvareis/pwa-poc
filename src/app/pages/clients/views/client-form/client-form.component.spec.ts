@@ -46,8 +46,9 @@ describe('ClientFormComponent', () => {
   it('should call eddClient when click save and exist id', async () => {
     // given
     initialState.client.selectedClient = { ...client };
-    const { mockStore } = await setup(initialState, 'MY_ID');
+    const { mockStore, mockRouter } = await setup(initialState, 'MY_ID');
     mockStore.dispatch = jest.fn();
+    mockRouter.navigate = jest.fn();
 
     const action = {
       client:client,
@@ -60,12 +61,14 @@ describe('ClientFormComponent', () => {
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith(action);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/clients']);
   });
 
   it('should call addClient when click save and exist id', async () => {
     // given
-    const { mockStore } = await setup(initialState);
+    const { mockStore, mockRouter } = await setup(initialState);
     mockStore.dispatch = jest.fn();
+    mockRouter.navigate = jest.fn();
 
     const action = {
       client: {
@@ -92,6 +95,7 @@ describe('ClientFormComponent', () => {
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith(action);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/clients']);
   });
 
   it('should call navigate to /clients when click on cancel', async () => {
