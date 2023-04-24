@@ -9,6 +9,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { FormComponent } from './form/form.component';
 import { PipeModule } from '@root/app/pipe/pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToolbarComponent,
     TableComponent,
     LoadingComponent,
-    FormComponent
+    FormComponent,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,

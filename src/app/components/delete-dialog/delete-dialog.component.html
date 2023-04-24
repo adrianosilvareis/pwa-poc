@@ -1,0 +1,6 @@
+<h1 mat-dialog-title data-testid="title">Delete {{ data.pageName }}</h1>
+<div mat-dialog-content data-testid="message">Deseja deletar o registro "{{ data.register }}"?</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false" data-testid="cancel">Não</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial data-testid="confirm">Sim</button>
+</div>
