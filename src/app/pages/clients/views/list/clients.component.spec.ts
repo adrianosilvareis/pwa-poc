@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 import { ClientsComponent } from './clients.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppState } from '@pages/clients/store/clients.selectors';
@@ -7,6 +7,8 @@ import { ClientModel } from '@pages/clients/model/Clients.model';
 import { ColumnItem } from '@root/app/components/table/table.component';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
+import { of } from 'rxjs';
 
 describe('ClientsComponent', () => {
 
@@ -45,11 +47,12 @@ describe('ClientsComponent', () => {
     expect(mockStore.dispatch).toHaveBeenCalledWith(actions)
   });
 
-  it('should dispatch delete action when click on any row', async () => {
+  it('should dispatch delete action when confirm delete', async () => {
     // given
-    const { mockStore, component } = await setup(setupInitialStatus());
+    const { mockStore, mockDialog, component } = await setup(setupInitialStatus());
     const [ row ] = screen.getAllByRole('cell');
     row.click();
+    mockDialog.afterClosed = () => of(true);
 
     component.rerender();
 
@@ -65,6 +68,25 @@ describe('ClientsComponent', () => {
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith(actions);
+  });
+
+  it('should not dispatch call delete action if not confirm delete', async () => {
+    // given
+    const { mockStore, mockDialog, component } = await setup(setupInitialStatus());
+    const [ row ] = screen.getAllByRole('cell');
+    row.click();
+    mockDialog.afterClosed = () => of(false);
+
+    component.rerender();
+
+    mockStore.dispatch = jest.fn();
+
+    // when
+    const deleteButton = screen.getByText('delete')
+    deleteButton.click();
+
+    // then
+    expect(mockStore.dispatch).toHaveBeenCalledTimes(0);
   });
 
   it('should navigate to new client when click on add', async () => {
@@ -106,17 +128,20 @@ async function setup(initialState: AppState) {
       columns: setupColumnScheme(),
     },
     providers: [
-      provideMockStore({ initialState })
+      provideMockStore({ initialState }),
+      DeleteDialogService
     ],
   });
 
   const mockStore = TestBed.inject(MockStore);
   const mockRouter = TestBed.inject(Router);
+  const mockDialog = TestBed.inject(DeleteDialogService);
 
   return {
     component,
     mockStore,
-    mockRouter
+    mockRouter,
+    mockDialog
   }
 }
 

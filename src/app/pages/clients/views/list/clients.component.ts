@@ -1,3 +1,4 @@
+import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -6,13 +7,14 @@ import { AppState, isClientLoading, selectActiveClients } from '@pages/clients/s
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.scss']
 })
-export class ClientsComponent implements OnInit {
+export class ClientsComponent extends Unsubscribe implements OnInit {
   columns: ColumnItem[] = [
     { name: 'Name', value: 'name' },
     { name: 'Description', value: 'description' },
@@ -29,8 +31,9 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dialog: DeleteDialogService
+  ) { super(); }
 
   ngOnInit(): void {
     this.store.dispatch(clientsPageActions.selectClient({ client: null }));
@@ -51,7 +54,11 @@ export class ClientsComponent implements OnInit {
   }
 
   removeClient(event: any) {
-    // abrir modal de confirmação antes de chamar a action de delete
-    this.store.dispatch(clientsPageActions.deleteClient());
+    this.dialog.openDialog({ pageName: 'Cliente', register: event.name });
+    this.subs.add(this.dialog.afterClosed().subscribe(response => {
+      if(response) {
+        this.store.dispatch(clientsPageActions.deleteClient());
+      }
+    }))
   }
 }
