@@ -61,6 +61,8 @@ export class ClientFormComponent extends Unsubscribe implements OnInit {
   private generateForm() {
     if (this.id) {
       this.store.dispatch(clientsPageActions.getClientById({ id: this.id }));
+    } else {
+      this.store.dispatch(clientsPageActions.selectClient({ client: null }));
     }
 
     return this.store.select(selectedClient).subscribe(item => {
