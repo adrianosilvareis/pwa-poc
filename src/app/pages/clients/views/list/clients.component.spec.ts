@@ -9,6 +9,7 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { of } from 'rxjs';
+import { InteractivityChecker } from '@angular/cdk/a11y';
 
 describe('ClientsComponent', () => {
 
@@ -63,7 +64,7 @@ describe('ClientsComponent', () => {
     }
 
     // when
-    const deleteButton = screen.getByText('delete')
+    const deleteButton = screen.getByText('delete');
     deleteButton.click();
 
     // then
@@ -82,7 +83,7 @@ describe('ClientsComponent', () => {
     mockStore.dispatch = jest.fn();
 
     // when
-    const deleteButton = screen.getByText('delete')
+    const deleteButton = screen.getByText('delete');
     deleteButton.click();
 
     // then
@@ -129,7 +130,13 @@ async function setup(initialState: AppState) {
     },
     providers: [
       provideMockStore({ initialState }),
-      DeleteDialogService
+      DeleteDialogService,
+      {
+        provide: InteractivityChecker,
+        useValue: {
+          isFocusable: () => true
+        },
+      }
     ],
   });
 
