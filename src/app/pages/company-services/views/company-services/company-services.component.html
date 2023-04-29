@@ -1,0 +1,15 @@
+<app-table
+  *ngIf="!(isLoading | async) else loading"
+  [columns]="columns"
+  title="Client"
+  [items]="data"
+  (add)="addService()"
+  (edit)="editService()"
+  (select)="selectService($event)"
+  (remove)="removeService($event)"
+  role="company-table"
+></app-table>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
