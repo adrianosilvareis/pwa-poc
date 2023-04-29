@@ -15,6 +15,10 @@ export class AppComponent {
     {
       title: 'clients',
       path: 'clients'
+    },
+    {
+      title: 'services',
+      path: 'services'
     }
   ]
 }
