@@ -5,8 +5,9 @@ import { map, exhaustMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { ClientsService } from '@pages/clients/services/clients.service';
 import { clientsPageActions } from './clients.actions';
 import { Store } from '@ngrx/store';
-import { AppState, newClient, selectActiveClients, selectedClient, selectedClientId } from './clients.selectors';
+import { newClient, selectActiveClients, selectedClient, selectedClientId } from './clients.selectors';
 import { ClientModel } from '@pages/clients/model/Clients.model';
+import { AppState } from '@root/app/app-state';
 
 @Injectable()
 export class ClientsEffects {

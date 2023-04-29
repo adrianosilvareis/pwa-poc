@@ -1,31 +1,32 @@
 import { ClientModel } from "../model/Clients.model";
-import { AppState, isClientLoading, newClient, selectActiveClients, selectedClient, selectedClientId } from "./clients.selectors";
+import { ClientState } from "./clients.reducer";
+import { isClientLoading, newClient, selectActiveClients, selectedClient, selectedClientId } from "./clients.selectors";
 
 describe("Selectors", () => {
-  const initialState: AppState = setupInitialStatus();
+  const initialState = setupInitialStatus();
 
   it("should return newClient", () => {
-    const result = newClient({ client: initialState.client });
+    const result = newClient(initialState);
     expect(result).toEqual(setupClient());
   });
 
   it("should return isClientLoading", () => {
-    const result = isClientLoading({ client: initialState.client });
+    const result = isClientLoading(initialState);
     expect(result).toBeFalsy();
   });
 
   it("should return selectedClient", () => {
-    const result = selectedClient({ client: initialState.client });
+    const result = selectedClient(initialState);
     expect(result).toEqual(setupClient());
   });
 
   it("should return selectedClientId", () => {
-    const result = selectedClientId({ client: initialState.client });
+    const result = selectedClientId(initialState);
     expect(result).toEqual('MY_ID');
   });
 
   it("should return selectActiveClients", () => {
-    const result = selectActiveClients({ client: initialState.client });
+    const result = selectActiveClients(initialState);
     expect(result).toEqual(initialState.client.clients);
   });
 });
@@ -43,7 +44,7 @@ function setupClient(): ClientModel {
   }
 }
 
-function setupInitialStatus():AppState {
+function setupInitialStatus():{ client: ClientState } {
   return {
     client: {
       clients: [setupClient()],

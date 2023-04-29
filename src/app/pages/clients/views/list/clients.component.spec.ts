@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { ClientsComponent } from './clients.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { AppState } from '@pages/clients/store/clients.selectors';
 import { SharedModule } from '@root/app/components/shared.module';
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { ColumnItem } from '@root/app/components/table/table.component';
@@ -10,6 +9,8 @@ import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { of } from 'rxjs';
 import { InteractivityChecker } from '@angular/cdk/a11y';
+import { ClientState } from '../../store/clients.reducer';
+import { AppState } from '@root/app/app-state';
 
 describe('ClientsComponent', () => {
 
@@ -122,7 +123,7 @@ describe('ClientsComponent', () => {
   });
 });
 
-async function setup(initialState: AppState) {
+async function setup(initialState: Partial<AppState>) {
   const component = await render(ClientsComponent, {
     imports: [SharedModule],
     componentProperties: {
@@ -164,7 +165,7 @@ function setupClient(): ClientModel {
   }
 }
 
-function setupInitialStatus():AppState {
+function setupInitialStatus():{ client: ClientState } {
   return {
     client: {
       clients: [setupClient()],

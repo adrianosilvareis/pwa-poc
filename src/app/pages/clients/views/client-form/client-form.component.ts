@@ -5,9 +5,10 @@ import { ClientModel } from '@pages/clients/model/Clients.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
 import { Store } from '@ngrx/store';
-import { AppState, isClientLoading, selectedClient } from '@pages/clients/store/clients.selectors';
+import { isClientLoading, selectedClient } from '@pages/clients/store/clients.selectors';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
+import { AppState } from '@root/app/app-state';
 
 @Component({
   selector: 'app-client-form',

@@ -3,18 +3,18 @@ import { SharedModule } from '@root/app/components/shared.module';
 import { ClientFormComponent } from './client-form.component';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { AppState } from '../../store/clients.selectors';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ClientState } from '../../store/clients.reducer';
+import { AppState } from '@root/app/app-state';
 
 describe('ClientFormComponent', () => {
-  let initialState: AppState, client: ClientModel;
+  let initialState: Partial<AppState>
 
   beforeEach(() => {
     initialState = setupInitialStatus();
-    client = setupClient();
   })
 
   it('should provider a correct attributes to app-form', async () => {
@@ -31,9 +31,10 @@ describe('ClientFormComponent', () => {
 
   it('should render field provided by data correctly', async () => {
     // given
-    initialState.client.selectedClient = { ...client };
+    const data = setupInitialStatus();
+    data.client.selectedClient = setupClient()
 
-    await setup(initialState);
+    await setup(data);
 
     // when
     const nameField = screen.getByLabelText('Name');
@@ -45,13 +46,15 @@ describe('ClientFormComponent', () => {
 
   it('should call eddClient when click save and exist id', async () => {
     // given
-    initialState.client.selectedClient = { ...client };
-    const { mockStore, mockRouter } = await setup(initialState, 'MY_ID');
+    const data = setupInitialStatus();
+    data.client.selectedClient = setupClient();
+
+    const { mockStore, mockRouter } = await setup(data, 'MY_ID');
     mockStore.dispatch = jest.fn();
     mockRouter.navigate = jest.fn();
 
     const action = {
-      client:client,
+      client:setupClient(),
       type: "[Clients Page] Edit Client"
     }
 
@@ -127,7 +130,7 @@ function setupClient(): ClientModel {
   }
 }
 
-function setupInitialStatus(): AppState {
+function setupInitialStatus(): { client: ClientState } {
   return {
     client: {
       clients: [setupClient()],
@@ -142,7 +145,7 @@ function setupInitialStatus(): AppState {
   }
 }
 
-async function setup(initialState: AppState, id?:string) {
+async function setup(initialState: Partial<AppState>, id?:string) {
   const component = await render(ClientFormComponent, {
     imports: [
       SharedModule,

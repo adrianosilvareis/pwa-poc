@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ColumnItem } from '@root/app/components/table/table.component';
-import { AppState, isClientLoading, selectActiveClients } from '@pages/clients/store/clients.selectors';
+import { isClientLoading, selectActiveClients } from '@pages/clients/store/clients.selectors';
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
+import { AppState } from '@root/app/app-state';
 
 @Component({
   selector: 'app-clients',
