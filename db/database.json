@@ -558,5 +558,14 @@
       "isActive": true,
       "id": "Vo6-3mT"
     }
+  ],
+  "services": [
+    {
+      "title": "acessoria de impressa",
+      "description": "assessorar o cliente no contato com a impressa",
+      "value": "1300",
+      "isActive": true,
+      "id": "7FmEUdQ"
+    }
   ]
 }
