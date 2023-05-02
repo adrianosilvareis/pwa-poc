@@ -57,6 +57,6 @@ export class CompanyServicesComponent extends Unsubscribe implements OnInit{
       if(response) {
         this.store.dispatch(servicesPageActions.deleteService());
       }
-    }))
+    }));
   }
 }
