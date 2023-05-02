@@ -25,7 +25,7 @@ export class CompanyServicesComponent extends Unsubscribe implements OnInit{
   data: Observable<CompanyServicesModel[]> = this.store.select(selectActiveServices);
   isLoading: Observable<boolean> = this.store.select(isServiceLoading);
 
-  private selectedId!: string;
+  private selected!: CompanyServicesModel | null;
 
   constructor(
     private store: Store<AppState>,
@@ -39,7 +39,7 @@ export class CompanyServicesComponent extends Unsubscribe implements OnInit{
   }
 
   selectService(service: CompanyServicesModel | null) {
-    this.selectedId = service?.id as string;
+    this.selected = service;
     this.store.dispatch(servicesPageActions.selectService({ service }));
   }
 
@@ -48,11 +48,11 @@ export class CompanyServicesComponent extends Unsubscribe implements OnInit{
   }
 
   editService() {
-    this.router.navigate([`/services/${this.selectedId}`]);
+    this.router.navigate([`/services/${this.selected?.id}`]);
   }
 
-  removeService(event: any) {
-    this.dialog.openDialog({ pageName: 'Serviço', register: event.title });
+  removeService() {
+    this.dialog.openDialog({ pageName: 'Serviço', register: this.selected?.title as string });
     this.subs.add(this.dialog.afterClosed().subscribe(response => {
       if(response) {
         this.store.dispatch(servicesPageActions.deleteService());
