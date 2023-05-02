@@ -2,13 +2,13 @@
   <mat-toolbar >
     <span>{{ title }}</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button (click)="addRow()">
+    <button mat-icon-button (click)="addRow()" role="add-button">
       <mat-icon>add_circle</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="selected" (click)="editRow()">
+    <button mat-icon-button *ngIf="selected" (click)="editRow()" role="edit-button">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="selected" (click)="removeRow()">
+    <button mat-icon-button *ngIf="selected" (click)="removeRow()" role="delete-button">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-toolbar>
