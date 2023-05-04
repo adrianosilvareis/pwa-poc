@@ -58,20 +58,12 @@ describe('CompanyServicesComponent', () => {
     mockStore.dispatch = jest.fn();
 
     const actions =  {
-      service: {
-        description: "description",
-        id: "my_id",
-        isActive: true,
-        title: "title",
-        value: 1000
-      },
+      service: setupService('my_id'),
       type: "[Services Page] Select Service"
     }
 
     // when
-    const rows = screen.getAllByRole('row');
-    const dataRow = rows.at(1) as HTMLElement;
-    dataRow.dispatchEvent(new Event('click'));
+    selectFirstItem().click();
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith(actions);
@@ -80,7 +72,7 @@ describe('CompanyServicesComponent', () => {
   it('should open DeleteDialog when remove event is dispatched', async () => {
     // given
     const clonedInitialState = { ...initialState, services:[setupService('my_id')] };
-    const { mockDialog, component } = await setup({ service: clonedInitialState });
+    const { mockStore, mockDialog, component } = await setup({ service: clonedInitialState });
     mockDialog.openDialog = jest.fn();
     mockDialog.afterClosed = () => of(false);
 
@@ -88,11 +80,13 @@ describe('CompanyServicesComponent', () => {
     selectFirstItem().click();
     component.rerender();
 
-    const button = screen.getByRole('delete-button');
-    button.click();
+    mockStore.dispatch = jest.fn();
+
+    screen.getByRole('delete-button').click();
 
     // then
     expect(mockDialog.openDialog).toHaveBeenCalledWith({ pageName: 'Serviço', register: 'title' });
+    expect(mockStore.dispatch).toHaveBeenCalledTimes(0);
   });
 
   it('should dispatch remove action when dialog is closed with OK', async () => {
@@ -105,8 +99,7 @@ describe('CompanyServicesComponent', () => {
     mockStore.dispatch = jest.fn();
 
     // when
-    const button = screen.getByRole('delete-button');
-    button.click();
+    screen.getByRole('delete-button').click();
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith({ type: '[Services Page] Delete Service' });
