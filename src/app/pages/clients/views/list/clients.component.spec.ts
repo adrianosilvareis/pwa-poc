@@ -9,26 +9,51 @@ import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { of } from 'rxjs';
 import { InteractivityChecker } from '@angular/cdk/a11y';
-import { ClientState } from '../../store/clients.reducer';
+import { ClientState, initialState } from '../../store/clients.reducer';
 import { AppState } from '@root/app/app-state';
 
 describe('ClientsComponent', () => {
 
-  it('should render a table with correct values', async () => {
-    // given
-    await setup(setupInitialStatus());
-    // when
-    const cells = screen.getAllByRole('cell');
+  it('should render header correctly', async () => {
+    await setup({ client: initialState });
     const headers = screen.getAllByRole('columnheader');
+    expect(headers).toHaveLength(6);
+    expect(headers.at(0)?.textContent).toBe('Name');
+    expect(headers.at(1)?.textContent).toBe('Description');
+    expect(headers.at(2)?.textContent).toBe('Responsible');
+    expect(headers.at(3)?.textContent).toBe('Area');
+    expect(headers.at(4)?.textContent).toBe('Owner');
+    expect(headers.at(5)?.textContent).toBe('IsActive');
+  });
+
+  it('should navigate to new client when click on add', async () => {
+    // given
+    const { mockRouter } = await setup(setupInitialStatus());
+    mockRouter.navigate = jest.fn();
+    const table = screen.getByRole('client-table');
+
+    // when
+    table.dispatchEvent(new Event('add'));
 
     // then
-    //cells
-    expect(cells.at(0)?.textContent).toBe('name');
-    expect(cells.at(1)?.textContent).toBe('description');
+    expect(mockRouter.navigate).toHaveBeenCalledWith(["/clients/new"])
+  });
 
-    //headers
-    expect(headers.at(0)?.textContent).toBe('Name')
-    expect(headers.at(1)?.textContent).toBe('Description')
+  it('should navigate to edit client when table emit edit event', async () => {
+    // given
+    const clonedInitialState = { ...initialState, clients: [setupClient()] }
+    const { component, mockRouter } = await setup({ client: clonedInitialState });
+    mockRouter.navigate = jest.fn();
+    const table = screen.getByRole('client-table');
+
+    selectFirstItem().click();
+    component.rerender();
+
+    // when
+    table.dispatchEvent(new Event('edit'));
+
+    // then
+    expect(mockRouter.navigate).toHaveBeenCalledWith(["/clients/MY_ID"])
   });
 
   it('should dispatch select action when click on any row', async () => {
@@ -42,18 +67,35 @@ describe('ClientsComponent', () => {
     }
 
     // when
-    const [ row ] = screen.getAllByRole('cell');
-    row.click();
+    selectFirstItem().click();
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith(actions)
   });
 
+  it('should open delete dialog when remove event is dispatched', async () => {
+    // given
+    const { mockStore, mockDialog, component } = await setup(setupInitialStatus());
+    selectFirstItem().click();
+    mockDialog.afterClosed = () => of(false);
+    mockDialog.openDialog = jest.fn();
+
+    component.rerender();
+
+    mockStore.dispatch = jest.fn();
+
+    // when
+    screen.getByRole('delete-button').click();
+
+    // then
+    expect(mockDialog.openDialog).toHaveBeenCalledWith({ pageName: 'Cliente', register: 'name' });
+    expect(mockStore.dispatch).toHaveBeenCalledTimes(0);
+  });
+
   it('should dispatch delete action when confirm delete', async () => {
     // given
     const { mockStore, mockDialog, component } = await setup(setupInitialStatus());
-    const [ row ] = screen.getAllByRole('cell');
-    row.click();
+    selectFirstItem().click();
     mockDialog.afterClosed = () => of(true);
 
     component.rerender();
@@ -65,63 +107,18 @@ describe('ClientsComponent', () => {
     }
 
     // when
-    const deleteButton = screen.getByText('delete');
-    deleteButton.click();
+    screen.getByRole('delete-button').click();
 
     // then
     expect(mockStore.dispatch).toHaveBeenCalledWith(actions);
   });
-
-  it('should not dispatch call delete action if not confirm delete', async () => {
-    // given
-    const { mockStore, mockDialog, component } = await setup(setupInitialStatus());
-    const [ row ] = screen.getAllByRole('cell');
-    row.click();
-    mockDialog.afterClosed = () => of(false);
-
-    component.rerender();
-
-    mockStore.dispatch = jest.fn();
-
-    // when
-    const deleteButton = screen.getByText('delete');
-    deleteButton.click();
-
-    // then
-    expect(mockStore.dispatch).toHaveBeenCalledTimes(0);
-  });
-
-  it('should navigate to new client when click on add', async () => {
-    // given
-    const { mockRouter } = await setup(setupInitialStatus());
-    mockRouter.navigate = jest.fn();
-
-    // when
-    const addButton = screen.getByText('add_circle');
-    addButton.click();
-
-    // then
-    expect(mockRouter.navigate).toHaveBeenCalledWith(["/clients/new"])
-  });
-
-  it('should navigate to edit client when click on edit', async () => {
-    // given
-    const { component, mockRouter } = await setup(setupInitialStatus());
-    mockRouter.navigate = jest.fn();
-
-    const [ row ] = screen.getAllByRole('cell');
-    row.click();
-
-    component.rerender();
-
-    // when
-    const editButton = screen.getByText('edit');
-    editButton.click();
-
-    // then
-    expect(mockRouter.navigate).toHaveBeenCalledWith(["/clients/MY_ID"])
-  });
 });
+
+function selectFirstItem() {
+  const rows = screen.getAllByRole('row');
+  const dataRow = rows.at(1) as HTMLElement;
+  return dataRow
+}
 
 async function setup(initialState: Partial<AppState>) {
   const component = await render(ClientsComponent, {
