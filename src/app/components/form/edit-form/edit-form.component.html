@@ -6,13 +6,37 @@
     <form [formGroup]="formGroup" class="clientForm" *ngIf="fields.length else loading">
 
       <mat-grid-tile [colspan]="item.colspan" *ngFor="let item of fields">
+        <ng-container
+          *ngIf="item.type === 'input'"
+          [ngTemplateOutlet]="input"
+          [ngTemplateOutletContext]="{ $implicit: item }">
+        </ng-container>
+        <ng-container
+          *ngIf="item.type === 'autocomplete'"
+          [ngTemplateOutlet]="autocomplete"
+          [ngTemplateOutletContext]="{ $implicit: item }">
+        </ng-container>
+      </mat-grid-tile>
+
+      <ng-template #input let-item>
         <mat-form-field appearance="fill" class="fullRow">
           <mat-label>{{ item.label | titlecase }}</mat-label>
           <input matInput [placeholder]="item.placeholder" [formControlName]="item.name">
           <mat-error *ngIf="controls[item.name]?.errors">{{ controls[item.name].errors | errorMessage }}</mat-error>
         </mat-form-field>
-      </mat-grid-tile>
+      </ng-template>
 
+      <ng-template #autocomplete let-item>
+        <app-autocomplete-form
+          [inputKey]="item.name"
+          [group]="formGroup"
+          [label]="item.label"
+          [placeholder]="item.placeholder"
+          [clearable]="true"
+          [options]="item.options"
+          class="fullRow"
+          ></app-autocomplete-form>
+      </ng-template>
     </form>
 
     <ng-template #loading>

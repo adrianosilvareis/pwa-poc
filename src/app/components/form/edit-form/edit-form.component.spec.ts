@@ -1,13 +1,13 @@
-import { FormComponent } from './form.component';
+import { FormComponent } from './edit-form.component';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { fireEvent, render, screen } from '@testing-library/angular';
-import { SharedModule } from '@components/shared.module';
-import { FormItems } from './items.model';
 import { EventEmitter } from '@angular/core';
+import { FieldType, FormItems } from '../items.model';
+import { FormModule } from '../form.module';
 
 describe('FormComponent', () => {
   const data = [
-    { colspan: 2, name: 'name', placeholder: 'Name', label: 'Name', value: ['', Validators.required] },
+    { colspan: 2, name: 'name', placeholder: 'Name', label: 'Name', value: ['', Validators.required], type: FieldType.input },
   ];
 
   it('should render title and id when exist', async () => {
@@ -93,7 +93,7 @@ function setupEventEmitter() {
 
 async function setup(data: FormItems[], handler?: EventEmitter<unknown>) {
   await render(FormComponent, {
-    imports: [SharedModule, ReactiveFormsModule],
+    imports: [FormModule, ReactiveFormsModule],
     componentInputs: {
       title: 'MY_TITLE',
       formId: 'MY_ID',
