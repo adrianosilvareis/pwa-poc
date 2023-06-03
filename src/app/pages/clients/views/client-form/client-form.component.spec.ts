@@ -9,6 +9,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClientState } from '../../store/clients.reducer';
 import { AppState } from '@root/app/app-state';
+import { FormModule } from '@root/app/components/form/form.module';
 
 describe('ClientFormComponent', () => {
   let initialState: Partial<AppState>
@@ -148,7 +149,7 @@ function setupInitialStatus(): { client: ClientState } {
 async function setup(initialState: Partial<AppState>, id?:string) {
   const component = await render(ClientFormComponent, {
     imports: [
-      SharedModule,
+      FormModule,
       RouterTestingModule.withRoutes([])
     ],
     providers: [

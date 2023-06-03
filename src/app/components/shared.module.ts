@@ -6,7 +6,6 @@ import { TableComponent } from './table/table.component';
 import { MaterialModule } from '@app/material/material.module';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
-import { FormComponent } from './form/form.component';
 import { PipeModule } from '@root/app/pipe/pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
@@ -17,7 +16,6 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     ToolbarComponent,
     TableComponent,
     LoadingComponent,
-    FormComponent,
     DeleteDialogComponent
   ],
   imports: [
@@ -31,8 +29,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     ListComponent,
     ToolbarComponent,
     TableComponent,
-    LoadingComponent,
-    FormComponent
+    LoadingComponent
   ]
 })
 export class SharedModule { }

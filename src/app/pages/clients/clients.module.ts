@@ -6,6 +6,7 @@ import { ClientsComponent } from './views/list/clients.component';
 import { SharedModule } from '@root/app/components/shared.module';
 import { ClientFormComponent } from './views/client-form/client-form.component';
 import { MaterialModule } from '@root/app/material/material.module';
+import { FormModule } from '@root/app/components/form/form.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MaterialModule } from '@root/app/material/material.module';
   ],
   imports: [
     CommonModule,
+    FormModule,
     SharedModule,
     MaterialModule,
     ClientsRoutingModule

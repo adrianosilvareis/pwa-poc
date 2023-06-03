@@ -6,6 +6,7 @@ import { CompanyServiceFormComponent } from '@pages/company-services/views/compa
 import { CompanyServicesComponent } from '@pages/company-services/views/company-services/company-services.component';
 import { SharedModule } from '@root/app/components/shared.module';
 import { MaterialModule } from '@root/app/material/material.module';
+import { FormModule } from '@root/app/components/form/form.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { MaterialModule } from '@root/app/material/material.module';
   imports: [
     CommonModule,
     SharedModule,
+    FormModule,
     MaterialModule,
     CompanyServicesRoutingModule
   ]
