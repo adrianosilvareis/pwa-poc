@@ -1,4 +1,4 @@
-import { FormItems } from '@root/app/components/form/items.model';
+import { FieldType, FormItems } from '@root/app/components/form/items.model';
 import { FormItemsBuilderService } from './form-items-builder.service';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -9,14 +9,16 @@ describe('FormItemsBuilderService', () => {
       name: "name",
       placeholder: "Name",
       label: "Name",
-      value: ['']
+      type: FieldType.input,
+      value: [''],
     },
     {
       colspan: 1,
       name: "description",
       placeholder: "Description",
       label: "Description",
-      value: ['']
+      type: FieldType.input,
+      value: [''],
     },
   ]
   it('should be created a FormItems', () => {

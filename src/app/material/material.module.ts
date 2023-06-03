@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatTableModule,
@@ -36,7 +38,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   providers: [
     MatDialog

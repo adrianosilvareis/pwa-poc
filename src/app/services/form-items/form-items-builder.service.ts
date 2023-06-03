@@ -1,5 +1,5 @@
 import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
-import { FormItems } from '@components/form/items.model';
+import { FieldType, FormItems } from '@components/form/items.model';
 import { Injectable } from '@angular/core';
 
 export interface AddItem {
@@ -25,7 +25,8 @@ export class FormItemsBuilderService {
       name: formItem.name,
       placeholder: formItem.placeholder ?? this.toTitleCase(formItem.name),
       label: formItem.label ?? this.toTitleCase(formItem.name),
-      value: [formItem.value]
+      value: [formItem.value],
+      type: FieldType.input
     }
     this.data.push(item);
     this.currentName = formItem.name;
@@ -33,10 +34,13 @@ export class FormItemsBuilderService {
     return this
   }
 
+  setType(type: FieldType) {
+    return this.changeCurrent((item) => ({ ...item, type }))
+  }
+
   addValidations(validations: ((control: AbstractControl<any, any>) => ValidationErrors | null)[]): FormItemsBuilderService {
-    this.data = this.data.map(item => {
-      let value;
-      if (item.name === this.currentName) {
+    return this.changeCurrent((item) => {
+        let value;
         if (item.value instanceof Array ) {
           value = item.value[0]
         }
@@ -45,10 +49,17 @@ export class FormItemsBuilderService {
           ...item,
           value: new FormControl(value, validations)
         }
+      });
+  }
+
+  addOptions(options: unknown[]) {
+    return this.changeCurrent((item) => {
+      if (item.type !== FieldType.autocomplete) {
+        throw new Error(`field with type "${item.type}" is not able to use this addOptions`)
       }
-      return item;
+      item.options = options;
+      return item
     })
-    return this
   }
 
   build() {
@@ -59,6 +70,11 @@ export class FormItemsBuilderService {
 
   private toTitleCase(text: string){
     return text.at(0)?.toUpperCase() + text.slice(1).toLowerCase();
+  }
+
+  private changeCurrent(callback: (item: FormItems) => FormItems) {
+    this.data = this.data.map(item => item.name === this.currentName ? callback(item) : item );
+    return this
   }
 }
 
