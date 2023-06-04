@@ -6,12 +6,14 @@ import { MaterialModule } from '@root/app/material/material.module';
 import { PipeModule } from '@root/app/pipe/pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared.module';
+import { InputFormComponent } from './input-form/input-form.component';
 
 
 @NgModule({
   declarations: [
     FormComponent,
-    AutocompleteFormComponent
+    AutocompleteFormComponent,
+    InputFormComponent
   ],
   imports: [
     CommonModule,

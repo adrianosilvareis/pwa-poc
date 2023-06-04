@@ -6,8 +6,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 describe('AutocompleteFormComponent', () => {
   it('should render label with correct value', async () => {
     await setup();
-    const label = screen.getByText('label');
-    expect(label.textContent).toBe('label');
+    const label = screen.getByText('Label');
+    expect(label.textContent).toBe('Label');
   });
 
   it('should set value when click any option', async () => {
@@ -74,7 +74,7 @@ describe('AutocompleteFormComponent', () => {
 
 
 function selectOptions(optionNumber = 0) {
-  const input = screen.getByLabelText('label') as HTMLInputElement;
+  const input = screen.getByLabelText('Label') as HTMLInputElement;
     input.click();
 
   const options = screen.getAllByRole('options')

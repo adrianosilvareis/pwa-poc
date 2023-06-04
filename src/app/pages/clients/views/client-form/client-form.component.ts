@@ -78,11 +78,11 @@ export class ClientFormComponent extends Unsubscribe implements OnInit {
 
   private buildData(item?: ClientModel) {
     return this.builder
-      .addItem({ name: 'name', colspan: 2, value: item?.name }).addValidations([Validators.required])
-      .addItem({ name: 'description', colspan: 2, value: item?.description })
-      .addItem({ name: 'owner', value: item?.owner })
-      .addItem({ name: 'responsible', value: item?.responsible })
-      .addItem({ name: 'area', value: item?.area })
+      .addItem({ name: 'name', colspan: 2, value: item?.name, clearable: true }).addValidations([Validators.required])
+      .addItem({ name: 'description', colspan: 2, value: item?.description, clearable: true })
+      .addItem({ name: 'owner', value: item?.owner, clearable: true })
+      .addItem({ name: 'responsible', value: item?.responsible, clearable: true })
+      .addItem({ name: 'area', value: item?.area, clearable: true })
       .build();
   }
 

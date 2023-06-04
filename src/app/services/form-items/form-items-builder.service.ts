@@ -8,6 +8,8 @@ export interface AddItem {
   placeholder?: string;
   label?: string;
   value?: unknown;
+  clearable?: boolean;
+  type?: FieldType;
 }
 
 @Injectable({
@@ -26,7 +28,8 @@ export class FormItemsBuilderService {
       placeholder: formItem.placeholder ?? this.toTitleCase(formItem.name),
       label: formItem.label ?? this.toTitleCase(formItem.name),
       value: [formItem.value],
-      type: FieldType.input
+      type: formItem.type ?? FieldType.input,
+      clearable: formItem.clearable
     }
     this.data.push(item);
     this.currentName = formItem.name;
@@ -34,8 +37,9 @@ export class FormItemsBuilderService {
     return this
   }
 
-  setType(type: FieldType) {
-    return this.changeCurrent((item) => ({ ...item, type }))
+  get(name: string) {
+    this.currentName = name
+    return this
   }
 
   addValidations(validations: ((control: AbstractControl<any, any>) => ValidationErrors | null)[]): FormItemsBuilderService {

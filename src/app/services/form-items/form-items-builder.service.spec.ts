@@ -9,16 +9,16 @@ describe('FormItemsBuilderService', () => {
       name: "name",
       placeholder: "Name",
       label: "Name",
-      type: FieldType.input,
       value: [''],
+      type: FieldType.input,
     },
     {
       colspan: 1,
       name: "description",
       placeholder: "Description",
       label: "Description",
-      type: FieldType.input,
       value: [''],
+      type: FieldType.input,
     },
   ]
   it('should be created a FormItems', () => {

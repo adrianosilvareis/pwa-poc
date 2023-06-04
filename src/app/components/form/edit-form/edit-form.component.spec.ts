@@ -25,7 +25,7 @@ describe('FormComponent', () => {
 
     // then
     expect(input?.getAttribute('placeholder')).toBe('Name');
-    expect(input?.getAttribute('ng-reflect-name')).toBe('name');
+    expect(input?.hasAttribute('ng-reflect-form')).toBeTruthy();
     expect(input?.hasAttribute('required')).toBeTruthy();
   });
 

@@ -13,4 +13,5 @@ export interface FormItems {
   value: unknown[] | FormControl
   type: FieldType
   options?: unknown[]
+  clearable?: boolean
 }
