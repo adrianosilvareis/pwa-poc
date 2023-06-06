@@ -5,6 +5,11 @@ export enum FieldType {
   autocomplete = 'autocomplete'
 }
 
+export interface OptionsType {
+  value: unknown;
+  label: string;
+}
+
 export interface FormItems {
   colspan: number
   name: string
@@ -12,6 +17,6 @@ export interface FormItems {
   label: string
   value: unknown[] | FormControl
   type: FieldType
-  options?: unknown[]
+  options?: OptionsType[]
   clearable?: boolean
 }

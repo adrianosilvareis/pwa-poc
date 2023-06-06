@@ -1,5 +1,5 @@
 import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
-import { FieldType, FormItems } from '@components/form/items.model';
+import { FieldType, FormItems, OptionsType } from '@components/form/items.model';
 import { Injectable } from '@angular/core';
 
 export interface AddItem {
@@ -56,7 +56,7 @@ export class FormItemsBuilderService {
       });
   }
 
-  addOptions(options: unknown[]) {
+  addOptions(options: OptionsType[]) {
     return this.changeCurrent((item) => {
       if (item.type !== FieldType.autocomplete) {
         throw new Error(`field with type "${item.type}" is not able to use this addOptions`)

@@ -21,8 +21,8 @@
   </button>
 
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectOption()">
-    <mat-option *ngFor="let option of filteredOptions | async" [value]="option" role="options">
-      {{option}}
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value" role="options">
+      {{ option.label | titlecase }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

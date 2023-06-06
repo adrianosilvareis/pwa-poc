@@ -14,7 +14,7 @@ describe('AutocompleteFormComponent', () => {
     await setup();
     const { input } = selectOptions()
 
-    expect(input.value).toBe('one')
+    expect(input.value).toBe('One')
   });
 
   it('should clear value when click clearable button', async () => {
@@ -37,7 +37,7 @@ describe('AutocompleteFormComponent', () => {
     await setup();
     const { input } = selectOptions();
 
-    expect(input.value).toBe('one');
+    expect(input.value).toBe('One');
 
     screen.getByRole('clearable').click();
 
@@ -46,7 +46,7 @@ describe('AutocompleteFormComponent', () => {
     await waitFor(() => {
       const options = screen.getAllByRole('options')
       options.at(1)?.click();
-      expect(input.value).toBe('two');
+      expect(input.value).toBe('Two');
     });
   });
 
@@ -54,13 +54,13 @@ describe('AutocompleteFormComponent', () => {
     await setup();
     const { input } = selectOptions();
 
-    expect(input.value).toBe('one');
+    expect(input.value).toBe('One');
     input.click();
 
     await waitFor(() => {
       const options = screen.getAllByRole('options');
       expect(options).toHaveLength(1);
-      expect(options.at(0)?.textContent).toContain('one')
+      expect(options.at(0)?.textContent).toContain('One')
     });
   });
 
@@ -68,7 +68,7 @@ describe('AutocompleteFormComponent', () => {
     const { group } = await setup();
     selectOptions();
 
-    expect(group.value).toEqual({ field: 'one' });
+    expect(group.value).toEqual({ field: { label: 'one', value: 'one' } });
   });
 });
 
@@ -98,7 +98,7 @@ async function setup() {
       label: 'label',
       placeholder: 'placeholder',
       clearable: true,
-      options: ['one', 'two', 'three']
+      options: [{ label: 'one', value: 'one' }, { label: 'two', value: 'two' }, { label: 'three', value: 'three' }]
     }
   })
 

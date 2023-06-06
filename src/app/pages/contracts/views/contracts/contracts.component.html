@@ -1,7 +1,7 @@
 <app-table
   *ngIf="!(isLoading | async) else loading"
   [columns]="columns"
-  title="Client"
+  title="Contracts"
   [items]="data"
   (add)="addContract()"
   (edit)="editContract()"

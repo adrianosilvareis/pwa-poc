@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ContractsRoutingModule } from './contracts-routing.module';
 import { ContractsComponent } from './views/contracts/contracts.component';
 import { SharedModule } from '@root/app/components/shared.module';
+import { ContractsFormComponent } from './views/contracts-form/contracts-form.component';
+import { FormModule } from '@root/app/components/form/form.module';
 
 
 @NgModule({
   declarations: [
-    ContractsComponent
+    ContractsComponent,
+    ContractsFormComponent
   ],
   imports: [
     CommonModule,
     ContractsRoutingModule,
-    SharedModule
+    SharedModule,
+    FormModule
   ]
 })
 export class ContractsModule { }

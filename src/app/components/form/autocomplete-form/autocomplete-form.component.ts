@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, startWith, map, EMPTY, of } from 'rxjs';
+import { OptionsType } from '../items.model';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-autocomplete-form',
@@ -13,30 +15,34 @@ export class AutocompleteFormComponent{
   @Input() label: string = '';
   @Input() placeholder: string = 'Select one';
   @Input() clearable!: boolean;
-  @Input('options') set options (value: string[] | Observable<string[]>) {
-    if (value instanceof Array<String>) {
-      this._options = value
+  @Input('options') set options (value: OptionsType[] | Observable<OptionsType[]>) {
+    if (value instanceof Array<OptionsType>) {
+      this._options = value;
     } else {
       value.subscribe(options => this._options = options)
     }
   }
-  get options (): string[] {
+
+  get options (): OptionsType[] {
     return this._options
   }
 
-  filteredOptions: Observable<string[]> = EMPTY;
+  filteredOptions: Observable<OptionsType[]> = EMPTY;
   control = new FormControl('');
   selected = '';
 
-  private _options: string[] = [];
+  private _options: OptionsType[] = [];
 
   ngOnInit() {
+    this._updateControlValue();
     this._updateFilteredOptions();
   }
 
   selectOption() {
     this.selected = this.control.value ?? '';
-    this.group.get(this.inputKey)?.setValue(this.control.value);
+    const option = this.options.find(option => option.value === this.selected);
+    this._setControlValue(option?.label)
+    this.group.get(this.inputKey)?.setValue(option);
   }
 
   clearOption(e: Event, input: HTMLElement) {
@@ -57,8 +63,18 @@ export class AutocompleteFormComponent{
     );
   }
 
-  private _filter(value: string): string[] {
+  private _updateControlValue() {
+    const initialValue = this.group.get(this.inputKey)?.value?.at(0);
+    const label = this.options.find(option => option.value === initialValue)?.label;
+    this._setControlValue(label)
+  };
+
+  private _filter(value: string): OptionsType[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.label.toLowerCase().includes(filterValue));
+  }
+
+  private _setControlValue(value?: string) {
+    this.control.setValue(new TitleCasePipe().transform(value ?? ''));
   }
 }
