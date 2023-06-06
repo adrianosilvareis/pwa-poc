@@ -14,6 +14,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SharedModule } from '@components/shared.module';
 import { servicesReducer } from './pages/company-services/store/company-services.reducer';
 import { ServicesEffects } from './pages/company-services/store/company-services.effects';
+import { ContractsEffects } from './pages/contracts/store/contracts.effects';
+import { contractsReducer } from './pages/contracts/store/contracts.reducer';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,8 @@ import { ServicesEffects } from './pages/company-services/store/company-services
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    StoreModule.forRoot({ client: clientsReducer, service: servicesReducer }, {}),
-    EffectsModule.forRoot([ClientsEffects, ServicesEffects]),
+    StoreModule.forRoot({ client: clientsReducer, service: servicesReducer, contract: contractsReducer }, {}),
+    EffectsModule.forRoot([ClientsEffects, ServicesEffects, ContractsEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

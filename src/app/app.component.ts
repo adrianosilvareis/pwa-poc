@@ -19,6 +19,10 @@ export class AppComponent {
     {
       title: 'services',
       path: 'services'
+    },
+    {
+      title: 'contracts',
+      path: 'contracts'
     }
   ]
 }

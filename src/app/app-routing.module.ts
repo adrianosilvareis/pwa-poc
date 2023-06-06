@@ -9,11 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'clients',
-    loadChildren: () => import("@pages/clients/clients.module").then(c => c.ClientsModule)
+    loadChildren: () => import("@pages/clients/clients.module").then(m => m.ClientsModule)
   },
   {
     path: 'services',
-    loadChildren: () => import("@pages/company-services/company-services.module").then(c => c.CompanyServicesModule)
+    loadChildren: () => import("@pages/company-services/company-services.module").then(m => m.CompanyServicesModule)
+  },
+  {
+    path: 'contracts',
+    loadChildren: () => import("@pages/contracts/contracts.module").then(m => m.ContractsModule)
   },
 ];
 
