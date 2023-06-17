@@ -16,10 +16,10 @@ export class AutocompleteFormComponent{
   @Input() placeholder: string = 'Select one';
   @Input() clearable!: boolean;
   @Input('options') set options (value: OptionsType[] | Observable<OptionsType[]>) {
-    if (value instanceof Array<OptionsType>) {
-      this._options = value;
-    } else {
+    if (value instanceof Observable) {
       value.subscribe(options => this._options = options)
+    } else {
+      this._options = value;
     }
   }
 

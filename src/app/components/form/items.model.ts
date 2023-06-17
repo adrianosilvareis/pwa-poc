@@ -2,7 +2,8 @@ import { FormControl } from "@angular/forms";
 
 export enum FieldType {
   input = 'input',
-  autocomplete = 'autocomplete'
+  autocomplete = 'autocomplete',
+  datepick = 'datepick',
 }
 
 export interface OptionsType {

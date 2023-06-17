@@ -1,0 +1,22 @@
+<mat-form-field class="fullRow">
+  <mat-label>{{ label | titlecase }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [placeholder]="placeholder"
+    ariaLabel="datepick"
+    [formControl]="control"
+    role="input">
+  <mat-hint>DD/MM/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconPrefix [for]="picker" role="pickButton"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <button
+    *ngIf="clearable"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="clear()"
+    role="clearable">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>

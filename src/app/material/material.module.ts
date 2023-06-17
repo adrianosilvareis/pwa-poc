@@ -11,7 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [],
   imports: [
@@ -26,7 +27,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatInputModule,
     MatGridListModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatTableModule,
@@ -39,7 +42,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatInputModule,
     MatGridListModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     MatDialog

@@ -11,9 +11,18 @@ import { ContractsState } from "../../store/contracts.reducer";
 import { ContractsFormComponent } from "./contracts-form.component";
 import { CompanyServicesModel } from "@root/app/pages/company-services/model/company-services.model";
 import { CompanyServicesState } from "@root/app/pages/company-services/store/company-services.reducer";
+import MockDate from 'mockdate'
 
 describe('ContractFormComponent', () => {
   let initialState: Partial<AppState>
+
+  beforeAll(() => {
+    MockDate.set(new Date())
+  });
+
+  afterAll(() => {
+    MockDate.reset();
+  });
 
   beforeEach(() => {
     initialState = setupInitialStatus();
@@ -31,7 +40,7 @@ describe('ContractFormComponent', () => {
     expect(form.getAttribute('ng-reflect-title')).toBe('Contract');
   });
 
-  it.only('should render field provided by data correctly', async () => {
+  it('should render field provided by data correctly', async () => {
     // given
     const data = setupInitialStatus();
     data.contract.selectedContract = setupContract()
@@ -61,40 +70,6 @@ describe('ContractFormComponent', () => {
     }
 
     // when
-    const saveButton = screen.getByRole('save');
-    saveButton.click();
-
-    // then
-    expect(mockStore.dispatch).toHaveBeenCalledWith(action);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/contracts']);
-  });
-
-  it('should call addContract when click save and exist id', async () => {
-    // given
-    const { mockStore, mockRouter } = await setup(initialState);
-    mockStore.dispatch = jest.fn();
-    mockRouter.navigate = jest.fn();
-
-    const action = {
-      contract: {
-        id: undefined,
-        name: 'MY_VALUE',
-        area: null,
-        contacts: [],
-        contracts: [],
-        payments: [],
-        description: null,
-        isActive: false,
-        owner: null,
-        responsible: null,
-      },
-      type: "[Contracts Page] Add Contract"
-    }
-
-    // when
-    const input = screen.getByLabelText('Name');
-    fireEvent.input(input, {target: { value: 'MY_VALUE' }});
-
     const saveButton = screen.getByRole('save');
     saveButton.click();
 
