@@ -4,6 +4,7 @@ export enum FieldType {
   input = 'input',
   autocomplete = 'autocomplete',
   datepick = 'datepick',
+  checkbox = 'checkbox',
 }
 
 export interface OptionsType {

@@ -21,6 +21,11 @@
           [ngTemplateOutlet]="datepick"
           [ngTemplateOutletContext]="{ $implicit: item }">
         </ng-container>
+        <ng-container
+          *ngIf="item.type === 'checkbox'"
+          [ngTemplateOutlet]="checkbox"
+          [ngTemplateOutletContext]="{ $implicit: item }">
+        </ng-container>
       </mat-grid-tile>
 
       <ng-template #input let-item>
@@ -55,6 +60,15 @@
           [clearable]="item.clearable"
           class="fullRow"
           ></app-datepick-form>
+      </ng-template>
+
+      <ng-template #checkbox let-item>
+        <app-checkbox-form
+          [inputKey]="item.name"
+          [group]="formGroup"
+          [label]="item.label"
+          class="fullRow">
+        </app-checkbox-form>
       </ng-template>
     </form>
 
