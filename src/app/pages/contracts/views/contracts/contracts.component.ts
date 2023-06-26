@@ -6,9 +6,9 @@ import { ColumnItem } from "@root/app/shared/components/table/table.component";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
 import { Unsubscribe } from "@root/app/utils/unsubscribe";
 import { Observable } from "rxjs";
-import { ContractsModel } from "../../model/contracts.models";
-import { contractsPageActions } from "../../store/contracts.actions";
-import { selectActiveContracts, isContractLoading } from "../../store/contracts.selectors";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
+import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
+import { selectActiveContracts, isContractLoading } from "@pages/contracts/store/contracts.selectors";
 
 @Component({
   selector: 'app-contracts',

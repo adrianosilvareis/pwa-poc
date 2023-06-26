@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { ListComponent } from './components/list/list.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { TableComponent } from './components/table/table.component';
+import { ListComponent } from '@components/list/list.component';
+import { ToolbarComponent } from '@components/toolbar/toolbar.component';
+import { TableComponent } from '@components/table/table.component';
 import { MaterialModule } from '@app/material/material.module';
 import { RouterModule } from '@angular/router';
-import { LoadingComponent } from './components/loading/loading.component';
-import { PipeModule } from '@root/app/pipe/pipe.module';
+import { LoadingComponent } from '@components/loading/loading.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '@components/delete-dialog/delete-dialog.component';
 import { CurrencyFormatterDirective } from '@directives/currency/currency-formatter.directive';
+import { ErrorMessagePipe } from '@pipes/error-message/error-message.pipe';
 
 @NgModule({
   declarations: [
@@ -18,13 +18,13 @@ import { CurrencyFormatterDirective } from '@directives/currency/currency-format
     TableComponent,
     LoadingComponent,
     DeleteDialogComponent,
+    ErrorMessagePipe,
     CurrencyFormatterDirective
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
-    PipeModule,
     ReactiveFormsModule,
   ],
   exports:[
@@ -32,6 +32,7 @@ import { CurrencyFormatterDirective } from '@directives/currency/currency-format
     ToolbarComponent,
     TableComponent,
     LoadingComponent,
+    ErrorMessagePipe,
     CurrencyFormatterDirective
   ],
   providers: [

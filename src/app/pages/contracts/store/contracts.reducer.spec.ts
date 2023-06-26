@@ -1,4 +1,4 @@
-import { ContractsModel } from "../model/contracts.models";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "./contracts.actions";
 import { ContractsState, contractsReducer } from "./contracts.reducer";
 import MockDate from 'mockdate'
