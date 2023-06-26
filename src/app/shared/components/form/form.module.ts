@@ -5,7 +5,7 @@ import { FormComponent } from './edit-form/edit-form.component';
 import { MaterialModule } from '@root/app/material/material.module';
 import { PipeModule } from '@root/app/pipe/pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 import { InputFormComponent } from './input-form/input-form.component';
 import { DatepickFormComponent } from './datepick-form/datepick-form.component';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';

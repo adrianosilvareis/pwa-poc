@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListComponent } from './list/list.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { TableComponent } from './table/table.component';
+import { ListComponent } from './components/list/list.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { TableComponent } from './components/table/table.component';
 import { MaterialModule } from '@app/material/material.module';
 import { RouterModule } from '@angular/router';
-import { LoadingComponent } from './loading/loading.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { PipeModule } from '@root/app/pipe/pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { CurrencyFormatterDirective } from '@directives/currency/currency-formatter.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     ToolbarComponent,
     TableComponent,
     LoadingComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    CurrencyFormatterDirective
   ],
   imports: [
     CommonModule,

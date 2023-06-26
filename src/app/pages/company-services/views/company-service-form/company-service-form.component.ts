@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyServicesModel } from '../../model/company-services.model';
-import { FormItems } from '@root/app/components/form/items.model';
+import { FormItems } from '@root/app/shared/components/form/items.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
 import { AppState } from '@root/app/app-state';

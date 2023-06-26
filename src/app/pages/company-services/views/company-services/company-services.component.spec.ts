@@ -4,7 +4,7 @@ import { CompanyServicesComponent } from './company-services.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { render, screen } from '@testing-library/angular';
-import { SharedModule } from '@root/app/components/shared.module';
+import { SharedModule } from '@root/app/shared/shared.module';
 import { Router } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { AppState } from '@root/app/app-state';

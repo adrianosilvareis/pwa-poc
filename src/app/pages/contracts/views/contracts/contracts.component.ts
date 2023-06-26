@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "@root/app/app-state";
-import { ColumnItem } from "@root/app/components/table/table.component";
+import { ColumnItem } from "@root/app/shared/components/table/table.component";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
 import { Unsubscribe } from "@root/app/utils/unsubscribe";
 import { Observable } from "rxjs";

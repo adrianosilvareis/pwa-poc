@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { ClientsEffects } from '@pages/clients/store/clients.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { SharedModule } from '@components/shared.module';
+import { SharedModule } from '@root/app/shared/shared.module';
 import { servicesReducer } from './pages/company-services/store/company-services.reducer';
 import { ServicesEffects } from './pages/company-services/store/company-services.effects';
 import { ContractsEffects } from './pages/contracts/store/contracts.effects';

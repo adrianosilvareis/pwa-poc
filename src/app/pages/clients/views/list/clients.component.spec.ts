@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/angular';
 import { ClientsComponent } from './clients.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { SharedModule } from '@root/app/components/shared.module';
+import { SharedModule } from '@root/app/shared/shared.module';
 import { ClientModel } from '@pages/clients/model/Clients.model';
-import { ColumnItem } from '@root/app/components/table/table.component';
+import { ColumnItem } from '@root/app/shared/components/table/table.component';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';

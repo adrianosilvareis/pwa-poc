@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnItem } from '@root/app/components/table/table.component';
+import { ColumnItem } from '@root/app/shared/components/table/table.component';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';

@@ -5,7 +5,7 @@ import { TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { AppState } from "@root/app/app-state";
-import { SharedModule } from "@root/app/components/shared.module";
+import { SharedModule } from "@root/app/shared/shared.module";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
 import { of } from "rxjs";
 import { ContractsComponent } from "./contracts.component";

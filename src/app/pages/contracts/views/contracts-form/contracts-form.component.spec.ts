@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { AppState } from "@root/app/app-state";
-import { FormModule } from "@root/app/components/form/form.module";
+import { FormModule } from "@root/app/shared/components/form/form.module";
 import { fireEvent, render, screen } from "@testing-library/angular";
 import { of } from "rxjs";
 import { ContractsModel } from "../../model/contracts.models";

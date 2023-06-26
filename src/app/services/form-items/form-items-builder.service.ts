@@ -1,5 +1,5 @@
 import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
-import { FieldType, FormItems, OptionsType } from '@components/form/items.model';
+import { FieldType, FormItems, OptionsType } from '@root/app/shared/components/form/items.model';
 import { Injectable } from '@angular/core';
 
 export interface AddItem {

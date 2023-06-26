@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/angular';
 
 import { HomeComponent } from './home.component';
-import { ListComponent } from '@components/list/list.component';
+import { ListComponent } from '@root/app/shared/components/list/list.component';
 
 describe('HomeComponent', () => {
   it('should create', async () => {

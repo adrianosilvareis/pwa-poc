@@ -1,5 +1,5 @@
 import { ClientModel } from '@pages/clients/model/Clients.model';
-import { SharedModule } from '@root/app/components/shared.module';
+import { SharedModule } from '@root/app/shared/shared.module';
 import { ClientFormComponent } from './client-form.component';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
@@ -9,7 +9,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClientState } from '../../store/clients.reducer';
 import { AppState } from '@root/app/app-state';
-import { FormModule } from '@root/app/components/form/form.module';
+import { FormModule } from '@root/app/shared/components/form/form.module';
 
 describe('ClientFormComponent', () => {
   let initialState: Partial<AppState>

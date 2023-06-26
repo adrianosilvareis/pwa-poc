@@ -4,7 +4,7 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@root/app/app-state';
-import { FieldType, FormItems } from '@root/app/components/form/items.model';
+import { FieldType, FormItems } from '@root/app/shared/components/form/items.model';
 import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.actions';
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';

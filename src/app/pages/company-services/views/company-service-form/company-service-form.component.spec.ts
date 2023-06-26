@@ -8,7 +8,7 @@ import { of } from "rxjs";
 import { CompanyServicesState } from "../../store/company-services.reducer";
 import { CompanyServiceFormComponent } from "./company-service-form.component";
 import { CompanyServicesModel } from "../../model/company-services.model";
-import { FormModule } from "@root/app/components/form/form.module";
+import { FormModule } from "@root/app/shared/components/form/form.module";
 
 describe('ServiceFormComponent', () => {
   let initialState: Partial<AppState>

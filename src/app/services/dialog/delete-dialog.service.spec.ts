@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DeleteDialogService } from './delete-dialog.service';
 import { MaterialModule } from '@root/app/material/material.module';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteDialogComponent } from '@root/app/components/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '@root/app/shared/components/delete-dialog/delete-dialog.component';
 
 describe('DeleteDialogService', () => {
   let service: DeleteDialogService;
