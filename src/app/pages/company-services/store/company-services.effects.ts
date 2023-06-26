@@ -15,31 +15,31 @@ export class ServicesEffects {
   loadServices$ = createEffect(() => this.actions$.pipe(
     ofType(servicesPageActions.loadServices),
     withLatestFrom(this.store.select(selectActiveServices)),
-    exhaustMap(([actions, services]) => this.loadServices(services)))
+    exhaustMap(([, services]) => this.loadServices(services)))
   );
 
   getServiceById$ = createEffect(() => this.actions$.pipe(
     ofType(servicesPageActions.getServiceById),
     withLatestFrom(this.store.select(selectedService), this.store.select(selectedServiceId)),
-    exhaustMap(([actions, service, serviceId]) => this.getService(service, serviceId)))
+    exhaustMap(([, service, serviceId]) => this.getService(service, serviceId)))
   );
 
   addServices$ = createEffect(() => this.actions$.pipe(
     ofType(servicesPageActions.addService),
     withLatestFrom(this.store.select(newService)),
-    exhaustMap(([actions, service]) => this.addServices(service as CompanyServicesModel)))
+    exhaustMap(([, service]) => this.addServices(service as CompanyServicesModel)))
   );
 
   editServices$ = createEffect(() => this.actions$.pipe(
     ofType(servicesPageActions.editService),
     withLatestFrom(this.store.select(selectedService)),
-    exhaustMap(([actions, service]) => this.editServices(service as CompanyServicesModel)))
+    exhaustMap(([, service]) => this.editServices(service as CompanyServicesModel)))
   );
 
   deleteServices$ = createEffect(() => this.actions$.pipe(
     ofType(servicesPageActions.deleteService),
     withLatestFrom(this.store.select(selectedService)),
-    exhaustMap(([actions, service]) => this.deleteServices(service as CompanyServicesModel)))
+    exhaustMap(([, service]) => this.deleteServices(service as CompanyServicesModel)))
   );
 
   constructor(

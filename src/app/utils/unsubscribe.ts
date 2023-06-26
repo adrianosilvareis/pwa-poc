@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 @Component({
   template: ''
 })
-export class Unsubscribe implements OnDestroy {
+export class UnsubscribeComponent implements OnDestroy {
 
   protected subs = new Subscription();
 

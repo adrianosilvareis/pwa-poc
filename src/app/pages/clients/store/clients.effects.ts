@@ -15,31 +15,31 @@ export class ClientsEffects {
   loadClients$ = createEffect(() => this.actions$.pipe(
     ofType(clientsPageActions.loadClients),
     withLatestFrom(this.store.select(selectActiveClients)),
-    exhaustMap(([actions, clients]) => this.loadClients(clients)))
+    exhaustMap(([, clients]) => this.loadClients(clients)))
   );
 
   getClientById$ = createEffect(() => this.actions$.pipe(
     ofType(clientsPageActions.getClientById),
     withLatestFrom(this.store.select(selectedClient), this.store.select(selectedClientId)),
-    exhaustMap(([actions, client, clientId]) => this.getClient(client, clientId)))
+    exhaustMap(([, client, clientId]) => this.getClient(client, clientId)))
   );
 
   addClients$ = createEffect(() => this.actions$.pipe(
     ofType(clientsPageActions.addClient),
     withLatestFrom(this.store.select(newClient)),
-    exhaustMap(([actions, client]) => this.addClients(client as ClientModel)))
+    exhaustMap(([, client]) => this.addClients(client as ClientModel)))
   );
 
   editClients$ = createEffect(() => this.actions$.pipe(
     ofType(clientsPageActions.editClient),
     withLatestFrom(this.store.select(selectedClient)),
-    exhaustMap(([actions, client]) => this.editClients(client as ClientModel)))
+    exhaustMap(([, client]) => this.editClients(client as ClientModel)))
   );
 
   deleteClients$ = createEffect(() => this.actions$.pipe(
     ofType(clientsPageActions.deleteClient),
     withLatestFrom(this.store.select(selectedClient)),
-    exhaustMap(([actions, client]) => this.deleteClients(client as ClientModel)))
+    exhaustMap(([, client]) => this.deleteClients(client as ClientModel)))
   );
 
   constructor(

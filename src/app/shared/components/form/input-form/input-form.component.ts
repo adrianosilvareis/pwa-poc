@@ -8,10 +8,10 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./input-form.component.scss']
 })
 export class InputFormComponent implements OnInit{
-  @Input() inputKey: string = '';
+  @Input() inputKey = '';
   @Input() group!: FormGroup;
-  @Input() label: string = '';
-  @Input() placeholder: string = 'Select one';
+  @Input() label = '';
+  @Input() placeholder = 'Select one';
   @Input() clearable!: boolean;
 
   control!: FormControl;

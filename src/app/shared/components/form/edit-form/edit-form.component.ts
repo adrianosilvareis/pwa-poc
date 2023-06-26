@@ -8,8 +8,8 @@ import { FormItems } from '../items.model';
   styleUrls: ['./edit-form.component.scss']
 })
 export class FormComponent {
-  @Input() title: string = '';
-  @Input() formId: string = '';
+  @Input() title = '';
+  @Input() formId = '';
   @Input() set data(value: FormItems[]) { this.toGroup(value) }
 
   @Output() save = new EventEmitter();

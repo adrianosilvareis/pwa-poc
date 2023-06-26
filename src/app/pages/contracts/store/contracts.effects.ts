@@ -14,31 +14,31 @@ export class ContractsEffects {
   loadContracts$ = createEffect(() => this.actions$.pipe(
     ofType(contractsPageActions.loadContracts),
     withLatestFrom(this.store.select(selectActiveContracts)),
-    exhaustMap(([actions, contracts]) => this.loadContracts(contracts)))
+    exhaustMap(([, contracts]) => this.loadContracts(contracts)))
   );
 
   getContractById$ = createEffect(() => this.actions$.pipe(
     ofType(contractsPageActions.getContractById),
     withLatestFrom(this.store.select(selectedContract), this.store.select(selectedContractId)),
-    exhaustMap(([actions, contract, contractId]) => this.getContract(contract, contractId)))
+    exhaustMap(([, contract, contractId]) => this.getContract(contract, contractId)))
   );
 
   addContracts$ = createEffect(() => this.actions$.pipe(
     ofType(contractsPageActions.addContract),
     withLatestFrom(this.store.select(newContract)),
-    exhaustMap(([actions, contract]) => this.addContracts(contract as ContractsModel)))
+    exhaustMap(([, contract]) => this.addContracts(contract as ContractsModel)))
   );
 
   editContracts$ = createEffect(() => this.actions$.pipe(
     ofType(contractsPageActions.editContract),
     withLatestFrom(this.store.select(selectedContract)),
-    exhaustMap(([actions, contract]) => this.editContracts(contract as ContractsModel)))
+    exhaustMap(([, contract]) => this.editContracts(contract as ContractsModel)))
   );
 
   deleteContracts$ = createEffect(() => this.actions$.pipe(
     ofType(contractsPageActions.deleteContract),
     withLatestFrom(this.store.select(selectedContract)),
-    exhaustMap(([actions, contract]) => this.deleteContracts(contract as ContractsModel)))
+    exhaustMap(([, contract]) => this.deleteContracts(contract as ContractsModel)))
   );
 
   constructor(

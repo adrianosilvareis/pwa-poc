@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { AppState } from "@root/app/app-state";
 import { ColumnItem } from "@root/app/shared/components/table/table.component";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
-import { Unsubscribe } from "@root/app/utils/unsubscribe";
+import { UnsubscribeComponent } from "@root/app/utils/unsubscribe";
 import { Observable } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
@@ -15,7 +15,7 @@ import { selectActiveContracts, isContractLoading } from "@pages/contracts/store
   templateUrl: './contracts.component.html',
   styleUrls: ['./contracts.component.scss']
 })
-export class ContractsComponent extends Unsubscribe implements OnInit {
+export class ContractsComponent extends UnsubscribeComponent implements OnInit {
   columns: ColumnItem[] = [
     { name: 'Start Date', value: 'startDate' },
     { name: 'End Date', value: 'endDate' },

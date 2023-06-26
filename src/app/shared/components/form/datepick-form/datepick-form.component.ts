@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,11 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './datepick-form.component.html',
   styleUrls: ['./datepick-form.component.scss']
 })
-export class DatepickFormComponent {
-  @Input() inputKey: string = '';
+export class DatepickFormComponent implements OnInit {
+  @Input() inputKey = '';
   @Input() group!: FormGroup;
-  @Input() label: string = '';
-  @Input() placeholder: string = 'Choose a Data';
+  @Input() label = '';
+  @Input() placeholder = 'Choose a Data';
   @Input() clearable!: boolean;
 
   control = new FormControl('');

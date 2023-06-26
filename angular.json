@@ -20,7 +20,9 @@
             "outputPath": "dist/pwa-poc",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -35,7 +37,9 @@
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
-            "allowedCommonJsDependencies": ["moment"]
+            "allowedCommonJsDependencies": [
+              "moment"
+            ]
           },
           "configurations": {
             "production": {
@@ -87,11 +91,23 @@
           "options": {
             "browserTarget": "pwa-poc:build"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "f30269f5-ed3d-4578-a575-8e10187c8ab4"
+    "analytics": "f30269f5-ed3d-4578-a575-8e10187c8ab4",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import { FieldType, FormItems, OptionsType } from '@root/app/shared/components/form/items.model';
 import { Injectable } from '@angular/core';
 
@@ -42,7 +42,7 @@ export class FormItemsBuilderService {
     return this
   }
 
-  addValidations(validations: ((control: AbstractControl<any, any>) => ValidationErrors | null)[]): FormItemsBuilderService {
+  addValidations(validations: ((control: AbstractControl<unknown, unknown>) => ValidationErrors | null)[]): FormItemsBuilderService {
     return this.changeCurrent((item) => {
         let value;
         if (item.value instanceof Array ) {

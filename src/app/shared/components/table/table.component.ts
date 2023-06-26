@@ -2,20 +2,20 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChil
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
-import { Unsubscribe } from '@root/app/utils/unsubscribe';
+import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent extends Unsubscribe implements OnInit, AfterViewInit {
+export class TableComponent extends UnsubscribeComponent implements OnInit, AfterViewInit {
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter();
-  @Output() select = new EventEmitter();
+  @Output() selectItem = new EventEmitter();
   @Output() remove = new EventEmitter();
 
-  @Input() title:string = '';
+  @Input() title = '';
   @Input() columns:ColumnItem[] = [];
 
   @Input() items: Observable<unknown[]> = of([]);
@@ -38,7 +38,7 @@ export class TableComponent extends Unsubscribe implements OnInit, AfterViewInit
 
   selectRow(row: unknown): void {
     this.selected = this.selected !== row ? row : null;
-    this.select.emit(this.selected);
+    this.selectItem.emit(this.selected);
   }
   addRow(): void { this.add.emit(); }
   editRow(): void { this.edit.emit(this.selected); }
