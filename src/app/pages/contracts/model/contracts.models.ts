@@ -1,4 +1,4 @@
-import { CompanyServicesModel } from "../../company-services/model/company-services.model";
+import { CompanyServicesModel } from "@pages/company-services/model/company-services.model";
 
 export interface ContractsModel {
   id?: string;

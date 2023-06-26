@@ -5,10 +5,10 @@ import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
-import { isServiceLoading, selectActiveServices } from '../../store/company-services.selectors';
-import { CompanyServicesModel } from '../../model/company-services.model';
+import { isServiceLoading, selectActiveServices } from '@pages/company-services/store/company-services.selectors';
+import { CompanyServicesModel } from '@pages/company-services/model/company-services.model';
 import { Observable } from 'rxjs';
-import { servicesPageActions } from '../../store/company-services.actions';
+import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
 
 @Component({
   selector: 'app-company-services',

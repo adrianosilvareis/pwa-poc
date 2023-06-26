@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { ContractsModel } from "../model/contracts.models";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "./contracts.actions";
 
 export interface ContractsState {

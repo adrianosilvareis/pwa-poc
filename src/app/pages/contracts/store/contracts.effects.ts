@@ -1,10 +1,10 @@
-import { ContractsService } from './../services/contracts.service';
+import { ContractsService } from '@pages/contracts/services/contracts.service';
 import { Injectable } from "@angular/core";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { AppState } from "@root/app/app-state";
 import { withLatestFrom, exhaustMap, of, map, catchError } from "rxjs";
-import { ContractsModel } from "../model/contracts.models";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "./contracts.actions";
 import { selectActiveContracts, selectedContract, selectedContractId, newContract } from "./contracts.selectors";
 

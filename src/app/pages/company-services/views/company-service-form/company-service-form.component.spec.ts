@@ -5,9 +5,9 @@ import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { AppState } from "@root/app/app-state";
 import { fireEvent, render, screen } from "@testing-library/angular";
 import { of } from "rxjs";
-import { CompanyServicesState } from "../../store/company-services.reducer";
+import { CompanyServicesState } from "@pages/company-services/store/company-services.reducer";
 import { CompanyServiceFormComponent } from "./company-service-form.component";
-import { CompanyServicesModel } from "../../model/company-services.model";
+import { CompanyServicesModel } from "@pages/company-services/model/company-services.model";
 import { FormModule } from "@root/app/shared/components/form/form.module";
 
 describe('ServiceFormComponent', () => {

@@ -1,4 +1,4 @@
-import { ErrorMessagePipe } from '../error-message/error-message.pipe';
+import { ErrorMessagePipe } from './error-message.pipe';
 
 describe('ErrorMessagePipe', () => {
   it('should return a keys of values when provider a object', () => {

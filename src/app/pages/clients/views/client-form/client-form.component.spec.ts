@@ -1,5 +1,4 @@
 import { ClientModel } from '@pages/clients/model/Clients.model';
-import { SharedModule } from '@root/app/shared/shared.module';
 import { ClientFormComponent } from './client-form.component';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
@@ -7,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ClientState } from '../../store/clients.reducer';
+import { ClientState } from '@pages/clients/store/clients.reducer';
 import { AppState } from '@root/app/app-state';
 import { FormModule } from '@root/app/shared/components/form/form.module';
 

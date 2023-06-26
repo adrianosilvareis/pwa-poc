@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { of } from 'rxjs';
 import { InteractivityChecker } from '@angular/cdk/a11y';
-import { ClientState, initialState } from '../../store/clients.reducer';
+import { ClientState, initialState } from '@pages/clients/store/clients.reducer';
 import { AppState } from '@root/app/app-state';
 
 describe('ClientsComponent', () => {

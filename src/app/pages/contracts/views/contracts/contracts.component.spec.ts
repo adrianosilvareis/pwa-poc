@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/angular";
-import { initialState } from "../../store/contracts.reducer";
+import { initialState } from "@pages/contracts/store/contracts.reducer";
 import { InteractivityChecker } from "@angular/cdk/a11y";
 import { TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
@@ -9,7 +9,7 @@ import { SharedModule } from "@root/app/shared/shared.module";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
 import { of } from "rxjs";
 import { ContractsComponent } from "./contracts.component";
-import { ContractsModel } from "../../model/contracts.models";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import MockDate from 'mockdate'
 
 describe('ContractComponent', () => {

@@ -2,7 +2,7 @@ import { HttpTestingController, HttpClientTestingModule } from "@angular/common/
 import { TestBed } from "@angular/core/testing";
 import { Subscription } from "rxjs";
 import { ContractsService } from "./contracts.service";
-import { ContractsModel } from "../model/contracts.models";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import MockDate from 'mockdate'
 
 describe('ContractsService', () => {

@@ -1,6 +1,6 @@
 import { AppState } from "@root/app/app-state";
 import { newContract, isContractLoading, selectedContract, selectedContractId, selectActiveContracts } from "./contracts.selectors";
-import { ContractsModel } from "../model/contracts.models";
+import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { ContractsState } from "./contracts.reducer";
 import MockDate from 'mockdate'
 

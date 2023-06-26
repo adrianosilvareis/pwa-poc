@@ -9,7 +9,7 @@ import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
-import { ContractsModel } from '../../model/contracts.models';
+import { ContractsModel } from '@pages/contracts/model/contracts.models';
 import { servicesPageActions } from '@root/app/pages/company-services/store/company-services.actions';
 import { combineLatest } from 'rxjs';
 import { CompanyServicesModel } from '@root/app/pages/company-services/model/company-services.model';
