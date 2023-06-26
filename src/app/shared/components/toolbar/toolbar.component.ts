@@ -7,6 +7,6 @@ import { Links } from './links';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  @Input() title: string = '';
+  @Input() title = '';
   @Input() links: Links[] = [];
 }

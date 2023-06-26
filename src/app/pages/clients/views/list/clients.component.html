@@ -1,11 +1,11 @@
 <app-table
-  *ngIf="!(isLoading | async) else loading"
+  *ngIf="(isLoading | async) === false else loading"
   [columns]="columns"
   title="Client"
   [items]="data"
   (add)="addClient()"
   (edit)="editClient()"
-  (select)="selectClient($event)"
+  (selectItem)="selectClient($event)"
   (remove)="removeClient()"
   role="client-table"
 ></app-table>

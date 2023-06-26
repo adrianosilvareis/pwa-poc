@@ -87,10 +87,10 @@ describe('TableComponent', () => {
 });
 
 type Handlers = {
-  addSpy: EventEmitter<any>,
-  editSpy: EventEmitter<any>,
-  removeSpy: EventEmitter<any>,
-  selectSpy: EventEmitter<any>
+  addSpy: EventEmitter<unknown>,
+  editSpy: EventEmitter<unknown>,
+  removeSpy: EventEmitter<unknown>,
+  selectSpy: EventEmitter<unknown>
 }
 async function setup(title: string, columns: ColumnItem[], items: Observable<unknown[]>, handlers?: Handlers) {
   return render(TableComponent, {
@@ -100,12 +100,12 @@ async function setup(title: string, columns: ColumnItem[], items: Observable<unk
       add: handlers?.addSpy ?? new EventEmitter(),
       edit: handlers?.editSpy ?? new EventEmitter(),
       remove: handlers?.removeSpy ?? new EventEmitter(),
-      select: handlers?.selectSpy ?? new EventEmitter()
+      selectItem: handlers?.selectSpy ?? new EventEmitter()
     }
   });
 }
 
-function setupEventEmitter(handler: (value?: any) => void) {
+function setupEventEmitter(handler: (value?: unknown) => void) {
   const event = new EventEmitter();
   event.emit = handler;
 

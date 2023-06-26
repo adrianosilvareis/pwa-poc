@@ -45,7 +45,7 @@ describe('FormComponent', () => {
   it('should not call save event if form is invalid', async () => {
     // given
     const { event, handler } = setupEventEmitter();
-    const { input, saveButton } = await setup(data, event);
+    const { saveButton } = await setup(data, event);
 
     // when
     saveButton.click();

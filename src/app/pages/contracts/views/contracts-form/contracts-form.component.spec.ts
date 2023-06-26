@@ -4,7 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { AppState } from "@root/app/app-state";
 import { FormModule } from "@root/app/shared/components/form/form.module";
-import { fireEvent, render, screen } from "@testing-library/angular";
+import { render, screen } from "@testing-library/angular";
 import { of } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { ContractsState } from "@pages/contracts/store/contracts.reducer";

@@ -8,7 +8,7 @@ import { FieldType, FormItems } from '@root/app/shared/components/form/items.mod
 import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.actions';
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
-import { Unsubscribe } from '@root/app/utils/unsubscribe';
+import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
 import { ContractsModel } from '@pages/contracts/model/contracts.models';
 import { servicesPageActions } from '@root/app/pages/company-services/store/company-services.actions';
 import { combineLatest } from 'rxjs';
@@ -19,7 +19,7 @@ import { CompanyServicesModel } from '@root/app/pages/company-services/model/com
   templateUrl: './contracts-form.component.html',
   styleUrls: ['./contracts-form.component.scss']
 })
-export class ContractsFormComponent extends Unsubscribe implements OnInit {
+export class ContractsFormComponent extends UnsubscribeComponent implements OnInit {
   id!: string;
 
   contract!: ContractsModel | null;

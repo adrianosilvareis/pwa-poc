@@ -7,7 +7,7 @@ import { isClientLoading, selectActiveClients } from '@pages/clients/store/clien
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
-import { Unsubscribe } from '@root/app/utils/unsubscribe';
+import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
 
 @Component({
@@ -15,7 +15,7 @@ import { AppState } from '@root/app/app-state';
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.scss']
 })
-export class ClientsComponent extends Unsubscribe implements OnInit {
+export class ClientsComponent extends UnsubscribeComponent implements OnInit {
   columns: ColumnItem[] = [
     { name: 'Name', value: 'name' },
     { name: 'Description', value: 'description' },

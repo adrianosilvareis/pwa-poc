@@ -28,7 +28,7 @@ describe('ToolbarComponent', () => {
     });
 
     // when
-    const link = screen.getByTitle('ROUTER_TITLE');;
+    const link = screen.getByTitle('ROUTER_TITLE');
 
     // then
     expect(link.textContent).toBe('Router_title');

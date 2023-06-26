@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, startWith, map, EMPTY, of } from 'rxjs';
 import { OptionsType } from '../items.model';
@@ -9,13 +9,13 @@ import { TitleCasePipe } from '@angular/common';
   templateUrl: './autocomplete-form.component.html',
   styleUrls: ['./autocomplete-form.component.scss']
 })
-export class AutocompleteFormComponent{
-  @Input() inputKey: string = '';
+export class AutocompleteFormComponent implements OnInit{
+  @Input() inputKey = '';
   @Input() group!: FormGroup;
-  @Input() label: string = '';
-  @Input() placeholder: string = 'Select one';
+  @Input() label = '';
+  @Input() placeholder = 'Select one';
   @Input() clearable!: boolean;
-  @Input('options') set options (value: OptionsType[] | Observable<OptionsType[]>) {
+  @Input() set options (value: OptionsType[] | Observable<OptionsType[]>) {
     if (value instanceof Observable) {
       value.subscribe(options => this._options = options)
     } else {
@@ -67,7 +67,7 @@ export class AutocompleteFormComponent{
     const initialValue = this.group.get(this.inputKey)?.value?.at(0);
     const label = this.options.find(option => option.value === initialValue)?.label;
     this._setControlValue(label)
-  };
+  }
 
   private _filter(value: string): OptionsType[] {
     const filterValue = value.toLowerCase();

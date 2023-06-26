@@ -35,6 +35,7 @@ describe('DeleteDialogComponent', () => {
 async function setup(data: DeleteDialogData) {
   class MatDialogRefMock {
     close(value = '') {
+      return value;
     }
   }
   const matDialogRefMock = new MatDialogRefMock();

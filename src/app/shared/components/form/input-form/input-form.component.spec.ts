@@ -1,7 +1,7 @@
 import { InputFormComponent } from './input-form.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormModule } from '../form.module';
-import { render, screen, waitFor } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 
 describe('InputFormComponent', () => {
   it('should render label with correct value', async () => {

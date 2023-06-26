@@ -3,7 +3,7 @@ import { ColumnItem } from '@root/app/shared/components/table/table.component';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
-import { Unsubscribe } from '@root/app/utils/unsubscribe';
+import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
 import { isServiceLoading, selectActiveServices } from '@pages/company-services/store/company-services.selectors';
 import { CompanyServicesModel } from '@pages/company-services/model/company-services.model';
@@ -15,7 +15,7 @@ import { servicesPageActions } from '@pages/company-services/store/company-servi
   templateUrl: './company-services.component.html',
   styleUrls: ['./company-services.component.scss']
 })
-export class CompanyServicesComponent extends Unsubscribe implements OnInit{
+export class CompanyServicesComponent extends UnsubscribeComponent implements OnInit{
   columns: ColumnItem[] = [
     { name: 'Title', value: 'title' },
     { name: 'Description', value: 'description' },

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,10 +6,10 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './checkbox-form.component.html',
   styleUrls: ['./checkbox-form.component.scss']
 })
-export class CheckboxFormComponent {
-  @Input() inputKey: string = '';
+export class CheckboxFormComponent implements OnInit{
+  @Input() inputKey = '';
   @Input() group!: FormGroup;
-  @Input() label: string = '';
+  @Input() label = '';
 
   control = new FormControl('');
 
