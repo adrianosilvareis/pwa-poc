@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ListComponent } from './components/list/list.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { TableComponent } from './components/table/table.component';
@@ -25,13 +25,17 @@ import { CurrencyFormatterDirective } from '@directives/currency/currency-format
     MaterialModule,
     RouterModule,
     PipeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports:[
     ListComponent,
     ToolbarComponent,
     TableComponent,
-    LoadingComponent
+    LoadingComponent,
+    CurrencyFormatterDirective
+  ],
+  providers: [
+    CurrencyPipe
   ]
 })
 export class SharedModule { }

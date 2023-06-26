@@ -90,7 +90,7 @@ export class ContractsFormComponent extends Unsubscribe implements OnInit {
       .addItem({ name: 'startDate', value: item?.startDate, clearable: true, type: FieldType.datepick }).addValidations([Validators.required])
       .addItem({ name: 'endDate', value: item?.endDate, clearable: true, type: FieldType.datepick })
       .addItem({ name: 'services', value: item?.services, clearable: true, type: FieldType.autocomplete }).addOptions(servicesOptions.map(service => ({ value: service.id, label: service.title })))
-      .addItem({ name: 'price', value: item?.price, clearable: true })
+      .addItem({ name: 'price', value: item?.price, clearable: true, type: FieldType.currency })
       .addItem({ name: 'renewable', value: item?.renewable, clearable: true, type: FieldType.checkbox })
       .build();
   }

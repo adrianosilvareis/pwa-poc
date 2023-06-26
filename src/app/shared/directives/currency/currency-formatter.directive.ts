@@ -1,10 +1,12 @@
 import { Directive, HostListener, ElementRef, OnInit, Input } from "@angular/core";
 import { CurrencyPipe } from '@angular/common';
+import { FormControl } from "@angular/forms";
 
 @Directive({ selector: "[appCurrencyFormatter]" })
 export class CurrencyFormatterDirective implements OnInit {
 
   @Input() currency = 'USD';
+  @Input() currencyControl!: FormControl;
 
   private el: HTMLInputElement;
 
@@ -16,20 +18,24 @@ export class CurrencyFormatterDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.el.value = this.transform(this.el.value);
-    console.log('CurrencyFormatterDirective')
+    if (this.currencyControl !== undefined) {
+      this.el.value = this.transform(this.initialValue(String(this.currencyControl.value)));
+    }
+    setTimeout(()=> {
+      this.parseControl();
+    })
   }
 
   @HostListener("input", ["$event.target.value"])
   onChange(value: string) {
     this.el.value = this.transform(value);
-    console.log('CurrencyFormatterDirective')
+    this.parseControl();
   }
 
   @HostListener("blur", ["$event.target.value"])
   onBlur(value: string) {
     this.el.value = this.transform(value);
-    console.log('CurrencyFormatterDirective')
+    this.el.dispatchEvent(new Event('input'));
   }
 
   private transform(input: string) {
@@ -50,4 +56,18 @@ export class CurrencyFormatterDirective implements OnInit {
     return `${dollars}.${cents}`;
   }
 
+  private initialValue(input: string) {
+    if (input.match(/\D/g) === null) {
+      return `${input}.00`;
+    }
+    return input
+  }
+
+  private parseControl() {
+    const value = this.el.value.replace(/\D/g, "");
+    const original = Number(value)/100;
+    if (this.currencyControl !== undefined) {
+      this.currencyControl.setValue(original);
+    }
+  }
 }

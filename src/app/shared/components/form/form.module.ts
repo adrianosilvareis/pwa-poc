@@ -15,6 +15,7 @@ import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import { CheckboxFormComponent } from './checkbox-form/checkbox-form.component';
+import { CurrencyFormComponent } from './currency-form/currency-form.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CheckboxFormComponent } from './checkbox-form/checkbox-form.component';
     AutocompleteFormComponent,
     InputFormComponent,
     DatepickFormComponent,
-    CheckboxFormComponent
+    CheckboxFormComponent,
+    CurrencyFormComponent
   ],
   imports: [
     CommonModule,
