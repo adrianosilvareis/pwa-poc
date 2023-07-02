@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Tela de Login</h2>
+  <form [formGroup]="formGroup" (submit)="login()">
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email">
+      <mat-error *ngIf="getControls('email')?.errors" role="error">{{ getControls('email').errors | errorMessage }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <mat-error *ngIf="getControls('password')?.errors" role="error">{{ getControls('password').errors | errorMessage }}</mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="form-group">
+      <button type="submit" class="bg-green" style="width: 150px;">Entrar</button>
+      <button (click)="signup()" class="bg-blue" style="width: 150px;">Cadastrar</button>
+    </div>
+  </form>
+  <div class="form-group">
+    <button (click)="loginWithGoogle()" style="width: 150px;">Entrar com Google</button>
+    <button (click)="loginWithGithub()" style="width: 150px;">Entrar com GitHub</button>
+  </div>
+  <div class="form-group">
+    <button (click)="forgotPassword()">Esqueci a senha</button>
+  </div>
+</div>
