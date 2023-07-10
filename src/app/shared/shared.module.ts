@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteDialogComponent } from '@components/delete-dialog/delete-dialog.component';
 import { CurrencyFormatterDirective } from '@directives/currency/currency-formatter.directive';
 import { ErrorMessagePipe } from '@pipes/error-message/error-message.pipe';
+import { FormatTableValueDirective } from '@directives/format-table-value/format-table-value.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ErrorMessagePipe } from '@pipes/error-message/error-message.pipe';
     LoadingComponent,
     DeleteDialogComponent,
     ErrorMessagePipe,
-    CurrencyFormatterDirective
+    CurrencyFormatterDirective,
+    FormatTableValueDirective
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { ErrorMessagePipe } from '@pipes/error-message/error-message.pipe';
     TableComponent,
     LoadingComponent,
     ErrorMessagePipe,
-    CurrencyFormatterDirective
+    CurrencyFormatterDirective,
+    FormatTableValueDirective
   ],
   providers: [
     CurrencyPipe

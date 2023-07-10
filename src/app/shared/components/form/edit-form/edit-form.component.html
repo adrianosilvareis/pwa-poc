@@ -17,12 +17,12 @@
           [ngTemplateOutletContext]="{ $implicit: item }">
         </ng-container>
         <ng-container
-          *ngIf="item.type === 'datepick'"
+          *ngIf="item.type === 'date'"
           [ngTemplateOutlet]="datepick"
           [ngTemplateOutletContext]="{ $implicit: item }">
         </ng-container>
         <ng-container
-          *ngIf="item.type === 'checkbox'"
+          *ngIf="item.type === 'YesNo'"
           [ngTemplateOutlet]="checkbox"
           [ngTemplateOutletContext]="{ $implicit: item }">
         </ng-container>

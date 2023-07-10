@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
 import { selectActiveContracts, isContractLoading } from "@pages/contracts/store/contracts.selectors";
+import { FieldType } from "@root/app/shared/components/form/items.model";
 
 @Component({
   selector: 'app-contracts',
@@ -17,11 +18,11 @@ import { selectActiveContracts, isContractLoading } from "@pages/contracts/store
 })
 export class ContractsComponent extends UnsubscribeComponent implements OnInit {
   columns: ColumnItem[] = [
-    { name: 'Start Date', value: 'startDate' },
-    { name: 'End Date', value: 'endDate' },
-    { name: 'Renewable', value: 'renewable' },
-    { name: 'Services', value: 'services' },
-    { name: 'Price', value: 'price' },
+    { name: 'Start Date', value: 'startDate', type: FieldType.date },
+    { name: 'End Date', value: 'endDate', type: FieldType.date },
+    { name: 'Renewable', value: 'renewable', type: FieldType.YesNo },
+    { name: 'Services', value: 'services', type: FieldType.autocomplete, labelName: 'title' },
+    { name: 'Price', value: 'price', type: FieldType.currency },
   ];
 
   data: Observable<ContractsModel[]> = this.store.select(selectActiveContracts);

@@ -3,8 +3,8 @@ import { FormControl } from "@angular/forms";
 export enum FieldType {
   input = 'input',
   autocomplete = 'autocomplete',
-  datepick = 'datepick',
-  checkbox = 'checkbox',
+  date = 'date',
+  YesNo = 'YesNo',
   currency = 'currency',
 }
 

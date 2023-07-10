@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { map, exhaustMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { servicesPageActions } from './company-services.actions';
-import { newService, selectActiveServices, selectedService, selectedServiceId } from './company-services.selectors';
+import { newService, selectServices, selectedService, selectedServiceId } from './company-services.selectors';
 import { CompanyServicesModel } from '../model/company-services.model';
 import { CompanyServicesService } from '../services/company-services.service';
 import { AppState } from '@root/app/app-state';
@@ -14,7 +14,7 @@ export class ServicesEffects {
 
   loadServices$ = createEffect(() => this.actions$.pipe(
     ofType(servicesPageActions.loadServices),
-    withLatestFrom(this.store.select(selectActiveServices)),
+    withLatestFrom(this.store.select(selectServices)),
     exhaustMap(([, services]) => this.loadServices(services)))
   );
 

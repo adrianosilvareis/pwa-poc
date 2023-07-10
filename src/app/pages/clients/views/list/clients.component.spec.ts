@@ -11,6 +11,7 @@ import { of } from 'rxjs';
 import { InteractivityChecker } from '@angular/cdk/a11y';
 import { ClientState, initialState } from '@pages/clients/store/clients.reducer';
 import { AppState } from '@root/app/app-state';
+import { FieldType } from '@root/app/shared/components/form/items.model';
 
 describe('ClientsComponent', () => {
 
@@ -179,11 +180,11 @@ function setupInitialStatus():{ client: ClientState } {
 
 function setupColumnScheme(): ColumnItem[] {
   return [
-    { name: 'Name', value: 'name' },
-    { name: 'Description', value: 'description' },
-    { name: 'Responsible', value: 'responsible' },
-    { name: 'Area', value: 'area' },
-    { name: 'Owner', value: 'owner' },
-    { name: 'IsActive', value: 'isActive' },
+    { name: 'Name', value: 'name', type: FieldType.input },
+    { name: 'Description', value: 'description', type: FieldType.input },
+    { name: 'Responsible', value: 'responsible', type: FieldType.input },
+    { name: 'Area', value: 'area', type: FieldType.input },
+    { name: 'Owner', value: 'owner', type: FieldType.input },
+    { name: 'IsActive', value: 'isActive', type: FieldType.YesNo },
   ]
 }
