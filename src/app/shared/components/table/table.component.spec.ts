@@ -3,10 +3,12 @@ import { MaterialModule } from '@app/material/material.module';
 import { ColumnItem, TableComponent } from './table.component';
 import { Observable, of } from 'rxjs';
 import { EventEmitter } from '@angular/core';
+import { FieldType } from '@components/form/items.model';
+import { SharedModule } from '@app/shared/shared.module';
 
 describe('TableComponent', () => {
   const title = 'title';
-  const columns: ColumnItem[] = [{ value: 'name', name: 'Name' }];
+  const columns: ColumnItem[] = [{ value: 'name', name: 'Name', type: FieldType.input }];
   const items: Observable<unknown[]> = of([{ name: 'ITEM_NAME' }]);
 
   it('should render a row with correct values', async () => {
@@ -94,7 +96,7 @@ type Handlers = {
 }
 async function setup(title: string, columns: ColumnItem[], items: Observable<unknown[]>, handlers?: Handlers) {
   return render(TableComponent, {
-    imports: [MaterialModule],
+    imports: [MaterialModule, SharedModule],
     componentProperties: { title, columns, items },
     componentOutputs: {
       add: handlers?.addSpy ?? new EventEmitter(),

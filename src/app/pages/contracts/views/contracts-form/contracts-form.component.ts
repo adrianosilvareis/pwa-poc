@@ -4,12 +4,12 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@root/app/app-state';
-import { FieldType, FormItems } from '@root/app/shared/components/form/items.model';
+import { FieldType, FormItems, OptionsType } from '@root/app/shared/components/form/items.model';
 import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.actions';
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
 import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
-import { ContractsModel } from '@pages/contracts/model/contracts.models';
+import { ContractsData, ContractsModel } from '@pages/contracts/model/contracts.models';
 import { servicesPageActions } from '@root/app/pages/company-services/store/company-services.actions';
 import { combineLatest } from 'rxjs';
 import { CompanyServicesModel } from '@root/app/pages/company-services/model/company-services.model';
@@ -21,10 +21,13 @@ import { CompanyServicesModel } from '@root/app/pages/company-services/model/com
 })
 export class ContractsFormComponent extends UnsubscribeComponent implements OnInit {
   id!: string;
-
   contract!: ContractsModel | null;
-
   data!: FormItems[];
+
+  services!: CompanyServicesModel[];
+
+  servicesOptions$ = this.store.select(selectActiveServices);
+  contract$ = this.store.select(selectedContract);
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +42,7 @@ export class ContractsFormComponent extends UnsubscribeComponent implements OnIn
     this.subs.add(this.generateForm());
   }
 
-  saveContract(contract: ContractsModel) {
+  saveContract(contract: ContractsData) {
     if (this.id) {
       this.store.dispatch(contractsPageActions.editContract({ contract: this.sanitize(contract) }));
     } else {
@@ -71,39 +74,40 @@ export class ContractsFormComponent extends UnsubscribeComponent implements OnIn
       this.store.dispatch(contractsPageActions.selectContract({ contract: null }));
     }
 
-    const servicesOptions$ = this.store.select(selectActiveServices);
-
-    const contract$ = this.store.select(selectedContract);
-
-    return combineLatest([contract$, servicesOptions$]).subscribe(([item, servicesOptions]) => {
+    return combineLatest([this.contract$, this.servicesOptions$]).subscribe(([item, services]) => {
+      this.services = services;
       this.contract = item;
       if (item) {
-        this.data = this.buildData(servicesOptions, item);
+        this.data = this.buildData(services, item);
       } else {
-        this.data = this.buildData(servicesOptions)
+        this.data = this.buildData(services)
       }
     });
   }
 
   private buildData(servicesOptions: CompanyServicesModel[], item?: ContractsModel) {
     return this.builder
-      .addItem({ name: 'startDate', value: item?.startDate, clearable: true, type: FieldType.datepick }).addValidations([Validators.required])
-      .addItem({ name: 'endDate', value: item?.endDate, clearable: true, type: FieldType.datepick })
+      .addItem({ name: 'startDate', value: item?.startDate, clearable: true, type: FieldType.date }).addValidations([Validators.required])
+      .addItem({ name: 'endDate', value: item?.endDate, clearable: true, type: FieldType.date })
       .addItem({ name: 'services', value: item?.services, clearable: true, type: FieldType.autocomplete }).addOptions(servicesOptions.map(service => ({ value: service.id, label: service.title })))
       .addItem({ name: 'price', value: item?.price, clearable: true, type: FieldType.currency })
-      .addItem({ name: 'renewable', value: item?.renewable, clearable: true, type: FieldType.checkbox })
+      .addItem({ name: 'renewable', value: item?.renewable, clearable: true, type: FieldType.YesNo })
       .build();
   }
 
-  private sanitize(formContract: ContractsModel):ContractsModel {
+  private sanitize(formContract: ContractsData):ContractsModel {
     return {
       id: this.contract?.id,
       startDate: formContract.startDate,
       endDate: formContract.endDate,
       renewable:formContract.renewable,
       price: formContract.price,
-      services: this.contract?.services ?? [],
-      isActive: this.contract?.isActive ?? false
+      services: this.getServices(formContract.services),
+      isActive: this.contract?.isActive ?? true
     }
+  }
+
+  private getServices(services: OptionsType[]): CompanyServicesModel[] {
+    return this.services.filter((service) => services.find((s) => s.value === service.id));
   }
 }

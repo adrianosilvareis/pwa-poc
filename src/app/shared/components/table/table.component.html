@@ -17,7 +17,14 @@
 
     <ng-container [matColumnDef]="column.value" *ngFor="let column of columns">
       <th mat-header-cell *matHeaderCellDef>{{ column.name }}</th>
-      <td mat-cell *matCellDef="let element">{{ element[column.value] }}</td>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        appFormatTableValue
+        [value]="element[column.value]"
+        [type]="column.type"
+        [labelName]="column.labelName"
+      >{{ element[column.value] }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
