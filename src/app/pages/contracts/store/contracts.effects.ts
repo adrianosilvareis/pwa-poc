@@ -7,6 +7,7 @@ import { withLatestFrom, exhaustMap, of, map, catchError } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "./contracts.actions";
 import { selectActiveContracts, selectedContract, selectedContractId, newContract } from "./contracts.selectors";
+import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
 
 @Injectable()
 export class ContractsEffects {
@@ -15,6 +16,11 @@ export class ContractsEffects {
     ofType(contractsPageActions.loadContracts),
     withLatestFrom(this.store.select(selectActiveContracts)),
     exhaustMap(([, contracts]) => this.loadContracts(contracts)))
+  );
+
+  loadOptionsServices$ = createEffect(() => this.actions$.pipe(
+    ofType(contractsPageActions.loadContracts),
+    exhaustMap(() => of(servicesPageActions.loadServices())))
   );
 
   getContractById$ = createEffect(() => this.actions$.pipe(

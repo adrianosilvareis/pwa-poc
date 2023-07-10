@@ -9,6 +9,7 @@ import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
 import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
+import { FieldType } from '@root/app/shared/components/form/items.model';
 
 @Component({
   selector: 'app-clients',
@@ -17,12 +18,12 @@ import { AppState } from '@root/app/app-state';
 })
 export class ClientsComponent extends UnsubscribeComponent implements OnInit {
   columns: ColumnItem[] = [
-    { name: 'Name', value: 'name' },
-    { name: 'Description', value: 'description' },
-    { name: 'Owner', value: 'owner' },
-    { name: 'Responsible', value: 'responsible' },
-    { name: 'Area', value: 'area' },
-    { name: 'IsActive', value: 'isActive' },
+    { name: 'Name', value: 'name', type: FieldType.input },
+    { name: 'Description', value: 'description', type: FieldType.input },
+    { name: 'Owner', value: 'owner', type: FieldType.input },
+    { name: 'Responsible', value: 'responsible', type: FieldType.input },
+    { name: 'Area', value: 'area', type: FieldType.input },
+    { name: 'IsActive', value: 'isActive', type: FieldType.YesNo },
   ];
 
   data: Observable<ClientModel[]> = this.store.select(selectActiveClients);

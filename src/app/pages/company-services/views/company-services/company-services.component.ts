@@ -9,6 +9,7 @@ import { isServiceLoading, selectActiveServices } from '@pages/company-services/
 import { CompanyServicesModel } from '@pages/company-services/model/company-services.model';
 import { Observable } from 'rxjs';
 import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
+import { FieldType } from '@root/app/shared/components/form/items.model';
 
 @Component({
   selector: 'app-company-services',
@@ -17,9 +18,9 @@ import { servicesPageActions } from '@pages/company-services/store/company-servi
 })
 export class CompanyServicesComponent extends UnsubscribeComponent implements OnInit{
   columns: ColumnItem[] = [
-    { name: 'Title', value: 'title' },
-    { name: 'Description', value: 'description' },
-    { name: 'Value', value: 'value' },
+    { name: 'Title', value: 'title', type: FieldType.input },
+    { name: 'Description', value: 'description', type: FieldType.input },
+    { name: 'Value', value: 'value', type: FieldType.currency },
   ];
 
   data: Observable<CompanyServicesModel[]> = this.store.select(selectActiveServices);

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
 import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
+import { FieldType } from '@components/form/items.model';
 
 @Component({
   selector: 'app-table',
@@ -54,4 +55,6 @@ export class TableComponent extends UnsubscribeComponent implements OnInit, Afte
 export interface ColumnItem {
   name: string;
   value: string;
+  type: FieldType;
+  labelName?: string;
 }
