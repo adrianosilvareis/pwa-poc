@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AutocompleteFormComponent } from './autocomplete-form/autocomplete-form.component';
 import { FormComponent } from './edit-form/edit-form.component';
 import { MaterialModule } from '@root/app/material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
 import { InputFormComponent } from './input-form/input-form.component';
 import { DatepickFormComponent } from './datepick-form/datepick-form.component';
@@ -15,6 +15,7 @@ import {
 } from '@angular/material-moment-adapter';
 import { CheckboxFormComponent } from './checkbox-form/checkbox-form.component';
 import { CurrencyFormComponent } from './currency-form/currency-form.component';
+import { MultiSelectFormComponent } from './multi-select-form/multi-select-form.component';
 
 
 @NgModule({
@@ -24,11 +25,13 @@ import { CurrencyFormComponent } from './currency-form/currency-form.component';
     InputFormComponent,
     DatepickFormComponent,
     CheckboxFormComponent,
-    CurrencyFormComponent
+    CurrencyFormComponent,
+    MultiSelectFormComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule,
     SharedModule
   ],

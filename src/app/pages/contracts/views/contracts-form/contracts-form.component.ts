@@ -4,7 +4,7 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@root/app/app-state';
-import { FieldType, FormItems, OptionsType } from '@root/app/shared/components/form/items.model';
+import { FieldType, FormItems } from '@root/app/shared/components/form/items.model';
 import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.actions';
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
@@ -87,9 +87,11 @@ export class ContractsFormComponent extends UnsubscribeComponent implements OnIn
 
   private buildData(servicesOptions: CompanyServicesModel[], item?: ContractsModel) {
     return this.builder
-      .addItem({ name: 'startDate', value: item?.startDate, clearable: true, type: FieldType.date }).addValidations([Validators.required])
+      .addItem({ name: 'startDate', value: item?.startDate, clearable: true, type: FieldType.date })
+        .addValidations([Validators.required])
       .addItem({ name: 'endDate', value: item?.endDate, clearable: true, type: FieldType.date })
-      .addItem({ name: 'services', value: item?.services, clearable: true, type: FieldType.autocomplete }).addOptions(servicesOptions.map(service => ({ value: service.id, label: service.title })))
+      .addItem({ name: 'services', value: item?.services.map(({ id }) => id), clearable: true, type: FieldType.multiselect })
+        .addOptions(servicesOptions.map(service => ({ value: service.id, label: service.title })))
       .addItem({ name: 'price', value: item?.price, clearable: true, type: FieldType.currency })
       .addItem({ name: 'renewable', value: item?.renewable, clearable: true, type: FieldType.YesNo })
       .build();
@@ -107,7 +109,7 @@ export class ContractsFormComponent extends UnsubscribeComponent implements OnIn
     }
   }
 
-  private getServices(services: OptionsType[]): CompanyServicesModel[] {
-    return this.services.filter((service) => services.find((s) => s.value === service.id));
+  private getServices(services: string[]): CompanyServicesModel[] {
+    return this.services.filter((service) => services.find((id) => id === service.id));
   }
 }
