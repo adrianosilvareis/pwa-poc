@@ -58,11 +58,11 @@ export class FormItemsBuilderService {
 
   addOptions(options: OptionsType[]) {
     return this.changeCurrent((item) => {
-      if (item.type !== FieldType.autocomplete) {
-        throw new Error(`field with type "${item.type}" is not able to use this addOptions`)
+      if (item.type === FieldType.autocomplete || item.type === FieldType.multiselect) {
+        item.options = options;
+        return item
       }
-      item.options = options;
-      return item
+      throw new Error(`field with type "${item.type}" is not able to use this addOptions`)
     })
   }
 
