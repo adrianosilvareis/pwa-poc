@@ -1,0 +1,9 @@
+<mat-form-field class="fullRow">
+  <mat-label>{{ label | titlecase }}</mat-label>
+  <mat-select [formControl]="control" multiple (valueChange)="checkAllSelected()" role="multiselect">
+    <mat-option *ngFor="let option of options" [value]="option.value" role="options">{{option.label}}</mat-option>
+  </mat-select>
+
+  <mat-checkbox matPrefix [checked]="isAllSelected" (change)="toggleAll()" role="selectAll"></mat-checkbox>
+</mat-form-field>
+

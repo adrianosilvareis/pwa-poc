@@ -17,6 +17,11 @@
           [ngTemplateOutletContext]="{ $implicit: item }">
         </ng-container>
         <ng-container
+          *ngIf="item.type === 'multiselect'"
+          [ngTemplateOutlet]="multiselect"
+          [ngTemplateOutletContext]="{ $implicit: item }">
+        </ng-container>
+        <ng-container
           *ngIf="item.type === 'date'"
           [ngTemplateOutlet]="datepick"
           [ngTemplateOutletContext]="{ $implicit: item }">
@@ -54,6 +59,18 @@
           [options]="item.options"
           class="fullRow"
           ></app-autocomplete-form>
+      </ng-template>
+
+      <ng-template #multiselect let-item>
+        <app-multi-select-form
+          [inputKey]="item.name"
+          [group]="formGroup"
+          [label]="item.label"
+          [placeholder]="item.placeholder"
+          [clearable]="item.clearable"
+          [options]="item.options"
+          class="fullRow"
+          ></app-multi-select-form>
       </ng-template>
 
       <ng-template #datepick let-item>
