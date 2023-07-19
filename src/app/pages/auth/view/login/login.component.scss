@@ -1,0 +1,54 @@
+.fullRow {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 50px;
+}
+.login-card{
+  margin-top: 150px;
+  width: 500px;
+  height: 400px;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.btn-login {
+  width: 226px;
+}
+
+.error-message {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+}
+.actions-btn {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.actions-link {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .link {
+    padding: 12px;
+  }
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+}

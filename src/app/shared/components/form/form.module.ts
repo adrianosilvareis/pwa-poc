@@ -36,6 +36,8 @@ import { MultiSelectFormComponent } from './multi-select-form/multi-select-form.
     SharedModule
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     FormComponent,
     AutocompleteFormComponent,
   ],

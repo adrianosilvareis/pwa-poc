@@ -16,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -36,6 +38,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSlideToggleModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatCardModule,
   ],
   exports: [
     MatTableModule,
@@ -54,6 +57,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSlideToggleModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatCardModule,
   ],
   providers: [
     MatDialog

@@ -19,7 +19,7 @@ import { contractsReducer } from '@pages/contracts/store/contracts.reducer';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     SharedModule,
