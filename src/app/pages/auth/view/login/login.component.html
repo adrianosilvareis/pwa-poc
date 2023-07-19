@@ -1,0 +1,63 @@
+<div class="container">
+  <mat-card class="login-card">
+    <mat-card-header class="header">
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="1" rowHeight="80px" >
+        <form [formGroup]="form" class="clientForm" *ngIf="form" (ngSubmit)="login()">
+          <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="fill" class="fullRow">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="email@example.com" formControlName="email">
+              <mat-error *ngIf="error.hasError('email')" >{{ error.getErrors('email') | errorMessage }}</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="fill" class="fullRow">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Password" formControlName="password">
+              <mat-error *ngIf="error.hasError('password')" >{{ error.getErrors('password') | errorMessage }}</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <button type="submit" style="display: none;"></button>
+        </form>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <hr />
+      <div class="actions">
+        <div class="actions-link">
+          <mat-checkbox value="" color="primary">Remember me</mat-checkbox>
+          <span class="link">
+            <a href="">Forgot password?</a>
+          </span>
+        </div>
+        <div class="actions-btn">
+          <button
+            data-testid="signin"
+            type="submit"
+            mat-raised-button
+            color="primary"
+            (click)="login()"
+            class="btn-login"
+            [disabled]="form.touched && form.invalid">
+            SignIn
+          </button>
+          <button
+            mat-raised-button
+            color="default"
+            routerLink="register"
+            class="btn-login"
+            >
+            Register
+          </button>
+        </div>
+        <div class="error-message" *ngIf="auth.error">
+          <mat-error>{{ auth.error }}</mat-error>
+        </div>
+      </div>
+
+     </mat-card-actions>
+  </mat-card>
+</div>

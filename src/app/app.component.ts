@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './pages/auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -25,4 +26,6 @@ export class AppComponent {
       path: 'contracts'
     }
   ]
+
+  constructor(public auth: AuthService) {}
 }
