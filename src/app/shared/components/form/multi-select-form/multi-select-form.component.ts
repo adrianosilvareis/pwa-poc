@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InputFieldPropsComponent } from '../input-field-props.component';
+import { InputFieldProps } from '../protocols/input-field.props';
 import { OptionsType } from '../items.model';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './multi-select-form.component.html',
   styleUrls: ['./multi-select-form.component.scss']
 })
-export class MultiSelectFormComponent extends InputFieldPropsComponent implements OnInit{
+export class MultiSelectFormComponent extends InputFieldProps implements OnInit{
   @Input() set options (value: OptionsType[] | Observable<OptionsType[]>) {
     if (value instanceof Observable) {
       value.subscribe(options => this._options = options)
@@ -38,7 +38,7 @@ export class MultiSelectFormComponent extends InputFieldPropsComponent implement
     this.isAllSelected = this.control.value?.length === this.options.length;
   }
 
-  override ngOnInit() {
+  ngOnInit() {
     this.control = this.group.get(this.inputKey) as FormControl
     this.checkAllSelected();
   }
