@@ -1,10 +1,10 @@
-import { OnInit, Input, Component } from "@angular/core";
+import { Input, Component } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   template: ''
 })
-export class InputFieldPropsComponent implements OnInit{
+export abstract class InputFieldProps {
   @Input() inputKey = '';
   @Input() group!: FormGroup;
   @Input() label = '';
@@ -12,12 +12,4 @@ export class InputFieldPropsComponent implements OnInit{
   @Input() clearable!: boolean;
 
   control!: FormControl;
-
-  ngOnInit() {
-    this.control = this.group.get(this.inputKey) as FormControl
-  }
-
-  clear() {
-    this.control.setValue(null)
-  }
 }
