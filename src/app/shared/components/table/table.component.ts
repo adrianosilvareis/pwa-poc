@@ -2,7 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChil
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
-import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { FieldType } from '@components/form/items.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { FieldType } from '@components/form/items.model';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent extends UnsubscribeComponent implements OnInit, AfterViewInit {
+export class TableComponent extends Unsubscribe implements OnInit, AfterViewInit {
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() selectItem = new EventEmitter();

@@ -8,12 +8,12 @@ import { render, screen } from "@testing-library/angular";
 import { of } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { ContractsState } from "@pages/contracts/store/contracts.reducer";
-import { ContractsFormComponent } from "./contracts-form.component";
+import { ContractsFormPage } from "./contracts-form.page";
 import { CompanyServicesModel } from "@root/app/pages/company-services/model/company-services.model";
 import { CompanyServicesState } from "@root/app/pages/company-services/store/company-services.reducer";
 import MockDate from 'mockdate'
 
-describe('ContractFormComponent', () => {
+describe('ContractFormPage', () => {
   let initialState: Partial<AppState>
 
   beforeAll(() => {
@@ -148,7 +148,7 @@ function setupInitialServiceStatus():CompanyServicesState {
 }
 
 async function setup(initialState: Partial<AppState>, id?:string) {
-  const component = await render(ContractsFormComponent, {
+  const component = await render(ContractsFormPage, {
     imports: [
       FormModule,
       RouterTestingModule.withRoutes([])

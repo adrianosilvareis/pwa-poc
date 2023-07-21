@@ -1,5 +1,5 @@
 import { ClientModel } from '@pages/clients/model/Clients.model';
-import { ClientFormComponent } from './client-form.component';
+import { ClientFormPage } from './client-form.page';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { ClientState } from '@pages/clients/store/clients.reducer';
 import { AppState } from '@root/app/app-state';
 import { FormModule } from '@root/app/shared/components/form/form.module';
 
-describe('ClientFormComponent', () => {
+describe('ClientFormPage', () => {
   let initialState: Partial<AppState>
 
   beforeEach(() => {
@@ -146,7 +146,7 @@ function setupInitialStatus(): { client: ClientState } {
 }
 
 async function setup(initialState: Partial<AppState>, id?:string) {
-  const component = await render(ClientFormComponent, {
+  const component = await render(ClientFormPage, {
     imports: [
       FormModule,
       RouterTestingModule.withRoutes([])

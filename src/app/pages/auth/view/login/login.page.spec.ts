@@ -1,11 +1,11 @@
-import { AuthService } from './../../services/auth.service';
-import { LoginComponent } from './login.component';
+import { AuthService } from '../../services/auth.service';
+import { LoginPage } from './login.page';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MaterialModule } from '@root/app/material/material.module';
 import { FormModule } from '@root/app/shared/components/form/form.module';
 import { SharedModule } from '@root/app/shared/shared.module';
 
-describe('LoginComponent', () => {
+describe('LoginPage', () => {
   it('should return an email valid field', async () => {
     const { component } = await setup();
     const email = screen.getByLabelText('Email');
@@ -58,7 +58,7 @@ describe('LoginComponent', () => {
 
 async function setup() {
   const loginSpy = jest.fn();
-  const comp = await render(LoginComponent, {
+  const comp = await render(LoginPage, {
     imports: [
       MaterialModule,
       FormModule,

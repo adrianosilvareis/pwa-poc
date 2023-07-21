@@ -6,11 +6,11 @@ import { AppState } from "@root/app/app-state";
 import { fireEvent, render, screen } from "@testing-library/angular";
 import { of } from "rxjs";
 import { CompanyServicesState } from "@pages/company-services/store/company-services.reducer";
-import { CompanyServiceFormComponent } from "./company-service-form.component";
+import { CompanyServiceFormPage } from "./company-service-form.page";
 import { CompanyServicesModel } from "@pages/company-services/model/company-services.model";
 import { FormModule } from "@root/app/shared/components/form/form.module";
 
-describe('ServiceFormComponent', () => {
+describe('ServiceFormPage', () => {
   let initialState: Partial<AppState>
 
   beforeEach(() => {
@@ -137,7 +137,7 @@ function setupInitialStatus(): { service: CompanyServicesState } {
 }
 
 async function setup(initialState: Partial<AppState>, id?:string) {
-  const component = await render(CompanyServiceFormComponent, {
+  const component = await render(CompanyServiceFormPage, {
     imports: [
       FormModule,
       RouterTestingModule.withRoutes([])

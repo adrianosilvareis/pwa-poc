@@ -7,15 +7,14 @@ import { FormItemsBuilderService } from '@root/app/services/form-items/form-item
 import { Store } from '@ngrx/store';
 import { isClientLoading, selectedClient } from '@pages/clients/store/clients.selectors';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
-import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
 
 @Component({
-  selector: 'app-client-form',
-  templateUrl: './client-form.component.html',
-  styleUrls: ['./client-form.component.scss'],
+  templateUrl: './client-form.page.html',
+  styleUrls: ['./client-form.page.scss'],
 })
-export class ClientFormComponent extends UnsubscribeComponent implements OnInit {
+export class ClientFormPage extends Unsubscribe implements OnInit {
   id!: string;
 
   client!: ClientModel | null;
