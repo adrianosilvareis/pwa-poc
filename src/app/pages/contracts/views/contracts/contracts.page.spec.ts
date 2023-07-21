@@ -8,11 +8,11 @@ import { AppState } from "@root/app/app-state";
 import { SharedModule } from "@root/app/shared/shared.module";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
 import { of } from "rxjs";
-import { ContractsComponent } from "./contracts.component";
+import { ContractsPage } from "./contracts.page";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import MockDate from 'mockdate'
 
-describe('ContractComponent', () => {
+describe('ContractPage', () => {
 
   beforeAll(() => {
     MockDate.set(new Date())
@@ -138,7 +138,7 @@ function setupContract(id?: string): ContractsModel {
 }
 
 async function setup(initialState: Partial<AppState>) {
-  const component = await render(ContractsComponent, {
+  const component = await render(ContractsPage, {
     imports: [SharedModule],
     providers: [
       provideMockStore({ initialState }),

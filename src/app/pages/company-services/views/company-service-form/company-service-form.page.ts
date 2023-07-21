@@ -6,16 +6,15 @@ import { FormItemsBuilderService } from '@root/app/services/form-items/form-item
 import { AppState } from '@root/app/app-state';
 import { Store } from '@ngrx/store';
 import { Validators } from '@angular/forms';
-import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
 import { isServiceLoading, selectedService } from '@pages/company-services/store/company-services.selectors';
 
 @Component({
-  selector: 'app-company-service-form',
-  templateUrl: './company-service-form.component.html',
-  styleUrls: ['./company-service-form.component.scss']
+  templateUrl: './company-service-form.page.html',
+  styleUrls: ['./company-service-form.page.scss']
 })
-export class CompanyServiceFormComponent extends UnsubscribeComponent implements OnInit {
+export class CompanyServiceFormPage extends Unsubscribe implements OnInit {
   id!: string;
 
   service!: CompanyServicesModel | null;

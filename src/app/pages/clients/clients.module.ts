@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClientsRoutingModule } from './clients-routing.module';
-import { ClientsComponent } from './views/list/clients.component';
+import { ClientsPage } from './views/list/clients.page';
 import { SharedModule } from '@root/app/shared/shared.module';
-import { ClientFormComponent } from './views/client-form/client-form.component';
+import { ClientFormPage } from './views/client-form/client-form.page';
 import { MaterialModule } from '@root/app/material/material.module';
 import { FormModule } from '@root/app/shared/components/form/form.module';
 
 @NgModule({
   declarations: [
-    ClientsComponent,
-    ClientFormComponent
+    ClientsPage,
+    ClientFormPage
   ],
   imports: [
     CommonModule,

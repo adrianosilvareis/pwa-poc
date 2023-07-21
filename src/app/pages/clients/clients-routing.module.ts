@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClientsComponent } from './views/list/clients.component';
-import { ClientFormComponent } from './views/client-form/client-form.component';
+import { ClientsPage } from './views/list/clients.page';
+import { ClientFormPage } from './views/client-form/client-form.page';
 
 const routes: Routes = [
-  { path: '', title:"Clients", component: ClientsComponent },
-  { path: 'new', title:"Clients", component: ClientFormComponent },
-  { path: ':id', title:"Clients", component: ClientFormComponent },
+  { path: '', title:"Clients", component: ClientsPage },
+  { path: 'new', title:"Clients", component: ClientFormPage },
+  { path: ':id', title:"Clients", component: ClientFormPage },
 ];
 
 @NgModule({

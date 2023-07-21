@@ -1,10 +1,8 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 
-@Component({
-  template: ''
-})
-export class UnsubscribeComponent implements OnDestroy {
+@Injectable()
+export class Unsubscribe implements OnDestroy {
 
   protected subs = new Subscription();
 

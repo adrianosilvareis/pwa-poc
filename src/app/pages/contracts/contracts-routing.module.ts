@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContractsComponent } from './views/contracts/contracts.component';
-import { ContractsFormComponent } from './views/contracts-form/contracts-form.component';
+import { ContractsPage } from './views/contracts/contracts.page';
+import { ContractsFormPage } from './views/contracts-form/contracts-form.page';
 
 const routes: Routes = [
-  { path: '', title:"Contracts", component: ContractsComponent },
-  { path: 'new', title:"Contracts", component: ContractsFormComponent },
-  { path: ':id', title:"Contracts", component: ContractsFormComponent },
+  { path: '', title:"Contracts", component: ContractsPage },
+  { path: 'new', title:"Contracts", component: ContractsFormPage },
+  { path: ':id', title:"Contracts", component: ContractsFormPage },
 ];
 
 

@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/angular';
 
-import { HomeComponent } from './home.component';
+import { HomePage } from './home.page';
 import { ListComponent } from '@root/app/shared/components/list/list.component';
 
 describe('HomeComponent', () => {
   it('should create', async () => {
     // given
-    await render(HomeComponent, {
+    await render(HomePage, {
       declarations:[ListComponent],
       componentProperties: {
         items: ['ONE_ITEM']
