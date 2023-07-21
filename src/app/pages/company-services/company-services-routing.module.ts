@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CompanyServicesComponent } from '@pages/company-services/views/company-services/company-services.component';
-import { CompanyServiceFormPage } from '@pages/company-services/views/company-service-form/company-service-form.component';
+import { CompanyServicesPage } from '@pages/company-services/views/company-services/company-services.page';
+import { CompanyServiceFormPage } from '@pages/company-services/views/company-service-form/company-service-form.page';
 
 const routes: Routes = [
-  { path: '', title:"Services", component: CompanyServicesComponent },
+  { path: '', title:"Services", component: CompanyServicesPage },
   { path: 'new', title:"Services", component: CompanyServiceFormPage },
   { path: ':id', title:"Services", component: CompanyServiceFormPage },
 ];
