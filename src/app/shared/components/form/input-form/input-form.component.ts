@@ -1,21 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { InputFieldProps } from '../protocols/input-field.props';
 import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import { Clearable } from '../protocols/clearable';
 
 @Component({
   selector: 'app-input-form',
   templateUrl: './input-form.component.html',
   styleUrls: ['./input-form.component.scss']
 })
-export class InputFormComponent implements OnInit{
-  @Input() inputKey = '';
-  @Input() group!: FormGroup;
-  @Input() label = '';
-  @Input() placeholder = 'Select one';
-  @Input() clearable!: boolean;
-
-  control!: FormControl;
-
+export class InputFormComponent extends InputFieldProps implements OnInit, Clearable{
   ngOnInit() {
     this.control = this.group.get(this.inputKey) as FormControl
   }

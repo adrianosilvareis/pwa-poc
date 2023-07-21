@@ -1,20 +1,16 @@
+import { InputFieldProps } from '@components/form/protocols/input-field.props';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, startWith, map, EMPTY, of } from 'rxjs';
 import { OptionsType } from '../items.model';
 import { TitleCasePipe } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-autocomplete-form',
   templateUrl: './autocomplete-form.component.html',
   styleUrls: ['./autocomplete-form.component.scss']
 })
-export class AutocompleteFormComponent implements OnInit{
-  @Input() inputKey = '';
-  @Input() group!: FormGroup;
-  @Input() label = '';
-  @Input() placeholder = 'Select one';
-  @Input() clearable!: boolean;
+export class AutocompleteFormComponent extends InputFieldProps implements OnInit{
   @Input() set options (value: OptionsType[] | Observable<OptionsType[]>) {
     if (value instanceof Observable) {
       value.subscribe(options => this._options = options)
@@ -28,12 +24,12 @@ export class AutocompleteFormComponent implements OnInit{
   }
 
   filteredOptions: Observable<OptionsType[]> = EMPTY;
-  control = new FormControl('');
   selected = '';
 
   private _options: OptionsType[] = [];
 
   ngOnInit() {
+    this.control = new FormControl('');
     this._updateControlValue();
     this._updateFilteredOptions();
   }
