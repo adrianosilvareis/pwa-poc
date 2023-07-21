@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { AppState } from "@root/app/app-state";
 import { ColumnItem } from "@root/app/shared/components/table/table.component";
 import { DeleteDialogService } from "@root/app/services/dialog/delete-dialog.service";
-import { UnsubscribeComponent } from "@root/app/utils/unsubscribe";
+import { Unsubscribe } from "@root/app/utils/unsubscribe";
 import { Observable } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
@@ -12,11 +12,10 @@ import { selectActiveContracts, isContractLoading } from "@pages/contracts/store
 import { FieldType } from "@root/app/shared/components/form/items.model";
 
 @Component({
-  selector: 'app-contracts',
-  templateUrl: './contracts.component.html',
-  styleUrls: ['./contracts.component.scss']
+  templateUrl: './contracts.page.html',
+  styleUrls: ['./contracts.page.scss']
 })
-export class ContractsComponent extends UnsubscribeComponent implements OnInit {
+export class ContractsPage extends Unsubscribe implements OnInit {
   columns: ColumnItem[] = [
     { name: 'Start Date', value: 'startDate', type: FieldType.date },
     { name: 'End Date', value: 'endDate', type: FieldType.date },

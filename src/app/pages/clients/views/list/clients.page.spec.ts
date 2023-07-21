@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/angular';
-import { ClientsComponent } from './clients.component';
+import { ClientsPage } from './clients.page';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { SharedModule } from '@root/app/shared/shared.module';
 import { ClientModel } from '@pages/clients/model/Clients.model';
@@ -13,7 +13,7 @@ import { ClientState, initialState } from '@pages/clients/store/clients.reducer'
 import { AppState } from '@root/app/app-state';
 import { FieldType } from '@root/app/shared/components/form/items.model';
 
-describe('ClientsComponent', () => {
+describe('ClientsPage', () => {
 
   it('should render header correctly', async () => {
     await setup({ client: initialState });
@@ -122,7 +122,7 @@ function selectFirstItem() {
 }
 
 async function setup(initialState: Partial<AppState>) {
-  const component = await render(ClientsComponent, {
+  const component = await render(ClientsPage, {
     imports: [SharedModule],
     componentProperties: {
       columns: setupColumnScheme(),

@@ -1,6 +1,6 @@
 import { initialState } from '@pages/company-services/store/company-services.reducer';
 import { InteractivityChecker } from '@angular/cdk/a11y';
-import { CompanyServicesComponent } from './company-services.component';
+import { CompanyServicesPage } from './company-services.page';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { DeleteDialogService } from '@root/app/services/dialog/delete-dialog.service';
 import { render, screen } from '@testing-library/angular';
@@ -124,7 +124,7 @@ function setupService(id?: string) {
 }
 
 async function setup(initialState: Partial<AppState>) {
-  const component = await render(CompanyServicesComponent, {
+  const component = await render(CompanyServicesPage, {
     imports: [SharedModule],
     providers: [
       provideMockStore({ initialState }),

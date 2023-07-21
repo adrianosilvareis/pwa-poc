@@ -5,11 +5,10 @@ import { ErrorHelperService } from '@root/app/services/error-helper.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginPage implements OnInit{
   email!: FormControl;
   password!: FormControl;
   form!: FormGroup;

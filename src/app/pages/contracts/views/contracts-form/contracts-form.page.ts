@@ -8,18 +8,17 @@ import { FieldType, FormItems } from '@root/app/shared/components/form/items.mod
 import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.actions';
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
-import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { ContractsData, ContractsModel } from '@pages/contracts/model/contracts.models';
 import { servicesPageActions } from '@root/app/pages/company-services/store/company-services.actions';
 import { combineLatest } from 'rxjs';
 import { CompanyServicesModel } from '@root/app/pages/company-services/model/company-services.model';
 
 @Component({
-  selector: 'app-contracts-form',
-  templateUrl: './contracts-form.component.html',
-  styleUrls: ['./contracts-form.component.scss']
+  templateUrl: './contracts-form.page.html',
+  styleUrls: ['./contracts-form.page.scss']
 })
-export class ContractsFormComponent extends UnsubscribeComponent implements OnInit {
+export class ContractsFormPage extends Unsubscribe implements OnInit {
   id!: string;
   contract!: ContractsModel | null;
   data!: FormItems[];

@@ -7,16 +7,15 @@ import { isClientLoading, selectActiveClients } from '@pages/clients/store/clien
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
-import { UnsubscribeComponent } from '@root/app/utils/unsubscribe';
+import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
 import { FieldType } from '@root/app/shared/components/form/items.model';
 
 @Component({
-  selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss']
+  templateUrl: './clients.page.html',
+  styleUrls: ['./clients.page.scss']
 })
-export class ClientsComponent extends UnsubscribeComponent implements OnInit {
+export class ClientsPage extends Unsubscribe implements OnInit {
   columns: ColumnItem[] = [
     { name: 'Name', value: 'name', type: FieldType.input },
     { name: 'Description', value: 'description', type: FieldType.input },
