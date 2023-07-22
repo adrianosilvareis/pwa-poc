@@ -25,12 +25,11 @@ describe('ContractPage', () => {
   it('should render header correctly', async () => {
     await setup({ contract: initialState });
     const headers = screen.getAllByRole('columnheader');
-    expect(headers).toHaveLength(5);
+    expect(headers).toHaveLength(4);
     expect(headers.at(0)?.textContent).toBe('Start Date');
     expect(headers.at(1)?.textContent).toBe('End Date');
     expect(headers.at(2)?.textContent).toBe('Renewable');
-    expect(headers.at(3)?.textContent).toBe('Services');
-    expect(headers.at(4)?.textContent).toBe('Price');
+    expect(headers.at(3)?.textContent).toBe('Price');
   });
 
   it('should navigate to new contract when table emit add event', async () => {

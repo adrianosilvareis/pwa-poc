@@ -1,7 +1,7 @@
 <app-table
   *ngIf="(isLoading | async) === false else loading"
   [columns]="columns"
-  title="Client"
+  title="Services"
   [items]="data"
   (add)="addService()"
   (edit)="editService()"
