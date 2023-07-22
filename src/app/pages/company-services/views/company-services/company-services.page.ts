@@ -10,17 +10,14 @@ import { CompanyServicesModel } from '@pages/company-services/model/company-serv
 import { Observable } from 'rxjs';
 import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
 import { FieldType } from '@root/app/shared/components/form/items.model';
+import { TableColumnsService } from '@root/app/services/table-columns/table-columns.service';
 
 @Component({
   templateUrl: './company-services.page.html',
   styleUrls: ['./company-services.page.scss']
 })
 export class CompanyServicesPage extends Unsubscribe implements OnInit{
-  columns: ColumnItem[] = [
-    { name: 'Title', value: 'title', type: FieldType.input },
-    { name: 'Description', value: 'description', type: FieldType.input },
-    { name: 'Value', value: 'value', type: FieldType.currency },
-  ];
+  columns!: ColumnItem[];
 
   data: Observable<CompanyServicesModel[]> = this.store.select(selectActiveServices);
   isLoading: Observable<boolean> = this.store.select(isServiceLoading);
@@ -30,10 +27,12 @@ export class CompanyServicesPage extends Unsubscribe implements OnInit{
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private dialog: DeleteDialogService
+    private dialog: DeleteDialogService,
+    private columnBuild: TableColumnsService,
   ) { super(); }
 
   ngOnInit(): void {
+    this._configColumns();
     this.store.dispatch(servicesPageActions.selectService({ service: null }));
     this.store.dispatch(servicesPageActions.loadServices());
   }
@@ -58,5 +57,13 @@ export class CompanyServicesPage extends Unsubscribe implements OnInit{
         this.store.dispatch(servicesPageActions.deleteService());
       }
     }));
+  }
+
+  private _configColumns() {
+    this.columns = this.columnBuild
+      .addItem({ name: 'Title' })
+      .addItem({ name: 'Description' })
+      .addItem({ name: 'Value', type: FieldType.currency })
+      .build()
   }
 }

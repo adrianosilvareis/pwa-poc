@@ -9,3 +9,4 @@ export const isClientLoading = createSelector(selectClient, state => state.isCli
 export const selectedClient = createSelector(selectClient, state => state.selectedClient);
 export const selectedClientId = createSelector(selectClient, state => state.selectedClientId);
 export const selectActiveClients = createSelector(selectClient, state => state.clients.filter(({isActive}) => isActive));
+export const selectClients = createSelector(selectClient, state => state.clients);

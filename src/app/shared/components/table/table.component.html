@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8">
   <mat-toolbar >
-    <span>{{ title }}</span>
+    <h1 class="title" role="title">{{ title | titlecase }}</h1>
     <span class="example-spacer"></span>
     <button mat-icon-button (click)="addRow()" role="add-button">
       <mat-icon>add_circle</mat-icon>

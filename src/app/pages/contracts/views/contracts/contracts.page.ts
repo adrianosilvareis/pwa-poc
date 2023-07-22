@@ -10,19 +10,14 @@ import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
 import { selectActiveContracts, isContractLoading } from "@pages/contracts/store/contracts.selectors";
 import { FieldType } from "@root/app/shared/components/form/items.model";
+import { TableColumnsService } from "@root/app/services/table-columns/table-columns.service";
 
 @Component({
   templateUrl: './contracts.page.html',
   styleUrls: ['./contracts.page.scss']
 })
 export class ContractsPage extends Unsubscribe implements OnInit {
-  columns: ColumnItem[] = [
-    { name: 'Start Date', value: 'startDate', type: FieldType.date },
-    { name: 'End Date', value: 'endDate', type: FieldType.date },
-    { name: 'Renewable', value: 'renewable', type: FieldType.YesNo },
-    { name: 'Services', value: 'services', type: FieldType.autocomplete, labelName: 'title' },
-    { name: 'Price', value: 'price', type: FieldType.currency },
-  ];
+  columns!: ColumnItem[];
 
   data: Observable<ContractsModel[]> = this.store.select(selectActiveContracts);
   isLoading: Observable<boolean> = this.store.select(isContractLoading);
@@ -32,10 +27,12 @@ export class ContractsPage extends Unsubscribe implements OnInit {
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private dialog: DeleteDialogService
+    private dialog: DeleteDialogService,
+    private columnBuild: TableColumnsService,
   ) { super(); }
 
   ngOnInit(): void {
+    this._configColumns();
     this.store.dispatch(contractsPageActions.selectContract({ contract: null }));
     this.store.dispatch(contractsPageActions.loadContracts());
   }
@@ -60,5 +57,14 @@ export class ContractsPage extends Unsubscribe implements OnInit {
         this.store.dispatch(contractsPageActions.deleteContract());
       }
     }));
+  }
+
+  private _configColumns() {
+    this.columns = this.columnBuild
+      .addItem({ name: 'Start Date', value: 'startDate', type: FieldType.date })
+      .addItem({ name: 'End Date', value: 'endDate', type: FieldType.date })
+      .addItem({ name: 'Renewable', type: FieldType.YesNo })
+      .addItem({ name: 'Price', type: FieldType.currency })
+      .build()
   }
 }
