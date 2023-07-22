@@ -9,3 +9,4 @@ export const isContractLoading = createSelector(selectContractState, (state: Con
 export const selectedContract = createSelector(selectContractState, (state: ContractsState) => state.selectedContract);
 export const selectedContractId = createSelector(selectContractState, (state: ContractsState) => state.selectedContractId);
 export const selectActiveContracts = createSelector(selectContractState, (state: ContractsState) => state.contracts.filter(({isActive}) => isActive));
+export const selectContracts = createSelector(selectContractState, (state: ContractsState) => state.contracts);

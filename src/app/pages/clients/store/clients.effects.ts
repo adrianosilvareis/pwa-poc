@@ -5,7 +5,7 @@ import { map, exhaustMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { ClientsService } from '@pages/clients/services/clients.service';
 import { clientsPageActions } from './clients.actions';
 import { Store } from '@ngrx/store';
-import { newClient, selectActiveClients, selectedClient, selectedClientId } from './clients.selectors';
+import { newClient, selectClients, selectedClient, selectedClientId } from './clients.selectors';
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { AppState } from '@root/app/app-state';
 
@@ -14,7 +14,7 @@ export class ClientsEffects {
 
   loadClients$ = createEffect(() => this.actions$.pipe(
     ofType(clientsPageActions.loadClients),
-    withLatestFrom(this.store.select(selectActiveClients)),
+    withLatestFrom(this.store.select(selectClients)),
     exhaustMap(([, clients]) => this.loadClients(clients)))
   );
 

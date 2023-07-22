@@ -10,20 +10,14 @@ import { Router } from '@angular/router';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
 import { FieldType } from '@root/app/shared/components/form/items.model';
+import { TableColumnsService } from '@root/app/services/table-columns/table-columns.service';
 
 @Component({
   templateUrl: './clients.page.html',
   styleUrls: ['./clients.page.scss']
 })
 export class ClientsPage extends Unsubscribe implements OnInit {
-  columns: ColumnItem[] = [
-    { name: 'Name', value: 'name', type: FieldType.input },
-    { name: 'Description', value: 'description', type: FieldType.input },
-    { name: 'Owner', value: 'owner', type: FieldType.input },
-    { name: 'Responsible', value: 'responsible', type: FieldType.input },
-    { name: 'Area', value: 'area', type: FieldType.input },
-    { name: 'IsActive', value: 'isActive', type: FieldType.YesNo },
-  ];
+  columns!: ColumnItem[];
 
   data: Observable<ClientModel[]> = this.store.select(selectActiveClients);
   isLoading: Observable<boolean> = this.store.select(isClientLoading);
@@ -33,10 +27,12 @@ export class ClientsPage extends Unsubscribe implements OnInit {
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private dialog: DeleteDialogService
+    private dialog: DeleteDialogService,
+    private columnBuild: TableColumnsService
   ) { super(); }
 
   ngOnInit(): void {
+    this._configTable();
     this.store.dispatch(clientsPageActions.selectClient({ client: null }));
     this.store.dispatch(clientsPageActions.loadClients());
   }
@@ -61,5 +57,16 @@ export class ClientsPage extends Unsubscribe implements OnInit {
         this.store.dispatch(clientsPageActions.deleteClient());
       }
     }))
+  }
+
+  private _configTable() {
+    this.columns = this.columnBuild
+      .addItem({ name: 'Name' })
+      .addItem({ name: 'Description' })
+      .addItem({ name: 'Responsible' })
+      .addItem({ name: 'Area' })
+      .addItem({ name: 'Owner' })
+      .addItem({ name: 'IsActive', type: FieldType.YesNo })
+      .build();
   }
 }
