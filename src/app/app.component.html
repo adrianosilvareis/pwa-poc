@@ -1,4 +1,4 @@
-<app-toolbar *ngIf="auth.isAuthenticated" [title]=title [links]="links" ></app-toolbar>
+<app-toolbar *ngIf="isNotAuth" [title]=title [links]="links" ></app-toolbar>
 
 <div class="content">
   <router-outlet></router-outlet>

@@ -6,10 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "npm run test --watch",
     "lint": "ng lint",
-    "mockDb": "json-server --watch ./db/database.json --port 5000"
+    "mockDb": "json-server --w ./db/database.json --m ./db/auth-middleware.js --p 5000"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +30,7 @@
     "@ngrx/store-devtools": "^16.1.0",
     "json-server": "^0.17.3",
     "mockdate": "^3.0.5",
+    "ngx-cookie-service": "^16.0.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.0",
     "zone.js": "~0.13.1"
@@ -50,6 +51,7 @@
     "@typescript-eslint/typescript-estree": "^6.1.0",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.14",
+    "cross-env": "^7.0.3",
     "eslint": "^8.45.0",
     "jest": "^29.6.1",
     "jest-preset-angular": "^13.1.1",

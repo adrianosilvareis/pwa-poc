@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
 import { clientsReducer } from '@pages/clients/store/clients.reducer';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { ClientsEffects } from '@pages/clients/store/clients.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -16,6 +16,7 @@ import { servicesReducer } from '@pages/company-services/store/company-services.
 import { ServicesEffects } from '@pages/company-services/store/company-services.effects';
 import { ContractsEffects } from '@pages/contracts/store/contracts.effects';
 import { contractsReducer } from '@pages/contracts/store/contracts.reducer';
+import { AuthInterceptor } from '@app/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { contractsReducer } from '@pages/contracts/store/contracts.reducer';
     EffectsModule.forRoot([ClientsEffects, ServicesEffects, ContractsEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

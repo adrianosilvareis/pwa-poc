@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './pages/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -27,5 +27,9 @@ export class AppComponent {
     }
   ]
 
-  constructor(public auth: AuthService) {}
+  constructor(private route: Router) {}
+
+  get isNotAuth() {
+    return this.route.url !== '/auth';
+  }
 }
