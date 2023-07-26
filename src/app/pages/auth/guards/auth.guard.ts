@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '@pages/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +7,12 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard {
 
   constructor(
-    private auth: AuthService,
-    private router: Router) {}
+    private auth: AuthService) {}
 
   canActivate() {
-    if (!this.auth.isAuthenticated) {
-      this.router.navigate(['auth']);
+    if (!this.auth.isAuthenticated()) {
+      this.auth.refreshAccessToken();
     }
-    return this.auth.isAuthenticated;
+    return this.auth.isAuthenticated();
   }
 }
