@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@pages/auth/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ErrorHelperService } from '@root/app/services/error-helper.service';
+import { ErrorHelperService } from '@root/app/services/error-helper/error-helper.service';
 import { Router } from '@angular/router';
 import { catchError, take } from 'rxjs';
 

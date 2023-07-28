@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/angular';
 import { ClientsPage } from './clients.page';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { SharedModule } from '@root/app/shared/shared.module';
-import { ClientModel } from '@pages/clients/model/Clients.model';
+import { ClientModel } from '@pages/clients/model/client.model';
 import { ColumnItem } from '@root/app/shared/components/table/table.component';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';

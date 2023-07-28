@@ -6,7 +6,7 @@ import { ClientsService } from '@pages/clients/services/clients.service';
 import { clientsPageActions } from './clients.actions';
 import { Store } from '@ngrx/store';
 import { newClient, selectClients, selectedClient, selectedClientId } from './clients.selectors';
-import { ClientModel } from '@pages/clients/model/Clients.model';
+import { ClientModel } from '@pages/clients/model/client.model';
 import { AppState } from '@root/app/app-state';
 
 @Injectable()

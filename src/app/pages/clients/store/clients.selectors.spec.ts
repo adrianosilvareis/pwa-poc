@@ -1,4 +1,4 @@
-import { ClientModel } from "../model/Clients.model";
+import { ClientModel } from "../model/client.model";
 import { ClientState } from "./clients.reducer";
 import { isClientLoading, newClient, selectActiveClients, selectedClient, selectedClientId } from "./clients.selectors";
 
