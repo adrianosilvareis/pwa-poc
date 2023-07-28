@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InputFieldProps } from '../protocols/input-field.props';
-import { OptionsType } from '../items.model';
+import { OptionsType } from "../protocols/options-type";
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 

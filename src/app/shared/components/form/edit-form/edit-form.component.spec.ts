@@ -2,7 +2,8 @@ import { FormComponent } from './edit-form.component';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { EventEmitter } from '@angular/core';
-import { FieldType, FormItems } from '../items.model';
+import { FieldType } from '../protocols/field-type';
+import { FormItems } from "../protocols/form-item";
 import { FormModule } from '../form.module';
 
 describe('FormComponent', () => {

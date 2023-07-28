@@ -1,4 +1,5 @@
-import { FieldType, FormItems } from '@root/app/shared/components/form/items.model';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
+import { FormItems } from "@root/app/shared/components/form/protocols/form-item";
 import { FormItemsBuilderService } from './form-items-builder.service';
 import { FormControl, Validators } from '@angular/forms';
 

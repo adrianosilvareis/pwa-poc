@@ -9,7 +9,7 @@ import { isServiceLoading, selectActiveServices } from '@pages/company-services/
 import { CompanyServicesModel } from '@pages/company-services/model/company-services.model';
 import { Observable } from 'rxjs';
 import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
-import { FieldType } from '@root/app/shared/components/form/items.model';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 import { TableColumnsService } from '@root/app/services/table-columns/table-columns.service';
 
 @Component({

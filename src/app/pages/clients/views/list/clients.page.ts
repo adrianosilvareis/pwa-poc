@@ -9,7 +9,7 @@ import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { AppState } from '@root/app/app-state';
-import { FieldType } from '@root/app/shared/components/form/items.model';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 import { TableColumnsService } from '@root/app/services/table-columns/table-columns.service';
 
 @Component({

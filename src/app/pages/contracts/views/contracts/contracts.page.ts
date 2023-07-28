@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
 import { selectActiveContracts, isContractLoading } from "@pages/contracts/store/contracts.selectors";
-import { FieldType } from "@root/app/shared/components/form/items.model";
+import { FieldType } from "@root/app/shared/components/form/protocols/field-type";
 import { TableColumnsService } from "@root/app/services/table-columns/table-columns.service";
 
 @Component({

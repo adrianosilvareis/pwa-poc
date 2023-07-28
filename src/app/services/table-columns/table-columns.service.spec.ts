@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TableColumnsService } from './table-columns.service';
-import { FieldType } from '@root/app/shared/components/form/items.model';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 
 describe('TableColumnsService', () => {
   let service: TableColumnsService;

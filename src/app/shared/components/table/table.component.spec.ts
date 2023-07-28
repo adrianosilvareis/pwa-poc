@@ -3,7 +3,7 @@ import { MaterialModule } from '@app/material/material.module';
 import { ColumnItem, TableComponent } from './table.component';
 import { Observable, of } from 'rxjs';
 import { EventEmitter } from '@angular/core';
-import { FieldType } from '@components/form/items.model';
+import { FieldType } from '@components/form/protocols/field-type';
 import { SharedModule } from '@app/shared/shared.module';
 
 describe('TableComponent', () => {
