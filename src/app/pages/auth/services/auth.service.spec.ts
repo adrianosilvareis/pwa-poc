@@ -39,16 +39,16 @@ describe('AuthService', () => {
 
   it('should call API correctly when do login', (done) => {
     service.login('email', 'password').subscribe(() => {
-      expect(cookie.set).toHaveBeenCalledWith('access_token', 'access_token');
-      expect(cookie.set).toHaveBeenCalledWith('refresh_token', 'refresh_token', undefined, "/", undefined, true, "Strict");
+      expect(cookie.set).toHaveBeenCalledWith(environment.JWT.access_token_key, 'access_token');
+      expect(cookie.set).toHaveBeenCalledWith(environment.JWT.refresh_token_key, 'refresh_token', undefined, "/", undefined, true, "Strict");
       done();
     });
   });
 
   it('should clean cookie when logout', () => {
     service.logout();
-    expect(cookie.delete).toHaveBeenCalledWith('access_token');
-    expect(cookie.delete).toHaveBeenCalledWith('refresh_token');
+    expect(cookie.delete).toHaveBeenCalledWith(environment.JWT.access_token_key);
+    expect(cookie.delete).toHaveBeenCalledWith(environment.JWT.refresh_token_key);
   });
 
   it('should go to auth when make logout', () => {
@@ -69,7 +69,7 @@ describe('AuthService', () => {
 
   it('should update cookie when API return with success', () => {
     service.refreshAccessToken();
-    expect(cookie.set).toBeCalledWith('access_token', 'access_token');
+    expect(cookie.set).toBeCalledWith(environment.JWT.access_token_key, 'access_token');
   });
 
   it('should call logout when API failed', () => {

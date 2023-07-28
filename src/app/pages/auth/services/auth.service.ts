@@ -14,8 +14,8 @@ export class AuthService implements Authentication{
   error = '';
 
   private apiUrl = environment.baseUrl;
-  private accessTokenCookieName = 'access_token';
-  private refreshTokenCookieName = 'refresh_token';
+  private accessTokenCookieName = environment.JWT.access_token_key;
+  private refreshTokenCookieName = environment.JWT.refresh_token_key;
 
   constructor(
     private http: HttpClient,
