@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ColumnItem } from '@root/app/shared/components/table/table.component';
 import { isClientLoading, selectActiveClients } from '@pages/clients/store/clients.selectors';
-import { ClientModel } from '@pages/clients/model/Clients.model';
+import { ClientModel } from '@pages/clients/model/client.model';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
 import { Router } from '@angular/router';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';

@@ -1,4 +1,4 @@
-import { ClientModel } from '@pages/clients/model/Clients.model';
+import { ClientModel } from '@pages/clients/model/client.model';
 import { ClientFormPage } from './client-form.page';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';

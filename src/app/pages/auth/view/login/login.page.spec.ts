@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/angular';
 import { MaterialModule } from '@root/app/material/material.module';
 import { FormModule } from '@root/app/shared/components/form/form.module';
 import { SharedModule } from '@root/app/shared/shared.module';
-import { ErrorHelperService } from '@root/app/services/error-helper.service';
+import { ErrorHelperService } from '@root/app/services/error-helper/error-helper.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';

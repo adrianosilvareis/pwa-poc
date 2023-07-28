@@ -1,4 +1,4 @@
-import { ClientModel } from "../model/Clients.model";
+import { ClientModel } from "../model/client.model";
 import { clientsPageActions } from "./clients.actions";
 import { ClientState } from "./clients.reducer";
 import { clientsReducer } from "./clients.reducer";
