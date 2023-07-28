@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { FormItems } from '@root/app/shared/components/form/items.model';
+import { FormItems } from "@root/app/shared/components/form/protocols/form-item";
 import { ClientModel } from '@pages/clients/model/Clients.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';

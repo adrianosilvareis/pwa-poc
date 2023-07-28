@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 import { InteractivityChecker } from '@angular/cdk/a11y';
 import { ClientState, initialState } from '@pages/clients/store/clients.reducer';
 import { AppState } from '@root/app/app-state';
-import { FieldType } from '@root/app/shared/components/form/items.model';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 
 describe('ClientsPage', () => {
 

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
-import { FieldType } from '@components/form/items.model';
+import { FieldType } from '@components/form/protocols/field-type';
 
 @Component({
   selector: 'app-table',

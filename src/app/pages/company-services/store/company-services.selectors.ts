@@ -1,7 +1,7 @@
 import { createSelector } from "@ngrx/store";
 import { AppState } from "@root/app/app-state";
 import { CompanyServicesState } from "./company-services.reducer";
-import { OptionsType } from "@root/app/shared/components/form/items.model";
+import { OptionsType } from "@root/app/shared/components/form/protocols/options-type";
 
 export const selectServiceState = (state: Partial<AppState>) => state.service as CompanyServicesState;
 

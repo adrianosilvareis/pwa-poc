@@ -1,7 +1,7 @@
 import { InputFieldProps } from '@components/form/protocols/input-field.props';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, startWith, map, EMPTY, of } from 'rxjs';
-import { OptionsType } from '../items.model';
+import { OptionsType } from "../protocols/options-type";
 import { TitleCasePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 

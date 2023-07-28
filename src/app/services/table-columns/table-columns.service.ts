@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FieldType } from '@root/app/shared/components/form/items.model';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 import { ColumnItem } from '@root/app/shared/components/table/table.component';
 
 type ColumnItemInput = {
