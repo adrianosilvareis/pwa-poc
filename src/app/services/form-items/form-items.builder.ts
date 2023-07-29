@@ -18,13 +18,13 @@ export interface AddItem {
 @Injectable({
   providedIn: 'root'
 })
-export class FormItemsBuilderService {
+export class FormItemsBuilder {
 
   private data: FormItems[] = []
 
   private currentName!: string;
 
-  addItem(formItem: AddItem): FormItemsBuilderService {
+  addItem(formItem: AddItem): FormItemsBuilder {
     const item = {
       colspan: formItem.colspan ?? 1,
       name: formItem.name,
@@ -51,7 +51,7 @@ export class FormItemsBuilderService {
     });
   }
 
-  addValidations(validations: ((control: AbstractControl<unknown, unknown>) => ValidationErrors | null)[]): FormItemsBuilderService {
+  addValidations(validations: ((control: AbstractControl<unknown, unknown>) => ValidationErrors | null)[]): FormItemsBuilder {
     return this.changeCurrent((item) => {
       item.value.setValidators(validations);
       item.value.updateValueAndValidity();

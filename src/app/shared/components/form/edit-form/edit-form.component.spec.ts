@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/angular';
 import { EventEmitter } from '@angular/core';
 import { FormItems } from "../protocols/form-item";
 import { FormModule } from '../form.module';
-import { FormItemsBuilderService as Builder } from '@root/app/services/form-items/form-items-builder.service';
+import { FormItemsBuilder as Builder } from '@root/app/services/form-items/form-items.builder';
 
 describe('FormComponent', () => {
     const data = new Builder()
