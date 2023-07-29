@@ -1,9 +1,9 @@
 import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 import { FormItems } from "@root/app/shared/components/form/protocols/form-item";
-import { FormItemsBuilderService } from './form-items-builder.service';
+import { FormItemsBuilder } from './form-items.builder';
 import { FormControl, Validators } from '@angular/forms';
 
-describe('FormItemsBuilderService', () => {
+describe('FormItemsBuilder', () => {
   const items: FormItems[] = [
     { colspan: 1, name: "name", placeholder: "Name", label: "Name", disabled: false, value: new FormControl(''), type: FieldType.input },
     { colspan: 1, name: "description", placeholder: "Description", label: "Description", disabled: false, value: new FormControl(''), type: FieldType.input },
@@ -13,7 +13,7 @@ describe('FormItemsBuilderService', () => {
 
   it('should be created a FormItems with validations', () => {
     // given
-    const builder = new FormItemsBuilderService();
+    const builder = new FormItemsBuilder();
 
     // when
     const buildedItems = builder

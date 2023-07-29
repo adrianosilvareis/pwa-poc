@@ -8,7 +8,7 @@ import { FieldType } from '@root/app/shared/components/form/protocols/field-type
 import { FormItems } from "@root/app/shared/components/form/protocols/form-item";
 import { contractsPageActions } from '@root/app/pages/contracts/store/contracts.actions';
 import { isContractLoading, selectedContract } from '@root/app/pages/contracts/store/contracts.selectors';
-import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
+import { FormItemsBuilder } from '@root/app/services/form-items/form-items.builder';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { ContractsModel } from '@pages/contracts/model/contracts.models';
 import { ContractsData } from "../../model/contracts.data";
@@ -33,7 +33,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private builder: FormItemsBuilderService,
+    private builder: FormItemsBuilder,
     private store: Store<AppState>,
   ) { super(); }
 

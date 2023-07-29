@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyServicesModel } from '@pages/company-services/model/company-services.model';
 import { FormItems } from "@root/app/shared/components/form/protocols/form-item";
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
+import { FormItemsBuilder } from '@root/app/services/form-items/form-items.builder';
 import { AppState } from '@root/app/app-state';
 import { Store } from '@ngrx/store';
 import { Validators } from '@angular/forms';
 import { Unsubscribe } from '@root/app/utils/unsubscribe';
 import { servicesPageActions } from '@pages/company-services/store/company-services.actions';
 import { isServiceLoading, selectedService } from '@pages/company-services/store/company-services.selectors';
+import { FieldType } from '@root/app/shared/components/form/protocols/field-type';
 
 @Component({
   templateUrl: './company-service-form.page.html',
@@ -24,7 +25,7 @@ export class CompanyServiceFormPage extends Unsubscribe implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private builder: FormItemsBuilderService,
+    private builder: FormItemsBuilder,
     private store: Store<AppState>,
   ) { super(); }
 
@@ -79,7 +80,7 @@ export class CompanyServiceFormPage extends Unsubscribe implements OnInit {
     return this.builder
       .addItem({ name: 'title', colspan: 2, value: item?.title }).addValidations([Validators.required])
       .addItem({ name: 'description', colspan: 2, value: item?.description }).addValidations([Validators.required])
-      .addItem({ name: 'value', value: item?.value }).addValidations([Validators.required])
+      .addItem({ name: 'value', value: item?.value, type: FieldType.currency }).addValidations([Validators.required])
       .build();
   }
 

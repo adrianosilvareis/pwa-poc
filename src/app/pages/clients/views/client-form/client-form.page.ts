@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { FormItems } from "@root/app/shared/components/form/protocols/form-item";
 import { ClientModel } from '@pages/clients/model/client.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormItemsBuilderService } from '@root/app/services/form-items/form-items-builder.service';
+import { FormItemsBuilder } from '@root/app/services/form-items/form-items.builder';
 import { Store } from '@ngrx/store';
 import { isClientLoading, selectedClient } from '@pages/clients/store/clients.selectors';
 import { clientsPageActions } from '@pages/clients/store/clients.actions';
@@ -24,7 +24,7 @@ export class ClientFormPage extends Unsubscribe implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private builder: FormItemsBuilderService,
+    private builder: FormItemsBuilder,
     private store: Store<AppState>,
   ) { super(); }
 
