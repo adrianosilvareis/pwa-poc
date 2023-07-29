@@ -8,7 +8,7 @@ export interface FormItems {
   name: string;
   placeholder: string;
   label: string;
-  value: unknown[] | FormControl;
+  value: FormControl;
   type: FieldType;
   options?: OptionsType[];
   clearable?: boolean;

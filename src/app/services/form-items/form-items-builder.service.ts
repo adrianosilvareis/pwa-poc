@@ -11,6 +11,7 @@ export interface AddItem {
   label?: string;
   value?: unknown;
   clearable?: boolean;
+  disabled?: boolean;
   type?: FieldType;
 }
 
@@ -29,13 +30,12 @@ export class FormItemsBuilderService {
       name: formItem.name,
       placeholder: formItem.placeholder ?? this.toTitleCase(formItem.name),
       label: formItem.label ?? this.toTitleCase(formItem.name),
-      value: [formItem.value],
+      value: new FormControl(formItem.value),
       type: formItem.type ?? FieldType.input,
-      clearable: formItem.clearable
+      clearable: formItem.clearable,
     }
     this.data.push(item);
     this.currentName = formItem.name;
-
     return this
   }
 
@@ -44,18 +44,19 @@ export class FormItemsBuilderService {
     return this
   }
 
+  disabled() {
+    return this.changeCurrent((item) => {
+      item.value.disable();
+      return item
+    });
+  }
+
   addValidations(validations: ((control: AbstractControl<unknown, unknown>) => ValidationErrors | null)[]): FormItemsBuilderService {
     return this.changeCurrent((item) => {
-        let value;
-        if (item.value instanceof Array ) {
-          value = item.value[0]
-        }
-
-        return {
-          ...item,
-          value: new FormControl(value, validations)
-        }
-      });
+      item.value.setValidators(validations);
+      item.value.updateValueAndValidity();
+      return item
+    });
   }
 
   addOptions(options: OptionsType[]) {

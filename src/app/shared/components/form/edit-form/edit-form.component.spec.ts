@@ -2,14 +2,15 @@ import { FormComponent } from './edit-form.component';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { EventEmitter } from '@angular/core';
-import { FieldType } from '../protocols/field-type';
 import { FormItems } from "../protocols/form-item";
 import { FormModule } from '../form.module';
+import { FormItemsBuilderService as Builder } from '@root/app/services/form-items/form-items-builder.service';
 
 describe('FormComponent', () => {
-  const data = [
-    { colspan: 2, name: 'name', placeholder: 'Name', label: 'Name', value: ['', Validators.required], type: FieldType.input },
-  ];
+    const data = new Builder()
+                            .addItem({ name: 'name', value: '', colspan: 2 })
+                            .addValidations([Validators.required])
+                            .build();
 
   it('should render title and id when exist', async () => {
     // given
@@ -46,8 +47,9 @@ describe('FormComponent', () => {
   it('should not call save event if form is invalid', async () => {
     // given
     const { event, handler } = setupEventEmitter();
-    const { saveButton } = await setup(data, event);
+    const { input, saveButton } = await setup(data, event);
 
+    fireEvent.input(input as HTMLElement, {target: {value: null }});
     // when
     saveButton.click();
 
