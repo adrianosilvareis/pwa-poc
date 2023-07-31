@@ -35,6 +35,8 @@ export class CurrencyFormatterDirective implements OnInit {
   @HostListener("blur", ["$event.target.value"])
   onBlur(value: string) {
     this.el.value = this.transform(value);
+    this.currencyControl.markAsTouched();
+    this.currencyControl.markAsDirty();
     this.el.dispatchEvent(new Event('input'));
   }
 
@@ -68,6 +70,15 @@ export class CurrencyFormatterDirective implements OnInit {
     const original = Number(value)/100;
     if (this.currencyControl !== undefined) {
       this.currencyControl.setValue(original);
+      this.checkIsValid();
+    }
+  }
+
+  private checkIsValid() {
+    if (this.currencyControl.touched && this.currencyControl.invalid) {
+      this.el.classList.add('!text-red-500');
+    } else {
+      this.el.classList.remove('!text-red-500');
     }
   }
 }

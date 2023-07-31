@@ -1,7 +1,13 @@
 <mat-form-field appearance="fill" class="fullRow">
-  <mat-label>{{ label | titlecase }}</mat-label>
-  <input matInput appCurrencyFormatter currency="BRL" [currencyControl]="control" [placeholder]="placeholder" role="input">
-  <mat-error *ngIf="control?.errors" role="error">{{ control.errors | errorMessage }}</mat-error>
+  <mat-label [ngClass]="{ '!text-red-500': control.invalid && control.touched }">{{ label | titlecase }}</mat-label>
+  <input
+    matInput
+    appCurrencyFormatter
+    currency="BRL"
+    [currencyControl]="control"
+    [disabled]="control.disabled"
+    [placeholder]="placeholder"
+    role="input">
 
   <button
     *ngIf="clearable"
@@ -14,4 +20,7 @@
   </button>
 </mat-form-field>
 
+<mat-error *ngIf="control.invalid && control.touched" role="error" style="position: absolute;top: 70px;">
+  {{ control.errors | errorMessage }}
+</mat-error>
 
