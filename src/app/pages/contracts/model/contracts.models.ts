@@ -7,5 +7,6 @@ export interface ContractsModel {
   renewable: boolean;
   services: CompanyServicesModel[];
   price: number;
+  suggestedValue?: number;
   isActive: boolean;
 }

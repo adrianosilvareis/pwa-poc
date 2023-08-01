@@ -11,20 +11,21 @@ describe('CurrencyFormatterDirective', () => {
   it('should format a input value correctly', () => {
     const { directive, input } = setup();
 
-    directive.onChange('1');
-    expect(input.value).toBe('$0.01');
+    const scenarios = [
+      { input: '0', expected: '$0.00' },
+      { input: '$0.010', expected: '$0.10' },
+      { input: '$0.100', expected: '$1.00' },
+      { input: '1', expected: '$0.01' },
+      { input: '12', expected: '$0.12' },
+      { input: '123', expected: '$1.23' },
+      { input: '1234', expected: '$12.34' },
+      { input: '123456789', expected: '$1,234,567.89' },
+    ]
 
-    directive.onChange('12');
-    expect(input.value).toBe('$0.12');
-
-    directive.onChange('123');
-    expect(input.value).toBe('$1.23');
-
-    directive.onChange('1234');
-    expect(input.value).toBe('$12.34');
-
-    directive.onChange('123456789');
-    expect(input.value).toBe('$1,234,567.89');
+    scenarios.forEach(({ input: inputValue, expected }) => {
+      directive.onChange(inputValue);
+      expect(input.value).toBe(expected);
+    });
   });
 });
 

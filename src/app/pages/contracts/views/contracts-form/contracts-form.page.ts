@@ -1,6 +1,6 @@
 import { selectActiveServices } from '@root/app/pages/company-services/store/company-services.selectors';
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@root/app/app-state';
@@ -17,8 +17,18 @@ import { combineLatest } from 'rxjs';
 import { CompanyServicesModel } from '@root/app/pages/company-services/model/company-services.model';
 
 @Component({
-  templateUrl: './contracts-form.page.html',
-  styleUrls: ['./contracts-form.page.scss']
+  template: `
+    <app-form
+      title="Contract"
+      [data]="data"
+      [formId]="id"
+      role="form"
+      (save)="saveContract($event)"
+      (cancel)="cancel()"
+      (valueChange)="onChange($event)"
+      ref="reference"
+    ></app-form>
+  `
 })
 export class ContractsFormPage extends Unsubscribe implements OnInit {
   id!: string;
@@ -36,6 +46,18 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
     private builder: FormItemsBuilder,
     private store: Store<AppState>,
   ) { super(); }
+
+  onChange({ value, form }: { value: ContractsModel, form: FormGroup }) {
+    if (value.services === null) {
+      form.get('suggestedValue')?.setValue(0);
+      return;
+    }
+    const total = value.services.reduce((acc, service) => {
+      acc += Number(this.services.find(({ id }) => id === (service as unknown as string))?.value);
+      return acc;
+    },0)
+    form.get('suggestedValue')?.setValue(total);
+  }
 
   ngOnInit() {
     this.store.dispatch(servicesPageActions.loadServices());
@@ -95,6 +117,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
         .addOptions(servicesOptions.map(service => ({ value: service.id, label: service.title })))
       .addItem({ name: 'price', value: item?.price, clearable: true, type: FieldType.currency })
       .addItem({ name: 'renewable', value: item?.renewable, clearable: true, type: FieldType.YesNo })
+      .addItem({ name: 'suggestedValue', value: item?.suggestedValue, type: FieldType.currency }).disabled()
       .build();
   }
 
