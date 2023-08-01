@@ -1,14 +1,17 @@
-import { Directive, HostListener, ElementRef, OnInit, Input } from "@angular/core";
+import { Directive, HostListener, ElementRef, OnInit, Input, OnDestroy } from "@angular/core";
 import { CurrencyPipe } from '@angular/common';
 import { FormControl } from "@angular/forms";
+import { Subject, takeUntil } from "rxjs";
 
 @Directive({ selector: "[appCurrencyFormatter]" })
-export class CurrencyFormatterDirective implements OnInit {
+export class CurrencyFormatterDirective implements OnInit, OnDestroy {
 
   @Input() currency = 'USD';
   @Input() currencyControl!: FormControl;
 
   private el: HTMLInputElement;
+  private destroyed$ = new Subject();
+  private skipNext = false;
 
   constructor(
     private elementRef: ElementRef,
@@ -17,9 +20,15 @@ export class CurrencyFormatterDirective implements OnInit {
     this.el = this.elementRef.nativeElement;
   }
 
+  ngOnDestroy(): void {
+    this.destroyed$.next(null);
+    this.destroyed$.complete();
+  }
+
   ngOnInit() {
     if (this.currencyControl !== undefined) {
-      this.el.value = this.transform(this.initialValue(String(this.currencyControl.value)));
+      this.el.value = this.transform(this.numberToDouble(this.currencyControl.value));
+      this.updateWhenControlChanges();
     }
     setTimeout(()=> {
       this.parseControl();
@@ -40,6 +49,17 @@ export class CurrencyFormatterDirective implements OnInit {
     this.el.dispatchEvent(new Event('input'));
   }
 
+  private updateWhenControlChanges() {
+    this.currencyControl.valueChanges
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe((value: number) => {
+          if (!this.skipNext) {
+            this.el.value = this.transform(this.numberToDouble(value));
+          }
+          this.skipNext = false;
+        });
+  }
+
   private transform(input: string) {
     return this.currencyPipe.transform(this.clearValue(input), this.currency)  ?? '';
   }
@@ -58,7 +78,8 @@ export class CurrencyFormatterDirective implements OnInit {
     return `${dollars}.${cents}`;
   }
 
-  private initialValue(input: string) {
+  private numberToDouble(value: number) {
+    const input = String(value)
     if (input.match(/\D/g) === null) {
       return `${input}.00`;
     }
@@ -69,6 +90,7 @@ export class CurrencyFormatterDirective implements OnInit {
     const value = this.el.value.replace(/\D/g, "");
     const original = Number(value)/100;
     if (this.currencyControl !== undefined) {
+      this.skipNext = true;
       this.currencyControl.setValue(original);
       this.checkIsValid();
     }
