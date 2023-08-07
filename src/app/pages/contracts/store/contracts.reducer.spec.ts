@@ -190,6 +190,9 @@ describe('ContractsReducer', () => {
 function setupContract(id?: string): ContractsModel {
   return {
     id,
+    client: 'MY_CLIENT_ID',
+    discount:0,
+    suggestedValue: 0,
     startDate: new Date(),
     endDate: new Date(),
     renewable: true,

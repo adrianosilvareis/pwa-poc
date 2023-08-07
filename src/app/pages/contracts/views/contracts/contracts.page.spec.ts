@@ -127,6 +127,9 @@ function selectFirstItem() {
 function setupContract(id?: string): ContractsModel {
   return {
     id,
+    client: 'MY_CLIENT_ID',
+    discount:0,
+    suggestedValue: 1000,
     startDate: new Date(),
     endDate: new Date(),
     renewable: true,
