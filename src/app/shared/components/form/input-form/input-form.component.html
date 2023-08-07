@@ -3,6 +3,9 @@
   <input matInput [placeholder]="placeholder" [formControl]="control" role="input">
   <mat-error *ngIf="control?.errors" role="error">{{ control.errors | errorMessage }}</mat-error>
 
+  <span matTextSuffix>{{ suffix }}</span>
+  <span matTextPrefix>{{ prefix }}</span>
+
   <button
     *ngIf="clearable"
     matSuffix

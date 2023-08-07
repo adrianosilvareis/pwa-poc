@@ -13,4 +13,6 @@ export interface FormItems {
   options?: OptionsType[];
   clearable?: boolean;
   disabled?: boolean;
+  prefix?: string;
+  suffix?: string;
 }

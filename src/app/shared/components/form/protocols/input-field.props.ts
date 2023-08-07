@@ -11,6 +11,8 @@ export abstract class InputFieldProps {
   @Input() placeholder = 'R$ 0,00';
   @Input() clearable!: boolean;
   @Input() disabled = false;
+  @Input() suffix!: string;
+  @Input() prefix!: string;
 
   control!: FormControl;
 }
