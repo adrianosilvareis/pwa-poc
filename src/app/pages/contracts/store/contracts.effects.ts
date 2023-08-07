@@ -1,4 +1,4 @@
-import { ContractsService } from '@pages/contracts/services/contracts.service';
+import { HTTPContractsService } from '@pages/contracts/services/http-contracts/http-contracts.service';
 import { Injectable } from "@angular/core";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
@@ -49,7 +49,7 @@ export class ContractsEffects {
 
   constructor(
     private actions$: Actions,
-    private contractsService: ContractsService,
+    private contractsService: HTTPContractsService,
     private store: Store<AppState>
   ) {}
 

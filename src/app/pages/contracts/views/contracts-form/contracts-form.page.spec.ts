@@ -12,6 +12,8 @@ import { ContractsFormPage } from "./contracts-form.page";
 import { CompanyServicesModel } from "@root/app/pages/company-services/model/company-services.model";
 import { CompanyServicesState } from "@root/app/pages/company-services/store/company-services.reducer";
 import MockDate from 'mockdate'
+import { ClientState } from "@root/app/pages/clients/store/clients.reducer";
+import { ClientModel } from "@root/app/pages/clients/model/client.model";
 
 describe('ContractFormPage', () => {
   let initialState: Partial<AppState>
@@ -48,7 +50,7 @@ describe('ContractFormPage', () => {
     await setup(data);
 
     // when
-    const nameField = screen.getByLabelText('Startdate');
+    const nameField = screen.getByLabelText('Data De Inicio');
 
     // then
     expect(nameField.hasAttribute('required')).toBeTruthy();
@@ -95,18 +97,28 @@ describe('ContractFormPage', () => {
 function setupContract(): ContractsModel {
   return {
     id: "MY_ID",
+    client: 'MY_CLIENT_ID',
+    discount:0,
+    suggestedValue: 1000,
     startDate: new Date(),
     endDate: new Date(),
     price: 1000,
     renewable: true,
     isActive: true,
-    services: []
+    services: [{
+      id: 'MY_SERVICE_ID',
+      description: 'description',
+      isActive: true,
+      title: 'title',
+      value: 1000
+    }]
   }
 }
 
 function setupInitialStatus(): {
   contract: ContractsState,
-  service: CompanyServicesState
+  service: CompanyServicesState,
+  client: ClientState,
  } {
   return {
     contract: {
@@ -119,16 +131,32 @@ function setupInitialStatus(): {
       errorOnDeleteContracts: false,
       errorOnLoadContracts: false
     },
-    service: setupInitialServiceStatus()
+    service: setupInitialServiceStatus(),
+    client: setupInitialClientStatus()
   }
 }
 
 function setupService(): CompanyServicesModel {
   return {
-    id: 'MY_ID',
+    id: 'MY_SERVICE_ID',
     title: 'title',
     description: 'description',
     value: 1000,
+    isActive: true,
+  }
+}
+
+function setupClient(): ClientModel {
+  return {
+    id: 'MY_CLIENT_ID',
+    name: 'name',
+    area: 'area',
+    owner: 'owner',
+    responsible: 'responsible',
+    contacts: [],
+    contracts: [],
+    payments: [],
+    description: 'description',
     isActive: true,
   }
 }
@@ -144,6 +172,20 @@ function setupInitialServiceStatus():CompanyServicesState {
     errorOnEditServices: false,
     errorOnDeleteServices: false,
     errorOnLoadServices: false
+  }
+}
+
+function setupInitialClientStatus():ClientState {
+  return {
+    clients: [setupClient()],
+    newClient: null,
+    selectedClient: setupClient(),
+    selectedClientId: undefined,
+    isClientLoading: false,
+    errorOnLoadClients: false,
+    errorOnAddClients: false,
+    errorOnEditClients: false,
+    errorOnDeleteClients: false
   }
 }
 
