@@ -2,11 +2,13 @@ import { CompanyServicesModel } from "@pages/company-services/model/company-serv
 
 export interface ContractsModel {
   id?: string;
+  client: string;
   startDate: Date;
   endDate: Date;
   renewable: boolean;
   services: CompanyServicesModel[];
   price: number;
-  suggestedValue?: number;
+  suggestedValue: number;
+  discount: number;
   isActive: boolean;
 }
