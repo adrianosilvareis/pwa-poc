@@ -33,7 +33,7 @@ export class FormComponent implements OnDestroy {
     this.destroyed$.complete();
   }
 
-  callSave() { this.save.emit(this.formGroup.value) }
+  callSave() { this.save.emit(this.formGroup.getRawValue()) }
   callCancel() { this.cancel.emit() }
 
   private toGroup(data: FormItems[]) {
