@@ -16,6 +16,7 @@ export class FormComponent implements OnDestroy {
   @Output() save = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() valueChange = new EventEmitter();
+  @Output() mounted = new EventEmitter();
 
   fields: FormItems[] = [];
   formGroup!: FormGroup;
@@ -48,5 +49,7 @@ export class FormComponent implements OnDestroy {
     this.formGroup.valueChanges
       .pipe(takeUntil(this.destroyed$), distinctUntilChanged((prev, curr) => !Object.keys(prev).some(key => prev[key] !== curr[key])))
       .subscribe((value) => this.valueChange.emit({ value, form: this.formGroup }))
+
+    this.mounted.emit({ form: this.formGroup });
   }
 }
