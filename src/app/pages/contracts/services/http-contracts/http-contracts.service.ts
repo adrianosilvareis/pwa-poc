@@ -6,7 +6,7 @@ import { ContractsModel } from '@pages/contracts/model/contracts.models';
 @Injectable({
   providedIn: 'root'
 })
-export class ContractsService {
+export class HTTPContractsService {
   public ROOT_URL = environment.baseUrl;
   private baseUrl = `${this.ROOT_URL}/contracts`;
 
