@@ -13,6 +13,8 @@ export interface AddItem {
   clearable?: boolean;
   disabled?: boolean;
   type?: FieldType;
+  suffix?: string;
+  prefix?: string;
 }
 
 @Injectable({
@@ -33,6 +35,8 @@ export class FormItemsBuilder {
       value: new FormControl(formItem.value),
       type: formItem.type ?? FieldType.input,
       clearable: formItem.clearable,
+      suffix: formItem.suffix,
+      prefix: formItem.prefix,
     }
     this.data.push(item);
     this.currentName = formItem.name;
