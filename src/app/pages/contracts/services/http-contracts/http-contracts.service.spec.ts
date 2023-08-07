@@ -1,13 +1,13 @@
 import { HttpTestingController, HttpClientTestingModule } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
 import { Subscription } from "rxjs";
-import { ContractsService } from "./contracts.service";
+import { HTTPContractsService } from "./http-contracts.service";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import MockDate from 'mockdate'
 
-describe('ContractsService', () => {
+describe('HTTPContractsService', () => {
   let httpMock: HttpTestingController;
-  let contract: ContractsService;
+  let contract: HTTPContractsService;
   const subscription = new Subscription();
 
   afterAll(() => {
@@ -25,10 +25,10 @@ describe('ContractsService', () => {
   beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
-        providers: [ContractsService]
+        providers: [HTTPContractsService]
       });
       httpMock = TestBed.inject(HttpTestingController);
-      contract = TestBed.inject(ContractsService);
+      contract = TestBed.inject(HTTPContractsService);
   });
 
   it('should call a correct url of loadContracts', () => {
