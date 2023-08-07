@@ -162,7 +162,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
   private buildData(options: ContractsOptions, item?: ContractsModel) {
     return this.builder
       .addItem({ name: 'client', label: 'Cliente', value: item?.client, clearable: true, type: FieldType.autocomplete })
-        .addOptions(options.client).addValidations([Validators.required])
+        .addOptions(options.client).addValidations([Validators.required]).disabledWhen(!!item)
       .addItem({ name: 'startDate', label: 'Data de Inicio', value: item?.startDate ?? new Date(), clearable: true, type: FieldType.date })
         .addValidations([Validators.required])
       .addItem({ name: 'endDate', label: 'Data de Fim', value: item?.endDate, clearable: true, type: FieldType.date })
@@ -176,7 +176,6 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
   }
 
   private sanitize(formContract: ContractsData):ContractsModel {
-    const suggestedValue = this.contractRules.calcTotalSuggested(this.services, formContract.services)
     return {
       id: this.contract?.id,
       client: formContract.client,
@@ -184,7 +183,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
       endDate: formContract.endDate,
       renewable:formContract.renewable,
       price: formContract.price,
-      suggestedValue: formContract.suggestedValue ?? suggestedValue,
+      suggestedValue: formContract.suggestedValue,
       discount: formContract.discount,
       services: this.getServices(formContract.services),
       isActive: this.contract?.isActive ?? true

@@ -8,6 +8,7 @@
           matInput
           [formControl]="control"
           [matAutocomplete]="auto">
+  <mat-error *ngIf="control?.errors" role="error">{{ control.errors | errorMessage }}</mat-error>
 
   <button
     *ngIf="clearable"

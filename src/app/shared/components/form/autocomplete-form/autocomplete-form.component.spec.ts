@@ -68,7 +68,7 @@ describe('AutocompleteFormComponent', () => {
     const { group } = await setup();
     selectOptions();
 
-    expect(group.value).toEqual({ field: { label: 'one', value: 'one' } });
+    expect(group.value).toEqual({ field: 'one' });
   });
 });
 

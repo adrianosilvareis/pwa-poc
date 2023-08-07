@@ -29,8 +29,9 @@ export class AutocompleteFormComponent extends InputFieldProps implements OnInit
   private _options: OptionsType[] = [];
 
   ngOnInit() {
-    this.control = new FormControl('');
-    this._updateControlValue();
+    const form = this.group.get(this.inputKey) as FormControl;
+    this.control = new FormControl({ value: form.value, disabled: form.disabled }, form.validator);
+    this._updateControlValue(form.value);
     this._updateFilteredOptions();
   }
 
@@ -38,7 +39,7 @@ export class AutocompleteFormComponent extends InputFieldProps implements OnInit
     this.selected = this.control.value ?? '';
     const option = this.options.find(option => option.value === this.selected);
     this._setControlValue(option?.label)
-    this.group.get(this.inputKey)?.setValue(option);
+    this.group.get(this.inputKey)?.setValue(option?.value);
   }
 
   clearOption(e: Event, input: HTMLElement) {
@@ -59,8 +60,7 @@ export class AutocompleteFormComponent extends InputFieldProps implements OnInit
     );
   }
 
-  private _updateControlValue() {
-    const initialValue = this.group.get(this.inputKey)?.value?.at(0);
+  private _updateControlValue(initialValue: string) {
     const label = this.options.find(option => option.value === initialValue)?.label;
     this._setControlValue(label)
   }

@@ -55,6 +55,17 @@ export class FormItemsBuilder {
     });
   }
 
+  disabledWhen(disabled: boolean) {
+    return this.changeCurrent((item) => {
+      if(disabled) {
+        item.value.disable();
+      } else {
+        item.value.enable();
+      }
+      return item
+    });
+  }
+
   addValidations(validations: ((control: AbstractControl<unknown, unknown>) => ValidationErrors | null)[]): FormItemsBuilder {
     return this.changeCurrent((item) => {
       item.value.setValidators(validations);
