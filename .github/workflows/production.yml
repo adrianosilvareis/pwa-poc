@@ -27,3 +27,6 @@ jobs:
 
       - name: Run test
         run: npm run test
+
+      - name: Create release
+        run: npm run release
