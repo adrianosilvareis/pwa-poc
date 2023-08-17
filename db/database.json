@@ -641,6 +641,54 @@
         }
       ],
       "isActive": true
+    },
+    {
+      "client": "cc1844ec-7414-40f3-9200-48300c42d7ae",
+      "startDate": "2023-08-17T04:06:01.687Z",
+      "endDate": "2023-08-18T03:00:00.000Z",
+      "renewable": true,
+      "price": 1950,
+      "suggestedValue": 6500,
+      "discount": 70,
+      "services": [
+        {
+          "title": "acessoria de impressa",
+          "description": "assessorar o cliente no contato com a impressa",
+          "value": "1300",
+          "isActive": true,
+          "id": "7FmEUdQ"
+        },
+        {
+          "title": "redes sociais",
+          "description": "assessorar o cliente no contato com a impressa",
+          "value": "1300",
+          "isActive": true,
+          "id": "06ec58623"
+        },
+        {
+          "title": "produção de conteúdo",
+          "description": "assessorar o cliente no contato com a impressa",
+          "value": "1300",
+          "isActive": true,
+          "id": "0821bfba3"
+        },
+        {
+          "title": "produção de video",
+          "description": "assessorar o cliente no contato com a impressa",
+          "value": "1300",
+          "isActive": true,
+          "id": "0825bfba3"
+        },
+        {
+          "title": "produção de material impresso",
+          "description": "assessorar o cliente no contato com a impressa",
+          "value": "1300",
+          "isActive": true,
+          "id": "0870bfba3"
+        }
+      ],
+      "isActive": true,
+      "id": "q17RHZA"
     }
   ]
 }

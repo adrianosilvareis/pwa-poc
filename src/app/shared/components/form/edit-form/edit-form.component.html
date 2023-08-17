@@ -36,6 +36,11 @@
           [ngTemplateOutlet]="currency"
           [ngTemplateOutletContext]="{ $implicit: item }">
         </ng-container>
+        <ng-container
+          *ngIf="item.type === 'number'"
+          [ngTemplateOutlet]="number"
+          [ngTemplateOutletContext]="{ $implicit: item }">
+        </ng-container>
       </mat-grid-tile>
 
       <ng-template #input let-item>
@@ -110,6 +115,19 @@
           [placeholder]="item.placeholder"
           class="fullRow"
           ></app-currency-form>
+      </ng-template>
+
+      <ng-template #number let-item>
+        <app-number-form
+          [inputKey]="item.name"
+          [group]="formGroup"
+          [label]="item.label"
+          [clearable]="item.clearable"
+          [suffix]="item.suffix"
+          [prefix]="item.prefix"
+          [placeholder]="item.placeholder"
+          class="fullRow"
+          ></app-number-form>
       </ng-template>
     </form>
 

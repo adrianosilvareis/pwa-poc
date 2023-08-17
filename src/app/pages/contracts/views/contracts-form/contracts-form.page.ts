@@ -170,7 +170,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
         .addOptions(options.services).addValidations([Validators.required])
       .addItem({ name: 'price', label: 'Preço', value: item?.price ?? 0, clearable: true, type: FieldType.currency })
       .addItem({ name: 'suggestedValue', label: 'Preço Sugerido', value: item?.suggestedValue ?? 0, type: FieldType.currency }).disabled()
-      .addItem({ name: 'discount', suffix: '%',  label: 'Desconto', value: item?.discount ?? 0, type: FieldType.input }).addValidations([Validators.min(0), Validators.max(80)])
+      .addItem({ name: 'discount', suffix: '%',  label: 'Desconto', value: item?.discount ?? 0, type: FieldType.number }).addValidations([Validators.min(0), Validators.max(80)])
       .addItem({ name: 'renewable', label: 'Renovável', value: item?.renewable ?? true, clearable: true, type: FieldType.YesNo })
       .build();
   }
