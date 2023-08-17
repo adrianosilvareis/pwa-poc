@@ -5,4 +5,5 @@ export enum FieldType {
   date = 'date',
   YesNo = 'YesNo',
   currency = 'currency',
+  number = 'number',
 }

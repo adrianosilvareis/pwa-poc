@@ -1,0 +1,25 @@
+<mat-form-field appearance="fill" class="fullRow">
+  <mat-label [ngClass]="{ '!text-red-500': control.invalid && control.touched }">{{ label | titlecase }}</mat-label>
+  <input
+          matInput
+          type="number"
+          [formControl]="control"
+          [placeholder]="placeholder"
+          role="input">
+
+  <mat-error *ngIf="control?.errors" role="error">{{ control.errors | errorMessage }}</mat-error>
+
+  <span matTextSuffix>{{ suffix }}</span>
+  <span matTextPrefix>{{ prefix }}</span>
+
+  <button
+    *ngIf="clearable"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    role="clearable"
+    (click)="clear()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
