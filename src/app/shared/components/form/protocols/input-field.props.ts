@@ -8,7 +8,7 @@ export abstract class InputFieldProps {
   @Input() inputKey = '';
   @Input() group!: FormGroup;
   @Input() label = '';
-  @Input() placeholder = 'R$ 0,00';
+  @Input() placeholder = '0,00';
   @Input() clearable!: boolean;
   @Input() disabled = false;
   @Input() suffix!: string;

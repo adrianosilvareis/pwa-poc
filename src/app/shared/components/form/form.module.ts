@@ -16,6 +16,7 @@ import {
 import { CheckboxFormComponent } from './checkbox-form/checkbox-form.component';
 import { CurrencyFormComponent } from './currency-form/currency-form.component';
 import { MultiSelectFormComponent } from './multi-select-form/multi-select-form.component';
+import { NumberFormComponent } from './number-form/number-form.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MultiSelectFormComponent } from './multi-select-form/multi-select-form.
     DatepickFormComponent,
     CheckboxFormComponent,
     CurrencyFormComponent,
+    NumberFormComponent,
     MultiSelectFormComponent
   ],
   imports: [
