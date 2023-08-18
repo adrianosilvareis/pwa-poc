@@ -10,6 +10,7 @@
   <mat-hint>DD/MM/YYYY</mat-hint>
   <mat-datepicker-toggle matIconPrefix [for]="picker" role="pickButton"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="control?.errors" role="error">{{ control.errors | errorMessage }}</mat-error>
   <button
     *ngIf="clearable"
     matSuffix
