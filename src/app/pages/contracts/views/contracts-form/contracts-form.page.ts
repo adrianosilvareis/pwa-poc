@@ -1,6 +1,6 @@
 import { selectActiveServices } from '@root/app/pages/company-services/store/company-services.selectors';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@root/app/app-state';
@@ -165,7 +165,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
         .addOptions(options.client).addValidations([Validators.required]).disabledWhen(!!item)
       .addItem({ name: 'startDate', label: 'Data de Inicio', value: item?.startDate ?? new Date(), clearable: true, type: FieldType.date })
         .addValidations([Validators.required])
-      .addItem({ name: 'endDate', label: 'Data de Fim', value: item?.endDate, clearable: true, type: FieldType.date })
+      .addItem({ name: 'endDate', label: 'Data de Fim', value: item?.endDate, clearable: true, type: FieldType.date }).addValidations([this.endDateMinValidator()])
       .addItem({ name: 'services', label: 'Serviços', value: item?.services.map(({ id }) => id), clearable: true, type: FieldType.multiselect })
         .addOptions(options.services).addValidations([Validators.required])
       .addItem({ name: 'price', label: 'Preço', value: item?.price ?? 0, clearable: true, type: FieldType.currency })
@@ -173,6 +173,21 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
       .addItem({ name: 'discount', suffix: '%',  label: 'Desconto', value: item?.discount ?? 0, type: FieldType.number }).addValidations([Validators.min(0), Validators.max(80)])
       .addItem({ name: 'renewable', label: 'Renovável', value: item?.renewable ?? true, clearable: true, type: FieldType.YesNo })
       .build();
+  }
+
+  private endDateMinValidator() {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const startDate = control.parent?.get('startDate')?.value;
+      const endDate = control.value;
+      if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        if (start > end) {
+          return { 'endDateMin': true };
+        }
+      }
+      return null;
+    };
   }
 
   private sanitize(formContract: ContractsData):ContractsModel {
