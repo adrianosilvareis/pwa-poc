@@ -5,8 +5,8 @@ import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './edit-form.component.html',
-  styleUrls: ['./edit-form.component.scss']
+  templateUrl: './app-form.component.html',
+  styleUrls: ['./app-form.component.scss']
 })
 export class FormComponent implements OnDestroy {
   @Input() title = '';

@@ -138,6 +138,9 @@
   </mat-grid-list>
   <hr>
 
-  <button mat-raised-button color="primary" role="save" (click)="callSave()" [disabled]="isInvalid">SAVE</button>
-  <button mat-button role="cancel" (click)="callCancel()">CANCEL</button>
+  <div class="flex justify-center space-x-4">
+   <button mat-raised-button color="primary" role="save" (click)="callSave()" [disabled]="isInvalid">SAVE</button>
+   <button mat-button role="cancel" (click)="callCancel()">CANCEL</button>
+   <ng-content select="app-actions-form"></ng-content>
+  </div>
 </div>
