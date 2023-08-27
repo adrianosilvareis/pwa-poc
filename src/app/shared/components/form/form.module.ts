@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AutocompleteFormComponent } from './autocomplete-form/autocomplete-form.component';
-import { FormComponent } from './edit-form/edit-form.component';
+import { FormComponent } from './app-form/app-form.component';
 import { MaterialModule } from '@root/app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/shared/shared.module';
@@ -17,6 +17,7 @@ import { CheckboxFormComponent } from './checkbox-form/checkbox-form.component';
 import { CurrencyFormComponent } from './currency-form/currency-form.component';
 import { MultiSelectFormComponent } from './multi-select-form/multi-select-form.component';
 import { NumberFormComponent } from './number-form/number-form.component';
+import { ActionsFormComponent } from './app-actions-form/app-actions-form.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NumberFormComponent } from './number-form/number-form.component';
     CheckboxFormComponent,
     CurrencyFormComponent,
     NumberFormComponent,
-    MultiSelectFormComponent
+    MultiSelectFormComponent,
+    ActionsFormComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,7 @@ import { NumberFormComponent } from './number-form/number-form.component';
     FormsModule,
     ReactiveFormsModule,
     FormComponent,
-    AutocompleteFormComponent,
+    ActionsFormComponent,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},

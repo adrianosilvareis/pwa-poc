@@ -1,4 +1,4 @@
-import { FormComponent } from './edit-form.component';
+import { FormComponent } from './app-form.component';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { EventEmitter } from '@angular/core';
