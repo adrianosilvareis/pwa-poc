@@ -8,18 +8,35 @@ import { Unsubscribe } from "@root/app/utils/unsubscribe";
 import { Observable } from "rxjs";
 import { ContractsModel } from "@pages/contracts/model/contracts.models";
 import { contractsPageActions } from "@pages/contracts/store/contracts.actions";
-import { selectActiveContracts, isContractLoading } from "@pages/contracts/store/contracts.selectors";
+import { isContractLoading, selectContractsList } from "@pages/contracts/store/contracts.selectors";
 import { FieldType } from "@root/app/shared/components/form/protocols/field-type";
 import { TableColumnsService } from "@root/app/services/table-columns/table-columns.service";
+import { clientsPageActions } from "@root/app/pages/clients/store/clients.actions";
 
 @Component({
-  templateUrl: './contracts.page.html',
-  styleUrls: ['./contracts.page.scss']
+  styleUrls: ['./contracts.page.scss'],
+  template: `
+  <app-table
+    *ngIf="(isLoading | async) === false else loading"
+    [columns]="columns"
+    title="Contracts"
+    [items]="data"
+    (add)="addContract()"
+    (edit)="editContract()"
+    (selectItem)="selectContract($event)"
+    (remove)="removeContract()"
+    role="company-table"
+  ></app-table>
+
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+  `
 })
 export class ContractsPage extends Unsubscribe implements OnInit {
   columns!: ColumnItem[];
 
-  data: Observable<ContractsModel[]> = this.store.select(selectActiveContracts);
+  data: Observable<ContractsModel[]> = this.store.select(selectContractsList);
   isLoading: Observable<boolean> = this.store.select(isContractLoading);
 
   private selected!: ContractsModel | null;
@@ -34,6 +51,7 @@ export class ContractsPage extends Unsubscribe implements OnInit {
   ngOnInit(): void {
     this._configColumns();
     this.store.dispatch(contractsPageActions.selectContract({ contract: null }));
+    this.store.dispatch(clientsPageActions.loadClients());
     this.store.dispatch(contractsPageActions.loadContracts());
   }
 
@@ -61,10 +79,11 @@ export class ContractsPage extends Unsubscribe implements OnInit {
 
   private _configColumns() {
     this.columns = this.columnBuild
-      .addItem({ name: 'Start Date', value: 'startDate', type: FieldType.date })
-      .addItem({ name: 'End Date', value: 'endDate', type: FieldType.date })
-      .addItem({ name: 'Renewable', type: FieldType.YesNo })
-      .addItem({ name: 'Price', type: FieldType.currency })
+      .addItem({ name: 'Cliente', value: 'clientName', type: FieldType.input })
+      .addItem({ name: 'Data Inicio', value: 'startDate', type: FieldType.date })
+      .addItem({ name: 'Data Fim', value: 'endDate', type: FieldType.date })
+      .addItem({ name: 'Renovável', value: 'Renewable', type: FieldType.YesNo })
+      .addItem({ name: 'Preço', value: 'price', type: FieldType.currency })
       .build()
   }
 }
