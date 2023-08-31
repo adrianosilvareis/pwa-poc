@@ -176,7 +176,7 @@ export class ContractsFormPage extends Unsubscribe implements OnInit {
   }
 
   private endDateMinValidator() {
-    return (control: AbstractControl): { [key: string]: any } | null => {
+    return (control: AbstractControl): { [key: string]: unknown } | null => {
       const startDate = control.parent?.get('startDate')?.value;
       const endDate = control.value;
       if (startDate && endDate) {
